@@ -47,6 +47,7 @@ text-shadow:0 0 15px #00ff41;
 font-size:1.2rem;
 margin-top:15px;
 color:#8fff8f;
+min-height:30px;
 }
 
 .card{
@@ -60,22 +61,7 @@ box-shadow:0 0 15px #00ff4133;
 
 h2{
 margin-bottom:15px;
-}
-
-.skill{
-margin:15px 0;
-}
-
-.bar{
-background:#222;
-height:12px;
-border-radius:20px;
-overflow:hidden;
-}
-
-.fill{
-height:12px;
-background:#00ff41;
+color:#00ff41;
 }
 
 .btn{
@@ -98,6 +84,14 @@ text-align:center;
 padding:30px;
 color:#888;
 }
+
+a{
+color:#00ff41;
+}
+
+p{
+line-height:1.8;
+}
 </style>
 </head>
 <body>
@@ -110,7 +104,9 @@ color:#888;
 
 <div class="typing" id="typing"></div>
 
-https://github.com/andarmax
+<br>
+
+<a class="btn" href="https://github.com/andarmax" target="_blank">
 GitHub Profile
 </a>
 
@@ -119,13 +115,15 @@ GitHub Profile
 <div class="container">
 
 <div class="card">
+
 <h2>ABOUT ME</h2>
 
 <p>
-Cyber Security Student,
-Linux Enthusiast,
-Networking Learner,
-Ethical Hacking Explorer.
+Saya adalah pelajar yang sedang mempelajari Linux,
+Networking, dan Cyber Security melalui lab pribadi
+menggunakan Kali Linux dan Windows.
+Saya tertarik pada keamanan sistem, jaringan,
+dan pembelajaran teknologi secara mandiri.
 </p>
 
 </div>
@@ -136,42 +134,20 @@ Ethical Hacking Explorer.
 
 <p>✅ Kali Linux VirtualBox</p>
 <p>✅ Windows 10 Pro</p>
-<p>✅ Cyber Security Lab</p>
-<p>✅ Ethical Hacking Practice</p>
+<p>✅ Cyber Security Learning Lab</p>
+<p>✅ Networking Practice Environment</p>
 
 </div>
 
 <div class="card">
 
-<h2>SKILLS</h2>
+<h2>LEARNING FOCUS</h2>
 
-<div class="skill">
-Linux
-<div class="bar">
-<div class="fill" style="width:85%"></div>
-</div>
-</div>
-
-<div class="skill">
-Networking
-<div class="bar">
-<div class="fill" style="width:80%"></div>
-</div>
-</div>
-
-<div class="skill">
-Cyber Security
-<div class="bar">
-<div class="fill" style="width:75%"></div>
-</div>
-</div>
-
-<div class="skill">
-Python
-<div class="bar">
-<div class="fill" style="width:65%"></div>
-</div>
-</div>
+<p>• Linux Fundamentals</p>
+<p>• Basic Networking</p>
+<p>• Cyber Security Fundamentals</p>
+<p>• Python Programming</p>
+<p>• Ethical Hacking Practice</p>
 
 </div>
 
@@ -179,10 +155,10 @@ Python
 
 <h2>PROJECTS</h2>
 
-<p>• Linux Administration</p>
-<p>• Network Scanning</p>
-<p>• Cyber Security Notes</p>
-<p>• CTF Writeup</p>
+<p>• Linux Learning Notes</p>
+<p>• Home Lab Documentation</p>
+<p>• Basic Network Analysis</p>
+<p>• Study Notes & Writeups</p>
 
 </div>
 
@@ -221,41 +197,43 @@ drops[i]=1;
 
 function draw(){
 
-ctx.fillStyle=
+ctx.fillStyle =
 "rgba(0,0,0,0.05)";
 
 ctx.fillRect(
 0,0,
 canvas.width,
-canvas.height);
+canvas.height
+);
 
-ctx.fillStyle=
+ctx.fillStyle =
 "#00ff41";
 
-ctx.font=
+ctx.font =
 fontSize + "px monospace";
 
 for(let i=0;i<drops.length;i++){
 
-const text=
+const text =
 letters[
 Math.floor(
-Math.random()*
-letters.length)
+Math.random() *
+letters.length
+)
 ];
 
 ctx.fillText(
 text,
-i*fontSize,
-drops[i]*fontSize
+i * fontSize,
+drops[i] * fontSize
 );
 
 if(
-drops[i]*fontSize >
+drops[i] * fontSize >
 canvas.height &&
 Math.random() > 0.975
 ){
-drops[i]=0;
+drops[i] = 0;
 }
 
 drops[i]++;
@@ -266,17 +244,17 @@ drops[i]++;
 setInterval(draw,33);
 
 const text =
-"Cyber Security Student | Kali Linux | Ethical Hacking";
+"Cyber Security Learner | Linux Enthusiast | Networking Student";
 
-let i=0;
+let i = 0;
 
 function typing(){
 
-if(i<text.length){
+if(i < text.length){
 
 document
 .getElementById("typing")
-.innerHTML+=
+.innerHTML +=
 text.charAt(i);
 
 i++;
