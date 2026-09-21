@@ -7,11 +7,12 @@
 <title>ANDAR | Cyber Security</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Consolas,monospace;
+font-family:Consolas, monospace;
 }
 
 body{
@@ -27,30 +28,21 @@ left:0;
 z-index:-1;
 }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:20px;
-}
-
-.hero{
-text-align:center;
-padding:40px 20px;
-}
-
 .navbar{
 display:flex;
 justify-content:center;
 gap:10px;
 flex-wrap:wrap;
-margin-bottom:30px;
+padding:20px;
 }
 
 .nav-btn{
-padding:10px 15px;
-border:1px solid #00ff41;
+padding:8px 14px;
+font-size:12px;
 text-decoration:none;
 color:#00ff41;
+border:1px solid #00ff41;
+border-radius:5px;
 background:rgba(0,0,0,.7);
 transition:.3s;
 }
@@ -58,60 +50,76 @@ transition:.3s;
 .nav-btn:hover{
 background:#00ff41;
 color:#000;
-box-shadow:0 0 15px #00ff41;
+box-shadow:0 0 12px #00ff41;
+}
+
+.hero{
+text-align:center;
+padding:20px;
 }
 
 .profile{
-width:180px;
-height:180px;
-border-radius:50%;
-border:4px solid #00ff41;
-box-shadow:0 0 25px #00ff41;
+width:160px;
+height:160px;
 object-fit:cover;
-margin-bottom:20px;
+border-radius:50%;
+display:block;
+margin:20px auto;
+
+border:4px solid #00ff41;
+
+box-shadow:
+0 0 10px #00ff41,
+0 0 20px #00ff41,
+0 0 40px rgba(0,255,65,.5);
+
+transition:.3s;
+}
+
+.profile:hover{
+transform:scale(1.03);
+box-shadow:
+0 0 15px #00ff41,
+0 0 30px #00ff41,
+0 0 60px rgba(0,255,65,.8);
+}
+
+.profile-status{
+font-size:12px;
+margin-bottom:15px;
+color:#8fff8f;
+text-shadow:0 0 8px #00ff41;
 }
 
 h1{
 font-size:4rem;
-text-shadow:0 0 20px #00ff41;
+text-shadow:
+0 0 10px #00ff41,
+0 0 20px #00ff41;
+margin-bottom:10px;
 }
 
 .typing{
-margin-top:15px;
-font-size:1.2rem;
-color:#88ff88;
-min-height:35px;
+font-size:1.1rem;
+color:#8fff8f;
+min-height:40px;
+margin-bottom:20px;
 }
 
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-margin-top:25px;
-}
-
-.btn{
-padding:12px 25px;
-border:1px solid #00ff41;
-text-decoration:none;
-color:#00ff41;
-transition:.3s;
-}
-
-.btn:hover{
-background:#00ff41;
-color:#000;
-box-shadow:0 0 15px #00ff41;
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
 }
 
 .card{
-background:rgba(0,0,0,.75);
-padding:25px;
-margin:25px 0;
-border-radius:15px;
+background:rgba(0,0,0,.78);
 border:1px solid #00ff41;
-box-shadow:0 0 20px rgba(0,255,65,.2);
+border-radius:15px;
+padding:25px;
+margin-bottom:25px;
+box-shadow:0 0 15px rgba(0,255,65,.2);
+backdrop-filter:blur(2px);
 }
 
 .card h2{
@@ -129,15 +137,15 @@ padding:30px;
 color:#888;
 }
 
-@media(max-width:700px){
+@media(max-width:768px){
 
 h1{
 font-size:3rem;
 }
 
 .profile{
-width:150px;
-height:150px;
+width:140px;
+height:140px;
 }
 
 .typing{
@@ -145,6 +153,7 @@ font-size:1rem;
 }
 
 }
+
 </style>
 </head>
 
@@ -152,47 +161,39 @@ font-size:1rem;
 
 <canvas id="matrix"></canvas>
 
-<div class="hero">
-
 <div class="navbar">
 
 <a class="nav-btn" href="index.html">
-[ HOME ]
+HOME
 </a>
 
 <a class="nav-btn" href="writeups.html">
-[ NOTES ]
+NOTES
 </a>
 
 <a class="nav-btn" href="roadmap.html">
-[ ROADMAP ]
+ROADMAP
 </a>
 
 <a class="nav-btn"
 href="https://github.com/andarmax"
 target="_blank">
-[ GITHUB ]
+GITHUB
 </a>
 
 </div>
 
+<div class="hero">
+
 IMG_3472.jpeg
+
+<div class="profile-status">
+[SYSTEM USER DETECTED]
+</div>
 
 <h1>ANDAR</h1>
 
 <div class="typing" id="typing"></div>
-
-<div class="hero-buttons">
-
-<a class="btn" href="writeups.html">
-STUDY NOTES
-</a>
-
-<a class="btn" href="roadmap.html">
-ROADMAP
-</a>
-
-</div>
 
 </div>
 
@@ -204,10 +205,11 @@ ROADMAP
 
 <p>
 Student focused on Linux, Networking, and Cyber Security.
+Currently building a personal learning environment using
+Kali Linux, VirtualBox, and Windows 10 Pro.
 
-Currently building a personal learning environment using Kali Linux, VirtualBox, and Windows 10 Pro.
-
-Learning through hands-on practice, documentation, and continuous experimentation.
+Learning through documentation, experimentation,
+and hands-on practice.
 </p>
 
 </div>
@@ -260,7 +262,7 @@ Learning through hands-on practice, documentation, and continuous experimentatio
 </div>
 
 <footer>
-ACCESS GRANTED ✓ | HOME LAB ONLINE ✓ | andarmax.github.io
+ACCESS GRANTED ✓ | HOME LAB ONLINE ✓
 </footer>
 
 <script>
@@ -277,24 +279,23 @@ const columns = canvas.width / fontSize;
 
 const drops = [];
 
-for(let i=0;i<columns;i++){
-drops[i]=1;
+for(let i = 0; i < columns; i++){
+drops[i] = 1;
 }
 
 function draw(){
 
-ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillStyle = "rgba(0,0,0,0.05)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="#00ff41";
-ctx.font=fontSize + "px monospace";
+ctx.fillStyle = "#00ff41";
+ctx.font = fontSize + "px monospace";
 
-for(let i=0;i<drops.length;i++){
+for(let i = 0; i < drops.length; i++){
 
-const text=
-letters[Math.floor(
-Math.random()*letters.length
-)];
+const text = letters[
+Math.floor(Math.random()*letters.length)
+];
 
 ctx.fillText(
 text,
@@ -303,14 +304,16 @@ drops[i]*fontSize
 );
 
 if(
-drops[i]*fontSize>canvas.height &&
-Math.random()>0.975
+drops[i]*fontSize > canvas.height &&
+Math.random() > 0.975
 ){
-drops[i]=0;
+drops[i] = 0;
 }
 
 drops[i]++;
+
 }
+
 }
 
 setInterval(draw,33);
@@ -324,17 +327,15 @@ function typing(){
 
 if(i < text.length){
 
-document
-.getElementById("typing")
-.innerHTML += text.charAt(i);
+document.getElementById("typing").innerHTML +=
+text.charAt(i);
 
 i++;
 
-setTimeout(
-typing,
-60
-);
+setTimeout(typing,60);
+
 }
+
 }
 
 typing();
