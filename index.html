@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,336 +10,1048 @@
 
 <style>
 
+/* =========================
+   GLOBAL
+========================= */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Consolas, monospace;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Consolas, "Courier New", monospace;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:#000;
-color:#00ff41;
-overflow-x:hidden;
+    background:#000;
+    color:#00ff41;
+    overflow-x:hidden;
 }
+
+
+/* =========================
+   MATRIX BACKGROUND
+========================= */
 
 #matrix{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
 
+
+/* =========================
+   NAVIGATION
+========================= */
+
 .navbar{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-padding:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:35px 20px 20px;
 }
 
 .nav-btn{
-padding:8px 14px;
-font-size:12px;
-text-decoration:none;
-color:#00ff41;
-border:1px solid #00ff41;
-border-radius:5px;
-background:rgba(0,0,0,.7);
-transition:.3s;
+    padding:12px 20px;
+
+    font-size:15px;
+
+    text-decoration:none;
+
+    color:#00ff41;
+
+    border:1px solid #00ff41;
+    border-radius:8px;
+
+    background:rgba(0,0,0,.80);
+
+    transition:
+        background .3s,
+        color .3s,
+        box-shadow .3s,
+        transform .3s;
 }
 
 .nav-btn:hover{
-background:#00ff41;
-color:#000;
-box-shadow:0 0 12px #00ff41;
+    background:#00ff41;
+    color:#000;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 10px #00ff41,
+        0 0 20px rgba(0,255,65,.5);
 }
 
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-text-align:center;
-padding:20px;
+    text-align:center;
+    padding:25px 20px 45px;
+}
+
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.profile-wrapper{
+    position:relative;
+    width:170px;
+    height:170px;
+    margin:15px auto 15px;
 }
 
 .profile{
-width:160px;
-height:160px;
-object-fit:cover;
-border-radius:50%;
-display:block;
-margin:20px auto;
+    width:170px;
+    height:170px;
 
-border:4px solid #00ff41;
+    object-fit:cover;
 
-box-shadow:
-0 0 10px #00ff41,
-0 0 20px #00ff41,
-0 0 40px rgba(0,255,65,.5);
+    border-radius:50%;
 
-transition:.3s;
+    display:block;
+
+    border:4px solid #00ff41;
+
+    box-shadow:
+        0 0 10px #00ff41,
+        0 0 25px rgba(0,255,65,.8),
+        0 0 45px rgba(0,255,65,.4);
+
+    transition:
+        transform .3s,
+        box-shadow .3s;
 }
 
 .profile:hover{
-transform:scale(1.03);
-box-shadow:
-0 0 15px #00ff41,
-0 0 30px #00ff41,
-0 0 60px rgba(0,255,65,.8);
+    transform:scale(1.04);
+
+    box-shadow:
+        0 0 15px #00ff41,
+        0 0 35px #00ff41,
+        0 0 60px rgba(0,255,65,.7);
 }
+
+
+/* ONLINE DOT */
+
+.online-dot{
+    position:absolute;
+
+    right:15px;
+    bottom:10px;
+
+    width:20px;
+    height:20px;
+
+    background:#00ff41;
+
+    border:3px solid #000;
+    border-radius:50%;
+
+    box-shadow:
+        0 0 8px #00ff41,
+        0 0 15px #00ff41;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        box-shadow:
+            0 0 5px #00ff41,
+            0 0 10px #00ff41;
+    }
+
+    50%{
+        box-shadow:
+            0 0 10px #00ff41,
+            0 0 25px #00ff41;
+    }
+
+    100%{
+        box-shadow:
+            0 0 5px #00ff41,
+            0 0 10px #00ff41;
+    }
+}
+
+
+/* PROFILE STATUS */
 
 .profile-status{
-font-size:12px;
-margin-bottom:15px;
-color:#8fff8f;
-text-shadow:0 0 8px #00ff41;
+    font-size:12px;
+
+    margin:10px 0 20px;
+
+    color:#8fff8f;
+
+    text-shadow:0 0 8px #00ff41;
 }
+
+
+/* =========================
+   ANDAR TITLE
+========================= */
 
 h1{
-font-size:4rem;
-text-shadow:
-0 0 10px #00ff41,
-0 0 20px #00ff41;
-margin-bottom:10px;
+    font-size:4rem;
+
+    margin-bottom:15px;
+
+    color:#00ff41;
+
+    text-shadow:
+        0 0 10px #00ff41,
+        0 0 20px #00ff41,
+        0 0 40px rgba(0,255,65,.6);
 }
+
+
+/* =========================
+   GLITCH EFFECT
+========================= */
+
+.glitch{
+    position:relative;
+
+    display:inline-block;
+
+    color:#00ff41;
+
+    animation:glitch-main 3s infinite;
+}
+
+.glitch::before,
+.glitch::after{
+
+    content:attr(data-text);
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    pointer-events:none;
+}
+
+
+/* CYAN GLITCH */
+
+.glitch::before{
+
+    color:#00ffff;
+
+    z-index:-1;
+
+    text-shadow:
+        -2px 0 #00ffff;
+
+    animation:glitch-before 3s infinite;
+}
+
+
+/* RED GLITCH */
+
+.glitch::after{
+
+    color:#ff004c;
+
+    z-index:-2;
+
+    text-shadow:
+        2px 0 #ff004c;
+
+    animation:glitch-after 3s infinite;
+}
+
+
+/* MAIN GLITCH */
+
+@keyframes glitch-main{
+
+    0%,
+    87%,
+    100%{
+        transform:translate(0);
+    }
+
+    89%{
+        transform:translate(-3px,1px);
+    }
+
+    91%{
+        transform:translate(3px,-1px);
+    }
+
+    93%{
+        transform:translate(-2px,2px);
+    }
+
+    95%{
+        transform:translate(2px,-2px);
+    }
+
+    97%{
+        transform:translate(-1px,1px);
+    }
+
+}
+
+
+/* CYAN */
+
+@keyframes glitch-before{
+
+    0%,
+    87%,
+    100%{
+        transform:translate(0);
+        opacity:0;
+    }
+
+    89%{
+        transform:translate(-5px,-2px);
+        opacity:.8;
+    }
+
+    91%{
+        transform:translate(4px,2px);
+        opacity:.6;
+    }
+
+    93%{
+        transform:translate(-3px,1px);
+        opacity:.8;
+    }
+
+    95%{
+        transform:translate(0);
+        opacity:0;
+    }
+
+}
+
+
+/* RED */
+
+@keyframes glitch-after{
+
+    0%,
+    89%,
+    100%{
+        transform:translate(0);
+        opacity:0;
+    }
+
+    91%{
+        transform:translate(5px,2px);
+        opacity:.7;
+    }
+
+    93%{
+        transform:translate(-5px,-1px);
+        opacity:.8;
+    }
+
+    95%{
+        transform:translate(3px,-2px);
+        opacity:.7;
+    }
+
+    97%{
+        transform:translate(0);
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   TYPING TEXT
+========================= */
 
 .typing{
-font-size:1.1rem;
-color:#8fff8f;
-min-height:40px;
-margin-bottom:20px;
+    max-width:800px;
+
+    margin:0 auto;
+
+    min-height:45px;
+
+    font-size:1.1rem;
+
+    line-height:1.6;
+
+    color:#8fff8f;
+
+    text-shadow:
+        0 0 5px rgba(0,255,65,.7);
 }
+
+.cursor{
+    display:inline-block;
+
+    width:8px;
+
+    color:#00ff41;
+
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+
+    0%,
+    50%{
+        opacity:1;
+    }
+
+    51%,
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   CONTENT
+========================= */
 
 .container{
-max-width:1000px;
-margin:auto;
-padding:20px;
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:20px;
 }
+
+
+/* =========================
+   CARDS
+========================= */
 
 .card{
-background:rgba(0,0,0,.78);
-border:1px solid #00ff41;
-border-radius:15px;
-padding:25px;
-margin-bottom:25px;
-box-shadow:0 0 15px rgba(0,255,65,.2);
-backdrop-filter:blur(2px);
+
+    background:rgba(0,0,0,.82);
+
+    border:1px solid #00ff41;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 0 15px rgba(0,255,65,.20);
+
+    backdrop-filter:blur(3px);
+
+    transition:
+        box-shadow .3s,
+        transform .3s;
 }
 
+.card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 10px rgba(0,255,65,.5),
+        0 0 25px rgba(0,255,65,.2);
+}
+
+
 .card h2{
-margin-bottom:15px;
-color:#00ff41;
+
+    margin-bottom:20px;
+
+    color:#00ff41;
+
+    text-shadow:
+        0 0 8px rgba(0,255,65,.6);
 }
 
 .card p{
-line-height:1.8;
+
+    line-height:1.9;
 }
 
-footer{
-text-align:center;
-padding:30px;
-color:#888;
+
+/* =========================
+   STATUS
+========================= */
+
+.status-online{
+    color:#00ff41;
+
+    text-shadow:
+        0 0 8px #00ff41;
 }
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    color:#8fff8f;
+
+    font-size:13px;
+
+    text-shadow:
+        0 0 7px rgba(0,255,65,.5);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px){
 
-h1{
-font-size:3rem;
+    .navbar{
+
+        gap:10px;
+
+        padding:25px 10px 15px;
+    }
+
+    .nav-btn{
+
+        font-size:12px;
+
+        padding:10px 14px;
+    }
+
+    .hero{
+
+        padding-top:15px;
+    }
+
+    .profile-wrapper{
+
+        width:140px;
+        height:140px;
+    }
+
+    .profile{
+
+        width:140px;
+        height:140px;
+    }
+
+    .online-dot{
+
+        width:18px;
+        height:18px;
+
+        right:9px;
+        bottom:9px;
+    }
+
+    h1{
+
+        font-size:3rem;
+    }
+
+    .typing{
+
+        font-size:1rem;
+    }
+
+    .card{
+
+        padding:25px 22px;
+    }
+
 }
 
-.profile{
-width:140px;
-height:140px;
+
+/* SMALL PHONE */
+
+@media(max-width:430px){
+
+    .navbar{
+
+        gap:7px;
+
+        padding-left:5px;
+        padding-right:5px;
+    }
+
+    .nav-btn{
+
+        font-size:11px;
+
+        padding:9px 11px;
+    }
+
+    h1{
+
+        font-size:2.8rem;
+    }
+
+    .typing{
+
+        font-size:.95rem;
+    }
+
 }
 
-.typing{
-font-size:1rem;
-}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+        animation:none !important;
+        transition:none !important;
+    }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- MATRIX BACKGROUND -->
+
 <canvas id="matrix"></canvas>
 
-<div class="navbar">
 
-<a class="nav-btn" href="index.html">
-HOME
-</a>
 
-<a class="nav-btn" href="writeups.html">
-NOTES
-</a>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-<a class="nav-btn" href="roadmap.html">
-ROADMAP
-</a>
+<nav class="navbar">
 
-<a class="nav-btn"
-href="https://github.com/andarmax"
-target="_blank">
-GITHUB
-</a>
+    <a class="nav-btn" href="index.html">
+        HOME
+    </a>
 
-</div>
+    <a class="nav-btn" href="writeups.html">
+        NOTES
+    </a>
 
-<div class="hero">
+    <a class="nav-btn" href="roadmap.html">
+        ROADMAP
+    </a>
 
-<div class="IMG_3472.jpeg">
-</div>
+    <a
+        class="nav-btn"
+        href="https://github.com/andarmax"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        GITHUB
+    </a>
 
-<h1>ANDAR</h1>
+</nav>
 
-<div class="typing" id="typing"></div>
 
-</div>
 
-<div class="container">
+<!-- =========================
+     HERO
+========================= -->
 
-<div class="card">
+<section class="hero">
 
-<h2>ABOUT ME</h2>
 
-<p>
-Student focused on Linux, Networking, and Cyber Security.
-Currently building a personal learning environment using
-Kali Linux, VirtualBox, and Windows 10 Pro.
+    <!-- PROFILE IMAGE -->
 
-Learning through documentation, experimentation,
-and hands-on practice.
-</p>
+    <div class="profile-wrapper">
 
-</div>
+        ./IMG_3472.jpeg
 
-<div class="card">
+        <span class="online-dot"></span>
 
-<h2>⚡ SYSTEM STATUS</h2>
+    </div>
 
-<p>> Home Lab : ONLINE</p>
-<p>> GitHub Pages : ONLINE</p>
-<p>> Documentation : ACTIVE</p>
-<p>> Learning Mode : ENABLED</p>
 
-</div>
+    <div class="profile-status">
+        ● HOME LAB ONLINE
+    </div>
 
-<div class="card">
 
-<h2>HOME LAB</h2>
+    <!-- GLITCH TITLE -->
 
-<p>✅ Kali Linux VirtualBox</p>
-<p>✅ Windows 10 Pro</p>
-<p>✅ Cyber Security Learning Lab</p>
-<p>✅ Networking Practice Environment</p>
+    <h1
+        class="glitch"
+        data-text="ANDAR"
+    >
+        ANDAR
+    </h1>
 
-</div>
 
-<div class="card">
+    <!-- TYPING -->
 
-<h2>LEARNING FOCUS</h2>
+    <div class="typing">
 
-<p>• Linux Fundamentals</p>
-<p>• Basic Networking</p>
-<p>• Cyber Security Fundamentals</p>
-<p>• Python Programming</p>
-<p>• Ethical Hacking Practice</p>
+        <span id="typing"></span>
 
-</div>
+        <span class="cursor">_</span>
 
-<div class="card">
+    </div>
 
-<h2>PROJECTS</h2>
 
-<p>• Linux Learning Notes</p>
-<p>• Home Lab Documentation</p>
-<p>• Basic Network Analysis</p>
-<p>• Study Notes & Writeups</p>
+</section>
 
-</div>
 
-</div>
+
+<!-- =========================
+     CONTENT
+========================= -->
+
+<main class="container">
+
+
+    <!-- ABOUT ME -->
+
+    <section class="card">
+
+        <h2>> ABOUT ME</h2>
+
+        <p>
+            Student focused on Linux, Networking, and Cyber Security.
+            Currently building a personal learning environment using
+            Kali Linux, VirtualBox, and Windows 10 Pro.
+        </p>
+
+        <p>
+            Learning through documentation, experimentation,
+            and hands-on practice.
+        </p>
+
+    </section>
+
+
+
+    <!-- SYSTEM STATUS -->
+
+    <section class="card">
+
+        <h2>⚡ SYSTEM STATUS</h2>
+
+        <p>
+            > Home Lab :
+            <span class="status-online">ONLINE</span>
+        </p>
+
+        <p>
+            > GitHub Pages :
+            <span class="status-online">ONLINE</span>
+        </p>
+
+        <p>
+            > Documentation :
+            <span class="status-online">ACTIVE</span>
+        </p>
+
+        <p>
+            > Learning Mode :
+            <span class="status-online">ENABLED</span>
+        </p>
+
+    </section>
+
+
+
+    <!-- HOME LAB -->
+
+    <section class="card">
+
+        <h2>> HOME LAB</h2>
+
+        <p>✓ Kali Linux VirtualBox</p>
+
+        <p>✓ Windows 10 Pro</p>
+
+        <p>✓ Cyber Security Learning Lab</p>
+
+        <p>✓ Networking Practice Environment</p>
+
+    </section>
+
+
+
+    <!-- LEARNING FOCUS -->
+
+    <section class="card">
+
+        <h2>> LEARNING FOCUS</h2>
+
+        <p>• Linux Fundamentals</p>
+
+        <p>• Basic Networking</p>
+
+        <p>• Cyber Security Fundamentals</p>
+
+        <p>• Python Programming</p>
+
+        <p>• Ethical Hacking Practice</p>
+
+    </section>
+
+
+
+    <!-- PROJECTS -->
+
+    <section class="card">
+
+        <h2>> PROJECTS</h2>
+
+        <p>• Linux Learning Notes</p>
+
+        <p>• Home Lab Documentation</p>
+
+        <p>• Basic Network Analysis</p>
+
+        <p>• Study Notes & Writeups</p>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
-ACCESS GRANTED ✓ | HOME LAB ONLINE ✓
+
+    > ACCESS GRANTED ✓
+      |  
+    HOME LAB ONLINE ✓
+
 </footer>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+/* =========================
+   MATRIX EFFECT
+========================= */
 
-const letters = "01アカサタナハマヤラワ";
+const canvas =
+document.getElementById("matrix");
+
+const ctx =
+canvas.getContext("2d");
+
+
+const letters =
+"01アカサタナハマヤラワ";
+
 const fontSize = 14;
-const columns = canvas.width / fontSize;
 
-const drops = [];
+let columns;
 
-for(let i = 0; i < columns; i++){
-drops[i] = 1;
+let drops = [];
+
+
+/* Resize canvas */
+
+function resizeMatrix(){
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+
+
+    columns =
+    Math.ceil(
+        canvas.width / fontSize
+    );
+
+
+    drops = [];
+
+
+    for(
+        let i = 0;
+        i < columns;
+        i++
+    ){
+
+        drops[i] =
+        Math.floor(
+            Math.random() *
+            canvas.height /
+            fontSize
+        );
+
+    }
+
 }
 
-function draw(){
 
-ctx.fillStyle = "rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+/* Draw Matrix */
 
-ctx.fillStyle = "#00ff41";
-ctx.font = fontSize + "px monospace";
+function drawMatrix(){
 
-for(let i = 0; i < drops.length; i++){
 
-const text = letters[
-Math.floor(Math.random()*letters.length)
-];
+    ctx.fillStyle =
+    "rgba(0, 0, 0, 0.07)";
 
-ctx.fillText(
-text,
-i*fontSize,
-drops[i]*fontSize
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.fillStyle =
+    "#00ff41";
+
+
+    ctx.font =
+    fontSize + "px monospace";
+
+
+    for(
+        let i = 0;
+        i < drops.length;
+        i++
+    ){
+
+
+        const text =
+        letters[
+            Math.floor(
+                Math.random() *
+                letters.length
+            )
+        ];
+
+
+        ctx.fillText(
+            text,
+            i * fontSize,
+            drops[i] * fontSize
+        );
+
+
+        if(
+            drops[i] * fontSize >
+            canvas.height
+            &&
+            Math.random() > 0.975
+        ){
+
+            drops[i] = 0;
+
+        }
+
+
+        drops[i]++;
+
+    }
+
+}
+
+
+resizeMatrix();
+
+
+window.addEventListener(
+    "resize",
+    resizeMatrix
 );
 
-if(
-drops[i]*fontSize > canvas.height &&
-Math.random() > 0.975
-){
-drops[i] = 0;
-}
 
-drops[i]++;
+setInterval(
+    drawMatrix,
+    40
+);
 
-}
 
-}
 
-setInterval(draw,33);
+/* =========================
+   TYPING EFFECT
+========================= */
 
-const text =
+const typingText =
 "Cyber Security Learner | Linux Enthusiast | Networking Student";
 
-let i = 0;
+
+const typingElement =
+document.getElementById("typing");
+
+
+let typingIndex = 0;
+
 
 function typing(){
 
-if(i < text.length){
 
-document.getElementById("typing").innerHTML +=
-text.charAt(i);
+    if(
+        typingIndex <
+        typingText.length
+    ){
 
-i++;
 
-setTimeout(typing,60);
+        typingElement.textContent +=
+        typingText.charAt(
+            typingIndex
+        );
+
+
+        typingIndex++;
+
+
+        setTimeout(
+            typing,
+            55
+        );
+
+    }
 
 }
 
-}
 
 typing();
 
+
 </script>
 
+
 </body>
+
 </html>
