@@ -1,1057 +1,560 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ANDAR | Cyber Security</title>
-
-<style>
-
-/* =========================
-   GLOBAL
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Consolas, "Courier New", monospace;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#000;
-    color:#00ff41;
-    overflow-x:hidden;
-}
-
-
-/* =========================
-   MATRIX BACKGROUND
-========================= */
-
-#matrix{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navbar{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
-    padding:35px 20px 20px;
-}
-
-.nav-btn{
-    padding:12px 20px;
-
-    font-size:15px;
-
-    text-decoration:none;
-
-    color:#00ff41;
-
-    border:1px solid #00ff41;
-    border-radius:8px;
-
-    background:rgba(0,0,0,.80);
-
-    transition:
-        background .3s,
-        color .3s,
-        box-shadow .3s,
-        transform .3s;
-}
-
-.nav-btn:hover{
-    background:#00ff41;
-    color:#000;
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 0 10px #00ff41,
-        0 0 20px rgba(0,255,65,.5);
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    text-align:center;
-    padding:25px 20px 45px;
-}
-
-
-/* =========================
-   PROFILE IMAGE
-========================= */
-
-.profile-wrapper{
-    position:relative;
-    width:170px;
-    height:170px;
-    margin:15px auto 15px;
-}
-
-.profile{
-    width:170px;
-    height:170px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    display:block;
-
-    border:4px solid #00ff41;
-
-    box-shadow:
-        0 0 10px #00ff41,
-        0 0 25px rgba(0,255,65,.8),
-        0 0 45px rgba(0,255,65,.4);
-
-    transition:
-        transform .3s,
-        box-shadow .3s;
-}
-
-.profile:hover{
-    transform:scale(1.04);
-
-    box-shadow:
-        0 0 15px #00ff41,
-        0 0 35px #00ff41,
-        0 0 60px rgba(0,255,65,.7);
-}
-
-
-/* ONLINE DOT */
-
-.online-dot{
-    position:absolute;
-
-    right:15px;
-    bottom:10px;
-
-    width:20px;
-    height:20px;
-
-    background:#00ff41;
-
-    border:3px solid #000;
-    border-radius:50%;
-
-    box-shadow:
-        0 0 8px #00ff41,
-        0 0 15px #00ff41;
-
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-
-    0%{
-        box-shadow:
-            0 0 5px #00ff41,
-            0 0 10px #00ff41;
-    }
-
-    50%{
-        box-shadow:
-            0 0 10px #00ff41,
-            0 0 25px #00ff41;
-    }
-
-    100%{
-        box-shadow:
-            0 0 5px #00ff41,
-            0 0 10px #00ff41;
-    }
-}
-
-
-/* PROFILE STATUS */
-
-.profile-status{
-    font-size:12px;
-
-    margin:10px 0 20px;
-
-    color:#8fff8f;
-
-    text-shadow:0 0 8px #00ff41;
-}
-
-
-/* =========================
-   ANDAR TITLE
-========================= */
-
-h1{
-    font-size:4rem;
-
-    margin-bottom:15px;
-
-    color:#00ff41;
-
-    text-shadow:
-        0 0 10px #00ff41,
-        0 0 20px #00ff41,
-        0 0 40px rgba(0,255,65,.6);
-}
-
-
-/* =========================
-   GLITCH EFFECT
-========================= */
-
-.glitch{
-    position:relative;
-
-    display:inline-block;
-
-    color:#00ff41;
-
-    animation:glitch-main 3s infinite;
-}
-
-.glitch::before,
-.glitch::after{
-
-    content:attr(data-text);
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    pointer-events:none;
-}
-
-
-/* CYAN GLITCH */
-
-.glitch::before{
-
-    color:#00ffff;
-
-    z-index:-1;
-
-    text-shadow:
-        -2px 0 #00ffff;
-
-    animation:glitch-before 3s infinite;
-}
-
-
-/* RED GLITCH */
-
-.glitch::after{
-
-    color:#ff004c;
-
-    z-index:-2;
-
-    text-shadow:
-        2px 0 #ff004c;
-
-    animation:glitch-after 3s infinite;
-}
-
-
-/* MAIN GLITCH */
-
-@keyframes glitch-main{
-
-    0%,
-    87%,
-    100%{
-        transform:translate(0);
-    }
-
-    89%{
-        transform:translate(-3px,1px);
-    }
-
-    91%{
-        transform:translate(3px,-1px);
-    }
-
-    93%{
-        transform:translate(-2px,2px);
-    }
-
-    95%{
-        transform:translate(2px,-2px);
-    }
-
-    97%{
-        transform:translate(-1px,1px);
-    }
-
-}
-
-
-/* CYAN */
-
-@keyframes glitch-before{
-
-    0%,
-    87%,
-    100%{
-        transform:translate(0);
-        opacity:0;
-    }
-
-    89%{
-        transform:translate(-5px,-2px);
-        opacity:.8;
-    }
-
-    91%{
-        transform:translate(4px,2px);
-        opacity:.6;
-    }
-
-    93%{
-        transform:translate(-3px,1px);
-        opacity:.8;
-    }
-
-    95%{
-        transform:translate(0);
-        opacity:0;
-    }
-
-}
-
-
-/* RED */
-
-@keyframes glitch-after{
-
-    0%,
-    89%,
-    100%{
-        transform:translate(0);
-        opacity:0;
-    }
-
-    91%{
-        transform:translate(5px,2px);
-        opacity:.7;
-    }
-
-    93%{
-        transform:translate(-5px,-1px);
-        opacity:.8;
-    }
-
-    95%{
-        transform:translate(3px,-2px);
-        opacity:.7;
-    }
-
-    97%{
-        transform:translate(0);
-        opacity:0;
-    }
-
-}
-
-
-/* =========================
-   TYPING TEXT
-========================= */
-
-.typing{
-    max-width:800px;
-
-    margin:0 auto;
-
-    min-height:45px;
-
-    font-size:1.1rem;
-
-    line-height:1.6;
-
-    color:#8fff8f;
-
-    text-shadow:
-        0 0 5px rgba(0,255,65,.7);
-}
-
-.cursor{
-    display:inline-block;
-
-    width:8px;
-
-    color:#00ff41;
-
-    animation:blink .8s infinite;
-}
-
-@keyframes blink{
-
-    0%,
-    50%{
-        opacity:1;
-    }
-
-    51%,
-    100%{
-        opacity:0;
-    }
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.container{
-    max-width:1000px;
-
-    margin:auto;
-
-    padding:20px;
-}
-
-
-/* =========================
-   CARDS
-========================= */
-
-.card{
-
-    background:rgba(0,0,0,.82);
-
-    border:1px solid #00ff41;
-
-    border-radius:15px;
-
-    padding:30px;
-
-    margin-bottom:25px;
-
-    box-shadow:
-        0 0 15px rgba(0,255,65,.20);
-
-    backdrop-filter:blur(3px);
-
-    transition:
-        box-shadow .3s,
-        transform .3s;
-}
-
-.card:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 0 10px rgba(0,255,65,.5),
-        0 0 25px rgba(0,255,65,.2);
-}
-
-
-.card h2{
-
-    margin-bottom:20px;
-
-    color:#00ff41;
-
-    text-shadow:
-        0 0 8px rgba(0,255,65,.6);
-}
-
-.card p{
-
-    line-height:1.9;
-}
-
-
-/* =========================
-   STATUS
-========================= */
-
-.status-online{
-    color:#00ff41;
-
-    text-shadow:
-        0 0 8px #00ff41;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-    text-align:center;
-
-    padding:35px 20px;
-
-    color:#8fff8f;
-
-    font-size:13px;
-
-    text-shadow:
-        0 0 7px rgba(0,255,65,.5);
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-    .navbar{
-
-        gap:10px;
-
-        padding:25px 10px 15px;
-    }
-
-    .nav-btn{
-
-        font-size:12px;
-
-        padding:10px 14px;
-    }
-
-    .hero{
-
-        padding-top:15px;
-    }
-
-    .profile-wrapper{
-
-        width:140px;
-        height:140px;
-    }
-
-    .profile{
-
-        width:140px;
-        height:140px;
-    }
-
-    .online-dot{
-
-        width:18px;
-        height:18px;
-
-        right:9px;
-        bottom:9px;
-    }
-
-    h1{
-
-        font-size:3rem;
-    }
-
-    .typing{
-
-        font-size:1rem;
-    }
-
-    .card{
-
-        padding:25px 22px;
-    }
-
-}
-
-
-/* SMALL PHONE */
-
-@media(max-width:430px){
-
-    .navbar{
-
-        gap:7px;
-
-        padding-left:5px;
-        padding-right:5px;
-    }
-
-    .nav-btn{
-
-        font-size:11px;
-
-        padding:9px 11px;
-    }
-
-    h1{
-
-        font-size:2.8rem;
-    }
-
-    .typing{
-
-        font-size:.95rem;
-    }
-
-}
-
-
-/* ACCESSIBILITY */
-
-@media(prefers-reduced-motion:reduce){
-
-    *{
-        animation:none !important;
-        transition:none !important;
-    }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- MATRIX BACKGROUND -->
-
-<canvas id="matrix"></canvas>
-
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<nav class="navbar">
-
-    <a class="nav-btn" href="index.html">
-        HOME
-    </a>
-
-    <a class="nav-btn" href="writeups.html">
-        NOTES
-    </a>
-
-    <a class="nav-btn" href="roadmap.html">
-        ROADMAP
-    </a>
-
-    <a
-        class="nav-btn"
-        href="https://github.com/andarmax"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        GITHUB
-    </a>
-
-</nav>
-
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-
-    <!-- PROFILE IMAGE -->
-
-    <div class="profile-wrapper">
-
-        IMG_3472.jpeg
-
-        <span class="online-dot"></span>
-
-    </div>
-
-
-    <div class="profile-status">
-        ● HOME LAB ONLINE
-    </div>
-
-
-    <!-- GLITCH TITLE -->
-
-    <h1
-        class="glitch"
-        data-text="ANDAR"
-    >
-        ANDAR
-    </h1>
-
-
-    <!-- TYPING -->
-
-    <div class="typing">
-
-        <span id="typing"></span>
-
-        <span class="cursor">_</span>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =========================
-     CONTENT
-========================= -->
-
-<main class="container">
-
-
-    <!-- ABOUT ME -->
-
-    <section class="card">
-
-        <h2>> ABOUT ME</h2>
-
-        <p>
-            Student focused on Linux, Networking, and Cyber Security.
-            Currently building a personal learning environment using
-            Kali Linux, VirtualBox, and Windows 10 Pro.
-        </p>
-
-        <p>
-            Learning through documentation, experimentation,
-            and hands-on practice.
-        </p>
-
-    </section>
-
-
-
-    <!-- SYSTEM STATUS -->
-
-    <section class="card">
-
-        <h2>⚡ SYSTEM STATUS</h2>
-
-        <p>
-            > Home Lab :
-            <span class="status-online">ONLINE</span>
-        </p>
-
-        <p>
-            > GitHub Pages :
-            <span class="status-online">ONLINE</span>
-        </p>
-
-        <p>
-            > Documentation :
-            <span class="status-online">ACTIVE</span>
-        </p>
-
-        <p>
-            > Learning Mode :
-            <span class="status-online">ENABLED</span>
-        </p>
-
-    </section>
-
-
-
-    <!-- HOME LAB -->
-
-    <section class="card">
-
-        <h2>> HOME LAB</h2>
-
-        <p>✓ Kali Linux VirtualBox</p>
-
-        <p>✓ Windows 10 Pro</p>
-
-        <p>✓ Cyber Security Learning Lab</p>
-
-        <p>✓ Networking Practice Environment</p>
-
-    </section>
-
-
-
-    <!-- LEARNING FOCUS -->
-
-    <section class="card">
-
-        <h2>> LEARNING FOCUS</h2>
-
-        <p>• Linux Fundamentals</p>
-
-        <p>• Basic Networking</p>
-
-        <p>• Cyber Security Fundamentals</p>
-
-        <p>• Python Programming</p>
-
-        <p>• Ethical Hacking Practice</p>
-
-    </section>
-
-
-
-    <!-- PROJECTS -->
-
-    <section class="card">
-
-        <h2>> PROJECTS</h2>
-
-        <p>• Linux Learning Notes</p>
-
-        <p>• Home Lab Documentation</p>
-
-        <p>• Basic Network Analysis</p>
-
-        <p>• Study Notes & Writeups</p>
-
-    </section>
-
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    > ACCESS GRANTED ✓
-      |  
-    HOME LAB ONLINE ✓
-
-</footer>
-
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
-<script>
-
-
-/* =========================
-   MATRIX EFFECT
-========================= */
-
-const canvas =
-document.getElementById("matrix");
-
-const ctx =
-canvas.getContext("2d");
-
-
-const letters =
-"01アカサタナハマヤラワ";
-
-const fontSize = 14;
-
-let columns;
-
-let drops = [];
-
-
-/* Resize canvas */
-
-function resizeMatrix(){
-
-    canvas.width =
-    window.innerWidth;
-
-    canvas.height =
-    window.innerHeight;
-
-
-    columns =
-    Math.ceil(
-        canvas.width / fontSize
-    );
-
-
-    drops = [];
-
-
-    for(
-        let i = 0;
-        i < columns;
-        i++
-    ){
-
-        drops[i] =
-        Math.floor(
-            Math.random() *
-            canvas.height /
-            fontSize
-        );
-
-    }
-
-}
-
-
-/* Draw Matrix */
-
-function drawMatrix(){
-
-
-    ctx.fillStyle =
-    "rgba(0, 0, 0, 0.07)";
-
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    ctx.fillStyle =
-    "#00ff41";
-
-
-    ctx.font =
-    fontSize + "px monospace";
-
-
-    for(
-        let i = 0;
-        i < drops.length;
-        i++
-    ){
-
-
-        const text =
-        letters[
-            Math.floor(
-                Math.random() *
-                letters.length
-            )
-        ];
-
-
-        ctx.fillText(
-            text,
-            i * fontSize,
-            drops[i] * fontSize
-        );
-
-
-        if(
-            drops[i] * fontSize >
-            canvas.height
-            &&
-            Math.random() > 0.975
-        ){
-
-            drops[i] = 0;
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ANDAR | Cyber Security Portfolio, learning roadmap, projects, and study notes."
+    />
+    <meta name="theme-color" content="#000000" />
+    <title>ANDAR | Cyber Security</title>
+    <style>
+      :root {
+        --bg: #050b08;
+        --bg-soft: #0a120d;
+        --panel: rgba(8, 17, 13, 0.82);
+        --line: rgba(0, 255, 65, 0.6);
+        --primary: #00ff41;
+        --primary-soft: #8fff8f;
+        --cyan: #00f5ff;
+        --red: #ff004c;
+        --text: #d9ffe2;
+        --muted: #9dc6a7;
+        --shadow: rgba(0, 255, 65, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Consolas, "Courier New", monospace;
+        background: var(--bg);
+        color: var(--primary);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      canvas#matrix {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.32;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 28px 18px 10px;
+      }
+
+      .nav-btn {
+        display: inline-block;
+        padding: 12px 18px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        text-decoration: none;
+        color: var(--primary);
+        background: rgba(0, 0, 0, 0.7);
+        transition: 0.25s ease;
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);
+      }
+
+      .nav-btn:hover {
+        background: var(--primary);
+        color: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 0 18px var(--shadow), 0 0 35px rgba(0, 255, 65, 0.35);
+      }
+
+      .hero {
+        text-align: center;
+        padding: 24px 20px 40px;
+      }
+
+      .profile-wrapper {
+        position: relative;
+        width: 170px;
+        height: 170px;
+        margin: 18px auto 10px;
+      }
+
+      .profile {
+        display: block;
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--primary);
+        box-shadow: 0 0 10px var(--primary), 0 0 25px rgba(0, 255, 65, 0.8), 0 0 45px rgba(0, 255, 65, 0.4);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      .profile:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 15px var(--primary), 0 0 35px var(--primary), 0 0 60px rgba(0, 255, 65, 0.7);
+      }
+
+      .online-dot {
+        position: absolute;
+        right: 12px;
+        bottom: 10px;
+        width: 20px;
+        height: 20px;
+        background: var(--primary);
+        border: 3px solid #000;
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary);
+        animation: pulse 1.6s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary); }
+        50% { box-shadow: 0 0 10px var(--primary), 0 0 25px var(--primary); }
+      }
+
+      .profile-status {
+        margin: 10px 0 18px;
+        color: var(--primary-soft);
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-shadow: 0 0 8px var(--primary);
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2.2rem, 5vw, 4.1rem);
+        color: var(--primary);
+        text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.6);
+      }
+
+      .glitch {
+        position: relative;
+        display: inline-block;
+        color: var(--primary);
+        animation: glitch-main 3s infinite;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .glitch::before {
+        color: var(--cyan);
+        z-index: -1;
+        text-shadow: -2px 0 var(--cyan);
+        animation: glitch-before 3s infinite;
+      }
+
+      .glitch::after {
+        color: var(--red);
+        z-index: -2;
+        text-shadow: 2px 0 var(--red);
+        animation: glitch-after 3s infinite;
+      }
+
+      @keyframes glitch-main {
+        0%, 87%, 100% { transform: translate(0); }
+        89% { transform: translate(-3px, 1px); }
+        91% { transform: translate(3px, -1px); }
+        93% { transform: translate(-2px, 2px); }
+        95% { transform: translate(2px, -2px); }
+        97% { transform: translate(-1px, 1px); }
+      }
+
+      @keyframes glitch-before {
+        0%, 87%, 100% { transform: translate(0); opacity: 0; }
+        89% { transform: translate(-5px, -2px); opacity: 0.8; }
+        91% { transform: translate(4px, 2px); opacity: 0.6; }
+        93% { transform: translate(-3px, 1px); opacity: 0.8; }
+        95% { transform: translate(0); opacity: 0; }
+      }
+
+      @keyframes glitch-after {
+        0%, 89%, 100% { transform: translate(0); opacity: 0; }
+        91% { transform: translate(5px, 2px); opacity: 0.7; }
+        93% { transform: translate(-5px, -1px); opacity: 0.8; }
+        95% { transform: translate(3px, -2px); opacity: 0.7; }
+        97% { transform: translate(0); opacity: 0; }
+      }
+
+      .typing {
+        max-width: 840px;
+        margin: 0 auto;
+        min-height: 46px;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        color: var(--primary-soft);
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        color: var(--primary);
+        animation: blink 0.8s infinite;
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      .container {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 10px 18px 40px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 28px 24px;
+        margin: 18px 0;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+        backdrop-filter: blur(4px);
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 25px rgba(0, 255, 65, 0.18);
+      }
+
+      .card h2 {
+        margin: 0 0 16px;
+        color: var(--primary);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+      }
+
+      .card p,
+      .card li {
+        color: var(--text);
+        line-height: 1.9;
+      }
+
+      .status-grid,
+      .focus-grid,
+      .project-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .focus-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .mini-card {
+        background: rgba(0, 0, 0, 0.48);
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 12px;
+        padding: 16px;
+      }
+
+      .mini-card strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--primary-soft);
+      }
+
+      ul.clean {
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        text-decoration: none;
+        color: var(--primary);
+        background: rgba(0, 0, 0, 0.7);
+        transition: 0.25s ease;
+      }
+
+      .btn:hover {
+        background: var(--primary);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 32px 20px 42px;
+        color: #7c9b87;
+      }
+
+      @media (max-width: 640px) {
+        .navbar {
+          gap: 10px;
+          padding-top: 20px;
         }
 
+        .nav-btn,
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
 
-        drops[i]++;
+        .card {
+          padding: 20px 18px;
+        }
+      }
+    </style>
+  </head>
 
-    }
+  <body>
+    <canvas id="matrix"></canvas>
 
-}
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="nav-btn" href="#about">ABOUT</a>
+      <a class="nav-btn" href="#focus">FOCUS</a>
+      <a class="nav-btn" href="#projects">PROJECTS</a>
+      <a class="nav-btn" href="#roadmap">ROADMAP</a>
+      <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
+    </nav>
 
+    <header class="hero">
+      <div class="profile-wrapper">
+        <img
+          class="profile"
+          src="IMG_3472.jpeg"
+          alt="ANDAR profile"
+        />
+        <span class="online-dot" aria-label="online status"></span>
+      </div>
 
-resizeMatrix();
+      <div class="profile-status">[ SYSTEM ONLINE ]</div>
 
+      <h1>
+        <span class="glitch" data-text="ANDAR">ANDAR</span>
+      </h1>
 
-window.addEventListener(
-    "resize",
-    resizeMatrix
-);
+      <div class="typing" aria-live="polite">
+        <span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span>
+        <span class="cursor">_</span>
+      </div>
+    </header>
 
+    <main class="container">
+      <section id="about" class="card">
+        <h2>ABOUT</h2>
+        <p>
+          Saya adalah seorang learner dan practitioner yang fokus di bidang cyber security,
+          especially pada area keamanan sistem, Linux, networking, deteksi ancaman, dan proses
+          pembelajaran berbasis lab. Saya membangun environment belajar sendiri untuk mengeksplorasi
+          mulai dari fundamental hingga praktik keamanan dunia nyata.
+        </p>
+        <p>
+          Halaman ini saya gunakan sebagai portfolio pribadi sekaligus catatan perjalanan belajar,
+          termasuk roadmap, note, dan proyek kecil yang sedang dikembangkan.
+        </p>
+      </section>
 
-setInterval(
-    drawMatrix,
-    40
-);
+      <section id="focus" class="card">
+        <h2>FOCUS AREAS</h2>
+        <div class="focus-grid">
+          <div class="mini-card">
+            <strong>Linux &amp; System</strong>
+            File system, permissions, service management, troubleshooting, shell scripting.
+          </div>
+          <div class="mini-card">
+            <strong>Networking</strong>
+            IP, subnet, routing, DNS, packet flow, troubleshooting dasar jaringan.
+          </div>
+          <div class="mini-card">
+            <strong>Security</strong>
+            OWASP, log analysis, threat basics, monitoring, defensive mindset.
+          </div>
+          <div class="mini-card">
+            <strong>Automation</strong>
+            Python scripting, task automation, operational workflow, security tooling.
+          </div>
+        </div>
+      </section>
 
+      <section id="projects" class="card">
+        <h2>PROJECTS</h2>
+        <div class="project-grid">
+          <div class="mini-card">
+            <strong>GitHub Pages</strong>
+            Portfolio personal yang menampilkan roadmap dan study notes.
+          </div>
+          <div class="mini-card">
+            <strong>Home Lab</strong>
+            Linux + Windows lab setup untuk eksperimen keamanan dan pembelajaran.
+          </div>
+          <div class="mini-card">
+            <strong>Security Tools</strong>
+            Eksplorasi tools, scripting, dan analisis log untuk learning-by-doing.
+          </div>
+        </div>
+      </section>
 
+      <section id="roadmap" class="card">
+        <h2>ROADMAP</h2>
+        <div class="status-grid">
+          <div class="mini-card">
+            <strong>Completed</strong>
+            GitHub account, GitHub Pages, home lab, Kali Linux, Windows lab, personal portfolio.
+          </div>
+          <div class="mini-card">
+            <strong>In Progress</strong>
+            Linux fundamentals, networking basics, CLI practice, note documentation.
+          </div>
+          <div class="mini-card">
+            <strong>Next Targets</strong>
+            OWASP Top 10, Python automation, log analysis, web security, Git/GitHub workflow.
+          </div>
+        </div>
 
-/* =========================
-   TYPING EFFECT
-========================= */
+        <div class="cta-row">
+          <a class="btn" href="roadmap.html">View Roadmap</a>
+          <a class="btn" href="writeups.html">View Study Notes</a>
+        </div>
+      </section>
 
-const typingText =
-"Cyber Security Learner | Linux Enthusiast | Networking Student";
+      <section class="card">
+        <h2>CURRENT STATUS</h2>
+        <ul class="clean">
+          <li>[+] Home Lab : ONLINE</li>
+          <li>[+] GitHub Pages : ONLINE</li>
+          <li>[+] Learning Mode : ACTIVE</li>
+          <li>[+] Progress Tracking : ENABLED</li>
+        </ul>
+      </section>
+    </main>
 
+    <footer>
+      <div>ACCESS GRANTED | ANDAR | CYBER SECURITY PORTFOLIO</div>
+      <div class="meta">Last update: September 2026</div>
+    </footer>
 
-const typingElement =
-document.getElementById("typing");
+    <script>
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
 
+      function setCanvasSize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
 
-let typingIndex = 0;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+      let fontSize = 16;
+      const columns = () => Math.floor(canvas.width / fontSize);
+      let drops = [];
 
+      function initDrops() {
+        const colCount = columns();
+        drops = Array.from({ length: colCount }, () => Math.random() * -100);
+      }
 
-function typing(){
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 11, 8, 0.12)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        ctx.font = `${fontSize}px monospace`;
 
-    if(
-        typingIndex <
-        typingText.length
-    ){
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = i % 2 === 0 ? '#00ff41' : '#7fffbf';
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+          ctx.fillText(text, x, y);
 
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
 
-        typingElement.textContent +=
-        typingText.charAt(
-            typingIndex
-        );
+      window.addEventListener('resize', () => {
+        setCanvasSize();
+        initDrops();
+      });
 
+      setCanvasSize();
+      initDrops();
+      setInterval(drawMatrix, 50);
 
-        typingIndex++;
+      const typedText = document.getElementById('typed-text');
+      const phrases = [
+        '[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]',
+        '[ LINUX • NETWORKING • SECURITY • PYTHON ]',
+        '[ LEARNING • PRACTICE • LAB • ADAPTATION ]'
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
 
+      function typeLoop() {
+        const current = phrases[phraseIndex];
 
-        setTimeout(
-            typing,
-            55
-        );
+        if (!deleting) {
+          charIndex++;
+          typedText.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(typeLoop, 1000);
+            return;
+          }
+        } else {
+          charIndex--;
+          typedText.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+        }
 
-    }
+        const speed = deleting ? 40 : 80;
+        setTimeout(typeLoop, speed);
+      }
 
-}
-
-
-typing();
-
-
-</script>
-
-
-</body>
-
+      typeLoop();
+    </script>
+  </body>
 </html>
