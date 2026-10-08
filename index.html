@@ -272,6 +272,7 @@
       .focus-grid,
       .skills-grid,
       .project-grid,
+      .achievement-grid,
       .contact-grid {
         display: grid;
         gap: 16px;
@@ -282,7 +283,8 @@
       }
 
       .focus-grid,
-      .skills-grid {
+      .skills-grid,
+      .achievement-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
@@ -326,6 +328,18 @@
         background: rgba(0, 255, 65, 0.05);
         color: var(--primary-soft);
         font-size: 0.88rem;
+      }
+
+      .achievement-tag {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 9px;
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.06);
+        color: var(--primary-soft);
+        font-size: 0.76rem;
+        letter-spacing: 0.5px;
       }
 
       .cta-row {
@@ -403,6 +417,7 @@
       <a class="nav-btn" href="#about">ABOUT</a>
       <a class="nav-btn" href="#focus">FOCUS</a>
       <a class="nav-btn" href="#skills">SKILLS</a>
+      <a class="nav-btn" href="#achievement">ACHIEVEMENT</a>
       <a class="nav-btn" href="#projects">PROJECTS</a>
       <a class="nav-btn" href="#roadmap">ROADMAP</a>
       <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
@@ -507,6 +522,32 @@
               <li>Threat Intel</li>
               <li>Home Lab</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievement" class="card">
+        <h2>ACHIEVEMENTS &amp; MILESTONES</h2>
+        <div class="achievement-grid">
+          <div class="mini-card">
+            <strong>Personal Portfolio</strong>
+            Membangun dan memelihara portfolio berbasis GitHub Pages sebagai media showcase perjalanan belajar.
+            <span class="achievement-tag">STATUS: COMPLETED</span>
+          </div>
+          <div class="mini-card">
+            <strong>Home Lab Setup</strong>
+            Menyiapkan lingkungan lab mandiri dengan fokus pada Linux, networking, dan eksperimen keamanan.
+            <span class="achievement-tag">STATUS: ACTIVE</span>
+          </div>
+          <div class="mini-card">
+            <strong>Study Notes System</strong>
+            Menyusun catatan belajar yang terorganisir untuk Linux, jaringan, dan praktik keamanan.
+            <span class="achievement-tag">STATUS: GROWING</span>
+          </div>
+          <div class="mini-card">
+            <strong>Security Mindset</strong>
+            Membiasakan pendekatan defensif dengan log review, troubleshooting, dan analisa ancaman dasar.
+            <span class="achievement-tag">STATUS: IN PROGRESS</span>
           </div>
         </div>
       </section>
