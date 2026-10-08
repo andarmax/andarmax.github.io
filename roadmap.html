@@ -1,211 +1,181 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ANDAR Cyber Roadmap and learning agenda." />
+    <meta name="theme-color" content="#000000" />
+    <title>ANDAR | Cyber Roadmap</title>
+    <style>
+      :root {
+        --bg: #050b08;
+        --panel: rgba(8, 17, 13, 0.82);
+        --line: rgba(0, 255, 65, 0.6);
+        --primary: #00ff41;
+        --primary-soft: #8fff8f;
+        --cyan: #00f5ff;
+        --yellow: #ffe66d;
+        --blue: #6ec9ff;
+        --text: #dfffe9;
+        --muted: #9ec0a6;
+      }
 
-<title>ANDAR | Cyber Roadmap</title>
+      * { box-sizing: border-box; }
 
-<style>
+      html { scroll-behavior: smooth; }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Consolas,monospace;
-}
+      body {
+        margin: 0;
+        font-family: Consolas, "Courier New", monospace;
+        background: var(--bg);
+        color: var(--primary);
+      }
 
-body{
-background:#000;
-color:#00ff41;
-}
+      a { color: inherit; }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:60px 20px;
-}
+      .container {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 48px 18px 60px;
+      }
 
-h1{
-text-align:center;
-font-size:3rem;
-margin-bottom:15px;
-text-shadow:0 0 15px #00ff41;
-}
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        color: var(--primary);
+        text-shadow: 0 0 14px rgba(0, 255, 65, 0.7);
+      }
 
-.subtitle{
-text-align:center;
-color:#8fff8f;
-margin-bottom:40px;
-}
+      .subtitle {
+        margin: 16px auto 32px;
+        text-align: center;
+        color: var(--primary-soft);
+        font-size: 0.98rem;
+        letter-spacing: 1px;
+      }
 
-.card{
-background:rgba(0,0,0,.8);
-border:1px solid #00ff41;
-border-radius:12px;
-padding:25px;
-margin:25px 0;
-box-shadow:0 0 20px rgba(0,255,65,.2);
-}
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 26px 22px;
+        margin: 22px 0;
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.15);
+      }
 
-.card h2{
-margin-bottom:15px;
-color:#00ff41;
-}
+      .card h2 {
+        margin: 0 0 16px;
+        color: var(--primary);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+      }
 
-.task-done{
-color:#00ff41;
-}
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        line-height: 2;
+      }
 
-.task-progress{
-color:#ffff66;
-}
+      .done { color: var(--primary); }
+      .progress { color: var(--yellow); }
+      .future { color: var(--blue); }
 
-.task-future{
-color:#00ccff;
-}
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 18px;
+      }
 
-.btn{
-display:inline-block;
-padding:12px 25px;
-border:1px solid #00ff41;
-color:#00ff41;
-text-decoration:none;
-margin-top:20px;
-}
+      .btn {
+        display: inline-block;
+        padding: 12px 18px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        color: var(--primary);
+        text-decoration: none;
+        background: rgba(0, 0, 0, 0.5);
+        transition: 0.25s ease;
+      }
 
-.btn:hover{
-background:#00ff41;
-color:#000;
-}
+      .btn:hover {
+        background: var(--primary);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+      }
 
-footer{
-text-align:center;
-padding:30px;
-color:#777;
-}
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 16px 18px 32px;
+      }
 
-</style>
-</head>
-<body>
+      @media (max-width: 640px) {
+        .container { padding-top: 28px; }
+        .actions { flex-direction: column; }
+        .btn { width: 100%; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CYBER ROADMAP</h1>
+      <p class="subtitle">[ SYSTEM OBJECTIVES LOADED ]</p>
 
-<div class="container">
+      <section class="card">
+        <h2>COMPLETED</h2>
+        <ul class="list">
+          <li class="done">[✓] GitHub account created</li>
+          <li class="done">[✓] GitHub Pages online</li>
+          <li class="done">[✓] Personal cyber portfolio created</li>
+          <li class="done">[✓] Home lab built</li>
+          <li class="done">[✓] Kali Linux installed</li>
+          <li class="done">[✓] Windows 10 Pro lab ready</li>
+        </ul>
+      </section>
 
-<h1>⚡ CYBER ROADMAP</h1>
+      <section class="card">
+        <h2>IN PROGRESS</h2>
+        <ul class="list">
+          <li class="progress">[>] Linux fundamentals</li>
+          <li class="progress">[>] Networking fundamentals</li>
+          <li class="progress">[>] Command line practice</li>
+          <li class="progress">[>] Study notes documentation</li>
+          <li class="progress">[>] Home lab improvement</li>
+        </ul>
+      </section>
 
-<p class="subtitle">
-[ SYSTEM OBJECTIVES LOADED ]
-</p>
+      <section class="card">
+        <h2>NEXT TARGETS</h2>
+        <ul class="list">
+          <li class="future">[ ] Understand OWASP Top 10</li>
+          <li class="future">[ ] Learn Python automation</li>
+          <li class="future">[ ] Basic log analysis</li>
+          <li class="future">[ ] Basic web security</li>
+          <li class="future">[ ] Git and GitHub workflow</li>
+        </ul>
+      </section>
 
-<div class="card">
+      <section class="card">
+        <h2>LONG-TERM OBJECTIVES</h2>
+        <ul class="list">
+          <li>[ ] Participate in beginner CTF</li>
+          <li>[ ] Build personal security tools</li>
+          <li>[ ] Improve Linux administration</li>
+          <li>[ ] Learn network monitoring</li>
+          <li>[ ] Create professional documentation</li>
+        </ul>
+      </section>
 
-<h2>✅ COMPLETED MISSIONS</h2>
+      <div class="actions">
+        <a class="btn" href="index.html">HOME</a>
+        <a class="btn" href="writeups.html">STUDY NOTES</a>
+      </div>
+    </div>
 
-<p class="task-done">
-[✓] GitHub Account Created
-<br>
-[✓] GitHub Pages Online
-<br>
-[✓] Personal Cyber Portfolio Created
-<br>
-[✓] Home Lab Built
-<br>
-[✓] Kali Linux Installed
-<br>
-[✓] Windows 10 Pro Lab Ready
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>⚠ CURRENT MISSIONS</h2>
-
-<p class="task-progress">
-[>] Linux Fundamentals
-<br>
-[>] Networking Fundamentals
-<br>
-[>] Command Line Practice
-<br>
-[>] Study Notes Documentation
-<br>
-[>] Home Lab Improvement
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🎯 NEXT TARGETS</h2>
-
-<p class="task-future">
-[ ] Understand OWASP Top 10
-<br>
-[ ] Learn Python Automation
-<br>
-[ ] Basic Log Analysis
-<br>
-[ ] Basic Web Security
-<br>
-[ ] Git and GitHub Workflow
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🚀 LONG TERM OBJECTIVES</h2>
-
-<p>
-[ ] Participate in Beginner CTF
-<br>
-[ ] Build Personal Security Tools
-<br>
-[ ] Improve Linux Administration
-<br>
-[ ] Learn Network Monitoring
-<br>
-[ ] Create Professional Documentation
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🖥 SYSTEM STATUS</h2>
-
-<p>
->> Home Lab : ONLINE
-<br>
->> GitHub Pages : ONLINE
-<br>
->> Learning Mode : ACTIVE
-<br>
->> Motivation : HIGH
-<br>
->> Progress Tracking : ENABLED
-</p>
-
-</div>
-
-<center>
-
-<a href="index.html" class="btn">
-HOME
-</a>
-
-<a href="writeups.html" class="btn">
-STUDY NOTES
-</a>
-
-</center>
-
-</div>
-
-<footer>
-ACCESS GRANTED | CYBER ROADMAP v1.0
-</footer>
-
-</body>
+    <footer>
+      ACCESS GRANTED | CYBER ROADMAP v2.0
+    </footer>
+  </body>
 </html>
