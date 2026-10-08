@@ -269,6 +269,7 @@
 
       .status-grid,
       .focus-grid,
+      .skills-grid,
       .project-grid,
       .contact-grid {
         display: grid;
@@ -279,7 +280,8 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
 
-      .focus-grid {
+      .focus-grid,
+      .skills-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
@@ -304,6 +306,25 @@
       ul.clean {
         padding-left: 18px;
         margin: 0;
+      }
+
+      .skill-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-list li {
+        display: inline-block;
+        padding: 6px 10px;
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.05);
+        color: var(--primary-soft);
+        font-size: 0.88rem;
       }
 
       .cta-row {
@@ -380,6 +401,7 @@
     <nav class="navbar" aria-label="Main navigation">
       <a class="nav-btn" href="#about">ABOUT</a>
       <a class="nav-btn" href="#focus">FOCUS</a>
+      <a class="nav-btn" href="#skills">SKILLS</a>
       <a class="nav-btn" href="#projects">PROJECTS</a>
       <a class="nav-btn" href="#roadmap">ROADMAP</a>
       <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
@@ -442,6 +464,48 @@
           <div class="mini-card">
             <strong>Automation</strong>
             Python scripting, task automation, operational workflow, security tooling.
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="card">
+        <h2>SKILLS &amp; TOOLS</h2>
+        <div class="skills-grid">
+          <div class="mini-card">
+            <strong>Operating Systems</strong>
+            <ul class="skill-list">
+              <li>Linux</li>
+              <li>Kali</li>
+              <li>Ubuntu</li>
+              <li>Windows</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Networking</strong>
+            <ul class="skill-list">
+              <li>TCP/IP</li>
+              <li>DNS</li>
+              <li>DHCP</li>
+              <li>Routing</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Programming</strong>
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>Bash</li>
+              <li>Shell</li>
+              <li>Automation</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Security</strong>
+            <ul class="skill-list">
+              <li>OWASP</li>
+              <li>Log Analysis</li>
+              <li>Threat Intel</li>
+              <li>Home Lab</li>
+            </ul>
           </div>
         </div>
       </section>
