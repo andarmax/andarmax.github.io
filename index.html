@@ -428,7 +428,7 @@
         <span class="cursor">_</span>
       </div>
 
-      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 UTC</div>
+      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 WIB</div>
     </header>
 
     <main class="container">
@@ -672,18 +672,21 @@
 
       function updateClock() {
         const now = new Date();
-        const timeString = now.toLocaleTimeString('en-GB', {
+        const wibTime = now.toLocaleTimeString('id-ID', {
           hour12: false,
-          timeZone: 'UTC'
+          timeZone: 'Asia/Jakarta',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
         });
-        const dateString = now.toLocaleDateString('en-GB', {
+        const wibDate = now.toLocaleDateString('id-ID', {
           day: '2-digit',
           month: 'short',
           year: 'numeric',
-          timeZone: 'UTC'
+          timeZone: 'Asia/Jakarta'
         });
 
-        document.getElementById('live-clock').textContent = `${timeString} UTC | ${dateString}`;
+        document.getElementById('live-clock').textContent = `${wibTime} WIB | ${wibDate}`;
       }
 
       updateClock();
