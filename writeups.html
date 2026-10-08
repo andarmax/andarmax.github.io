@@ -1,212 +1,195 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Study notes for Linux, networking, and cyber security." />
+    <meta name="theme-color" content="#000000" />
+    <title>ANDAR | Study Notes</title>
+    <style>
+      :root {
+        --bg: #050b08;
+        --panel: rgba(8, 17, 13, 0.82);
+        --line: rgba(0, 255, 65, 0.6);
+        --primary: #00ff41;
+        --primary-soft: #8fff8f;
+        --cyan: #00f5ff;
+        --yellow: #ffe66d;
+        --text: #dfffe9;
+        --muted: #9ec0a6;
+      }
 
-<title>ANDAR | Study Notes</title>
+      * { box-sizing: border-box; }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Consolas,monospace;
-}
+      body {
+        margin: 0;
+        font-family: Consolas, "Courier New", monospace;
+        background: var(--bg);
+        color: var(--primary);
+      }
 
-body{
-background:black;
-color:#00ff41;
-overflow-x:hidden;
-}
+      a { color: inherit; }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:60px 20px;
-}
+      .container {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 48px 18px 60px;
+      }
 
-h1{
-text-align:center;
-font-size:3rem;
-text-shadow:0 0 15px #00ff41;
-margin-bottom:20px;
-}
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        color: var(--primary);
+        text-shadow: 0 0 12px rgba(0, 255, 65, 0.7);
+      }
 
-.subtitle{
-text-align:center;
-margin-bottom:40px;
-color:#8fff8f;
-}
+      .subtitle {
+        margin: 16px auto 30px;
+        color: var(--primary-soft);
+        text-align: center;
+        letter-spacing: 1px;
+      }
 
-.card{
-background:rgba(0,0,0,.8);
-border:1px solid #00ff41;
-padding:25px;
-margin:20px 0;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,255,65,.25);
-}
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 22px;
+        margin: 20px 0;
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.15);
+      }
 
-.card h2{
-margin-bottom:15px;
-}
+      .card h2 {
+        margin: 0 0 14px;
+        color: var(--primary);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+      }
 
-.card p{
-line-height:1.8;
-}
+      .card p,
+      .card li {
+        color: var(--text);
+        line-height: 1.9;
+      }
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 20px;
-border:1px solid #00ff41;
-color:#00ff41;
-text-decoration:none;
-}
+      ul.clean {
+        margin: 0;
+        padding-left: 18px;
+      }
 
-.btn:hover{
-background:#00ff41;
-color:black;
-}
+      .actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+      }
 
-footer{
-text-align:center;
-padding:30px;
-color:#777;
-}
-</style>
-</head>
+      .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        text-decoration: none;
+        color: var(--primary);
+        background: rgba(0, 0, 0, 0.5);
+        transition: 0.25s ease;
+      }
 
-<body>
+      .btn:hover {
+        background: var(--primary);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+      }
 
-<div class="container">
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 16px 20px 28px;
+      }
 
-<h1>STUDY NOTES</h1>
+      @media (max-width: 640px) {
+        .container { padding-top: 28px; }
+        .btn { width: 100%; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>STUDY NOTES</h1>
+      <p class="subtitle">Linux, Networking, and Cyber Security learning log</p>
 
-<p class="subtitle">
-Catatan belajar Linux, Networking, dan Cyber Security
-</p>
+      <section class="card">
+        <h2>LINUX NOTES</h2>
+        <ul class="clean">
+          <li>Basic terminal usage</li>
+          <li>Directory navigation</li>
+          <li>User and group management</li>
+          <li>File permissions</li>
+          <li>SSH basics</li>
+        </ul>
+      </section>
 
-<div class="card">
+      <section class="card">
+        <h2>NETWORKING NOTES</h2>
+        <ul class="clean">
+          <li>IP address concepts</li>
+          <li>Basic subnetting</li>
+          <li>DNS and DHCP</li>
+          <li>Routing basics</li>
+          <li>Packet flow understanding</li>
+        </ul>
+      </section>
 
-<h2>📘 Linux Notes</h2>
+      <section class="card">
+        <h2>CYBER SECURITY NOTES</h2>
+        <ul class="clean">
+          <li>CIA triad</li>
+          <li>OWASP Top 10</li>
+          <li>Vulnerability assessment basics</li>
+          <li>Security awareness</li>
+          <li>Log analysis</li>
+        </ul>
+      </section>
 
-<p>
-• Dasar Terminal Linux
-<br>
-• Navigasi Direktori
-<br>
-• Manajemen User
-<br>
-• Permission File
-<br>
-• SSH Dasar
-</p>
+      <section class="card">
+        <h2>STATUS</h2>
+        <ul class="clean">
+          <li>System Online</li>
+          <li>Kali Linux Lab : ONLINE</li>
+          <li>Windows Lab : ONLINE</li>
+          <li>GitHub Pages : ONLINE</li>
+          <li>Study Mode : ACTIVE</li>
+        </ul>
+        <p>Last update: September 2026</p>
+      </section>
 
-</div>
+      <section class="card">
+        <h2>HOME LAB PROGRESS</h2>
+        <ul class="clean">
+          <li>[✓] Kali Linux VirtualBox</li>
+          <li>[✓] Windows 10 Pro</li>
+          <li>[✓] Learning environment</li>
+          <li>[✓] GitHub Pages portfolio</li>
+        </ul>
+      </section>
 
-<div class="card">
+      <section class="card">
+        <h2>FUTURE LEARNING GOALS</h2>
+        <ul class="clean">
+          <li>Linux administration</li>
+          <li>Network security</li>
+          <li>Web security</li>
+          <li>Python automation</li>
+          <li>CTF and challenge-based learning</li>
+        </ul>
+      </section>
 
-<h2>🌐 Networking Notes</h2>
+      <div class="actions">
+        <a class="btn" href="index.html">BACK TO HOME</a>
+      </div>
+    </div>
 
-<p>
-• IP Address
-<br>
-• Subnetting Dasar
-<br>
-• DNS
-<br>
-• DHCP
-<br>
-• Routing Dasar
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🛡️ Cyber Security Notes</h2>
-
-<p>
-• CIA Triad
-<br>
-• OWASP Top 10
-<br>
-• Vulnerability Assessment
-<br>
-• Security Awareness
-<br>
-• Log Analysis
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>⚡ CYBER SECURITY STATUS</h2>
-
-<p>> System Online</p>
-<p>> Kali Linux Lab : ONLINE</p>
-<p>> Windows Lab : ONLINE</p>
-<p>> GitHub Pages : ONLINE</p>
-<p>> Study Mode : ACTIVE</p>
-
-<br>
-
-<p>
-Last Update :
-<br>
-September 2026
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>💻 Home Lab Progress</h2>
-
-<p>
-✅ Kali Linux VirtualBox
-<br>
-✅ Windows 10 Pro
-<br>
-✅ Learning Environment
-<br>
-✅ GitHub Pages Portfolio
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>📝 Future Learning Goals</h2>
-
-<p>
-• Linux Administration
-<br>
-• Network Security
-<br>
-• Web Security
-<br>
-• Python Automation
-<br>
-• Capture The Flag (CTF)
-</p>
-
-</div>
-
-<center>
-<a href="index.html" class="btn">
-⬅ Back To Home
-</a>
-</center>
-
-</div>
-
-<footer>
-ANDAR | Study Notes
-</footer>
-
-</body>
+    <footer>
+      ANDAR | STUDY NOTES
+    </footer>
+  </body>
 </html>
