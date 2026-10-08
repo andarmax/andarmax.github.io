@@ -220,6 +220,19 @@
         51%, 100% { opacity: 0; }
       }
 
+      .clock-box {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 16px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.55);
+        color: var(--primary-soft);
+        font-size: 0.94rem;
+        letter-spacing: 1px;
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.14);
+      }
+
       .container {
         max-width: 1060px;
         margin: 0 auto;
@@ -256,7 +269,8 @@
 
       .status-grid,
       .focus-grid,
-      .project-grid {
+      .project-grid,
+      .contact-grid {
         display: grid;
         gap: 16px;
       }
@@ -269,7 +283,8 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
-      .project-grid {
+      .project-grid,
+      .contact-grid {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       }
 
@@ -318,6 +333,20 @@
       .meta {
         color: var(--muted);
         font-size: 0.96rem;
+      }
+
+      .link-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .link-list a {
+        text-decoration: none;
+        color: var(--primary-soft);
       }
 
       footer {
@@ -376,6 +405,8 @@
         <span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span>
         <span class="cursor">_</span>
       </div>
+
+      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 UTC</div>
     </header>
 
     <main class="container">
@@ -416,19 +447,19 @@
       </section>
 
       <section id="projects" class="card">
-        <h2>PROJECTS</h2>
+        <h2>FEATURED PROJECTS</h2>
         <div class="project-grid">
           <div class="mini-card">
-            <strong>GitHub Pages</strong>
-            Portfolio personal yang menampilkan roadmap dan study notes.
+            <strong>GitHub Pages Portfolio</strong>
+            Portfolio personal yang menampilkan roadmap, notes, dan perkembangan learning journey.
           </div>
           <div class="mini-card">
             <strong>Home Lab</strong>
-            Linux + Windows lab setup untuk eksperimen keamanan dan pembelajaran.
+            Setup Linux dan Windows lab untuk eksperimen keamanan, networking, dan testing environment.
           </div>
           <div class="mini-card">
-            <strong>Security Tools</strong>
-            Eksplorasi tools, scripting, dan analisis log untuk learning-by-doing.
+            <strong>Security Learning Notes</strong>
+            Dokumentasi belajar Linux, networking, incident handling, dan cyber fundamentals.
           </div>
         </div>
       </section>
@@ -453,6 +484,25 @@
         <div class="cta-row">
           <a class="btn" href="roadmap.html">View Roadmap</a>
           <a class="btn" href="writeups.html">View Study Notes</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>CONTACT</h2>
+        <div class="contact-grid">
+          <div class="mini-card">
+            <strong>GitHub</strong>
+            <ul class="link-list">
+              <li><a href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">github.com/andarmax</a></li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Connect</strong>
+            <ul class="link-list">
+              <li><a href="roadmap.html">Roadmap</a></li>
+              <li><a href="writeups.html">Study Notes</a></li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -555,6 +605,25 @@
       }
 
       typeLoop();
+
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-GB', {
+          hour12: false,
+          timeZone: 'UTC'
+        });
+        const dateString = now.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          timeZone: 'UTC'
+        });
+
+        document.getElementById('live-clock').textContent = `${timeString} UTC | ${dateString}`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
     </script>
   </body>
 </html>
