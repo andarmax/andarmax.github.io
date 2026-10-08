@@ -14,6 +14,7 @@
         --bg: #050b08;
         --bg-soft: #0a120d;
         --panel: rgba(8, 17, 13, 0.82);
+        --panel-strong: rgba(12, 24, 18, 0.94);
         --line: rgba(0, 255, 65, 0.6);
         --primary: #00ff41;
         --primary-soft: #8fff8f;
@@ -22,6 +23,8 @@
         --text: #d9ffe2;
         --muted: #9dc6a7;
         --shadow: rgba(0, 255, 65, 0.35);
+        --shadow-cyan: rgba(0, 245, 255, 0.28);
+        --glow: radial-gradient(circle at top, rgba(0,255,65,0.18), transparent 60%);
       }
 
       * {
@@ -35,7 +38,9 @@
       body {
         margin: 0;
         font-family: Consolas, "Courier New", monospace;
-        background: var(--bg);
+        background:
+          var(--glow),
+          linear-gradient(180deg, #020805 0%, var(--bg) 100%);
         color: var(--primary);
         overflow-x: hidden;
       }
@@ -59,6 +64,11 @@
         flex-wrap: wrap;
         gap: 14px;
         padding: 28px 18px 10px;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(8px);
+        background: rgba(5, 11, 8, 0.35);
       }
 
       .nav-btn {
@@ -82,20 +92,26 @@
 
       .hero {
         text-align: center;
-        padding: 24px 20px 40px;
+        padding: 28px 20px 32px;
+      }
+
+      .hero-shell {
+        max-width: 1080px;
+        margin: 0 auto;
+        position: relative;
       }
 
       .profile-wrapper {
         position: relative;
-        width: 170px;
-        height: 170px;
+        width: 180px;
+        height: 180px;
         margin: 18px auto 10px;
       }
 
       .profile {
         display: block;
-        width: 170px;
-        height: 170px;
+        width: 180px;
+        height: 180px;
         object-fit: cover;
         border-radius: 50%;
         border: 4px solid var(--primary);
@@ -110,10 +126,10 @@
 
       .online-dot {
         position: absolute;
-        right: 12px;
+        right: 14px;
         bottom: 10px;
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
         background: var(--primary);
         border: 3px solid #000;
         border-radius: 50%;
@@ -136,7 +152,7 @@
 
       h1 {
         margin: 0 0 14px;
-        font-size: clamp(2.2rem, 5vw, 4.1rem);
+        font-size: clamp(2.5rem, 6vw, 4.8rem);
         color: var(--primary);
         text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.6);
       }
@@ -199,9 +215,9 @@
       }
 
       .typing {
-        max-width: 840px;
+        max-width: 860px;
         margin: 0 auto;
-        min-height: 46px;
+        min-height: 52px;
         font-size: 1.08rem;
         line-height: 1.7;
         color: var(--primary-soft);
@@ -234,6 +250,32 @@
         text-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
       }
 
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .hero-chip-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      .hero-chip {
+        padding: 8px 12px;
+        border: 1px solid rgba(0, 255, 65, 0.45);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.04);
+        color: var(--primary-soft);
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+      }
+
       .container {
         max-width: 1060px;
         margin: 0 auto;
@@ -241,25 +283,32 @@
       }
 
       .card {
-        background: var(--panel);
+        background: linear-gradient(180deg, rgba(10,18,15,0.9), rgba(5,11,8,0.82));
         border: 1px solid var(--line);
-        border-radius: 16px;
+        border-radius: 18px;
         padding: 28px 24px;
         margin: 18px 0;
-        box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.14);
         backdrop-filter: blur(4px);
         transition: box-shadow 0.25s ease, transform 0.25s ease;
       }
 
       .card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 25px rgba(0, 255, 65, 0.18);
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.22), 0 0 25px rgba(0, 255, 65, 0.18);
       }
 
       .card h2 {
         margin: 0 0 16px;
         color: var(--primary);
         text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        letter-spacing: 1px;
+      }
+
+      .card-subtitle {
+        margin: -4px 0 16px;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
       .card p,
@@ -273,6 +322,7 @@
       .skills-grid,
       .project-grid,
       .achievement-grid,
+      .certificate-grid,
       .contact-grid {
         display: grid;
         gap: 16px;
@@ -284,7 +334,8 @@
 
       .focus-grid,
       .skills-grid,
-      .achievement-grid {
+      .achievement-grid,
+      .certificate-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
 
@@ -298,6 +349,17 @@
         border: 1px solid rgba(0, 255, 65, 0.5);
         border-radius: 12px;
         padding: 16px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mini-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
       }
 
       .mini-card strong {
@@ -330,9 +392,10 @@
         font-size: 0.88rem;
       }
 
-      .achievement-tag {
+      .achievement-tag,
+      .certificate-tag {
         display: inline-block;
-        margin-top: 10px;
+        margin-top: 12px;
         padding: 5px 9px;
         border: 1px solid rgba(0, 255, 65, 0.5);
         border-radius: 999px;
@@ -340,6 +403,10 @@
         color: var(--primary-soft);
         font-size: 0.76rem;
         letter-spacing: 0.5px;
+      }
+
+      .certificate-box {
+        min-height: 110px;
       }
 
       .cta-row {
@@ -358,12 +425,25 @@
         color: var(--primary);
         background: rgba(0, 0, 0, 0.7);
         transition: 0.25s ease;
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.08);
       }
 
       .btn:hover {
         background: var(--primary);
         color: #000;
         box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+      }
+
+      .btn.secondary {
+        border-color: rgba(0, 245, 255, 0.6);
+        background: rgba(0, 245, 255, 0.04);
+        color: #d4fbff;
+      }
+
+      .btn.secondary:hover {
+        background: var(--cyan);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 245, 255, 0.35);
       }
 
       .meta {
@@ -385,6 +465,14 @@
         color: var(--primary-soft);
       }
 
+      .link-list a:hover {
+        color: var(--primary);
+      }
+
+      .contact-cta {
+        margin-top: 16px;
+      }
+
       footer {
         text-align: center;
         padding: 32px 20px 42px;
@@ -403,6 +491,11 @@
           text-align: center;
         }
 
+        .hero-cta,
+        .cta-row {
+          flex-direction: column;
+        }
+
         .card {
           padding: 20px 18px;
         }
@@ -418,33 +511,48 @@
       <a class="nav-btn" href="#focus">FOCUS</a>
       <a class="nav-btn" href="#skills">SKILLS</a>
       <a class="nav-btn" href="#achievement">ACHIEVEMENT</a>
+      <a class="nav-btn" href="#certificates">CERTS</a>
       <a class="nav-btn" href="#projects">PROJECTS</a>
       <a class="nav-btn" href="#roadmap">ROADMAP</a>
       <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
     </nav>
 
     <header class="hero">
-      <div class="profile-wrapper">
-        <img
-          class="profile"
-          src="IMG_3472.jpeg"
-          alt="ANDAR profile"
-        />
-        <span class="online-dot" aria-label="online status"></span>
+      <div class="hero-shell">
+        <div class="profile-wrapper">
+          <img
+            class="profile"
+            src="IMG_3472.jpeg"
+            alt="ANDAR profile"
+          />
+          <span class="online-dot" aria-label="online status"></span>
+        </div>
+
+        <div class="profile-status">[ SYSTEM ONLINE ]</div>
+
+        <h1>
+          <span class="glitch" data-text="ANDAR">ANDAR</span>
+        </h1>
+
+        <div class="typing" aria-live="polite">
+          <span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span>
+          <span class="cursor">_</span>
+        </div>
+
+        <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 // WIB</div>
+
+        <div class="hero-cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="writeups.html">Open Notes</a>
+        </div>
+
+        <div class="hero-chip-row">
+          <span class="hero-chip">Linux</span>
+          <span class="hero-chip">Networking</span>
+          <span class="hero-chip">Blue Team</span>
+          <span class="hero-chip">Security Automation</span>
+        </div>
       </div>
-
-      <div class="profile-status">[ SYSTEM ONLINE ]</div>
-
-      <h1>
-        <span class="glitch" data-text="ANDAR">ANDAR</span>
-      </h1>
-
-      <div class="typing" aria-live="polite">
-        <span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span>
-        <span class="cursor">_</span>
-      </div>
-
-      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 // WIB</div>
     </header>
 
     <main class="container">
@@ -552,6 +660,33 @@
         </div>
       </section>
 
+      <section id="certificates" class="card">
+        <h2>CERTIFICATES &amp; BADGES</h2>
+        <p class="card-subtitle">Track record of practical learning and continuous improvement.</p>
+        <div class="certificate-grid">
+          <div class="mini-card certificate-box">
+            <strong>Cyber Security Foundations</strong>
+            Core understanding of digital security, system behavior, and defensive principles.
+            <span class="certificate-tag">FOUNDATION</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Linux &amp; Command Line</strong>
+            Hands-on use of CLI, permissions, service management, and troubleshooting workflows.
+            <span class="certificate-tag">PRACTICE</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Networking Essentials</strong>
+            IP addressing, routing, DNS, packet flow, and basic infrastructure understanding.
+            <span class="certificate-tag">LAB ORIENTED</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Home Lab Security</strong>
+            Building a personal learning environment for experimentation, analysis, and lab practice.
+            <span class="certificate-tag">ONGOING</span>
+          </div>
+        </div>
+      </section>
+
       <section id="projects" class="card">
         <h2>FEATURED PROJECTS</h2>
         <div class="project-grid">
@@ -589,7 +724,7 @@
 
         <div class="cta-row">
           <a class="btn" href="roadmap.html">View Roadmap</a>
-          <a class="btn" href="writeups.html">View Study Notes</a>
+          <a class="btn secondary" href="writeups.html">View Study Notes</a>
         </div>
       </section>
 
@@ -610,6 +745,11 @@
             </ul>
           </div>
         </div>
+
+        <div class="cta-row contact-cta">
+          <a class="btn" href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">Open GitHub</a>
+          <a class="btn secondary" href="writeups.html">Read Notes</a>
+        </div>
       </section>
 
       <section class="card">
@@ -625,7 +765,7 @@
 
     <footer>
       <div>ACCESS GRANTED | ANDAR | CYBER SECURITY PORTFOLIO</div>
-      <div class="meta">Last update: September 2026</div>
+      <div class="meta">Last update: October 2026</div>
     </footer>
 
     <script>
