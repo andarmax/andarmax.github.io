@@ -228,9 +228,10 @@
         border-radius: 10px;
         background: rgba(0, 0, 0, 0.55);
         color: var(--primary-soft);
-        font-size: 0.94rem;
+        font-size: 0.9rem;
         letter-spacing: 1px;
         box-shadow: 0 0 12px rgba(0, 255, 65, 0.14);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
       }
 
       .container {
@@ -428,7 +429,7 @@
         <span class="cursor">_</span>
       </div>
 
-      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 WIB</div>
+      <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 // WIB</div>
     </header>
 
     <main class="container">
@@ -686,7 +687,7 @@
           timeZone: 'Asia/Jakarta'
         });
 
-        document.getElementById('live-clock').textContent = `${wibTime} WIB | ${wibDate}`;
+        document.getElementById('live-clock').textContent = `${wibTime} // WIB | ${wibDate}`;
       }
 
       updateClock();
