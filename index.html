@@ -24,6 +24,7 @@
         --muted: #9dc6a7;
         --shadow: rgba(0, 255, 65, 0.35);
         --shadow-cyan: rgba(0, 245, 255, 0.28);
+        --glow: radial-gradient(circle at top, rgba(0,255,65,0.18), transparent 60%);
       }
 
       * {
@@ -37,7 +38,9 @@
       body {
         margin: 0;
         font-family: Consolas, "Courier New", monospace;
-        background: var(--bg);
+        background:
+          var(--glow),
+          linear-gradient(180deg, #020805 0%, var(--bg) 100%);
         color: var(--primary);
         overflow-x: hidden;
       }
@@ -52,7 +55,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.25;
+        opacity: 0.32;
       }
 
       .navbar {
@@ -61,8 +64,11 @@
         flex-wrap: wrap;
         gap: 14px;
         padding: 28px 18px 10px;
-        position: static;
+        position: sticky;
+        top: 0;
         z-index: 20;
+        backdrop-filter: blur(8px);
+        background: rgba(5, 11, 8, 0.35);
       }
 
       .nav-btn {
@@ -72,82 +78,81 @@
         border-radius: 10px;
         text-decoration: none;
         color: var(--primary);
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.7);
         transition: 0.25s ease;
-        box-shadow: 0 0 8px rgba(0, 255, 65, 0.08);
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);
       }
 
       .nav-btn:hover {
         background: var(--primary);
         color: #000;
         transform: translateY(-2px);
-        box-shadow: 0 0 12px var(--shadow), 0 0 20px rgba(0, 255, 65, 0.2);
+        box-shadow: 0 0 18px var(--shadow), 0 0 35px rgba(0, 255, 65, 0.35);
       }
 
       .hero {
         text-align: center;
-        padding: 28px 20px 32px;
-        position: relative;
-      }
-
-      .profile-corner {
-        position: fixed;
-        top: 80px;
-        left: 20px;
-        z-index: 30;
-      }
-
-      .profile-wrapper {
-        position: relative;
-        width: 100px;
-        height: 100px;
-      }
-
-      .profile {
-        display: block;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid var(--primary);
-        box-shadow: 0 0 15px var(--primary), 0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 8px rgba(0, 255, 65, 0.15);
-        transition: transform 0.28s ease, box-shadow 0.28s ease;
-      }
-
-      .profile:hover {
-        transform: scale(1.08);
-        box-shadow: 0 0 20px var(--primary), 0 0 45px rgba(0, 255, 65, 0.8), inset 0 0 12px rgba(0, 255, 65, 0.25);
-      }
-
-      .online-dot {
-        position: absolute;
-        right: 4px;
-        bottom: 4px;
-        width: 14px;
-        height: 14px;
-        background: var(--primary);
-        border: 2px solid #000;
-        border-radius: 50%;
-        box-shadow: 0 0 6px var(--primary), 0 0 10px var(--primary);
-        animation: pulse 1.6s infinite;
-      }
-
-      @keyframes pulse {
-        0%, 100% { box-shadow: 0 0 4px var(--primary), 0 0 8px var(--primary); }
-        50% { box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary); }
+        padding: 20px 20px 30px;
       }
 
       .hero-shell {
         max-width: 1080px;
         margin: 0 auto;
-        margin-top: 0px;
+        position: relative;
       }
 
-      .hero h1 {
-        font-size: clamp(32px, 6vw, 56px);
-        margin: 16px 0 8px;
-        font-weight: normal;
-        letter-spacing: 2px;
+      .profile-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin: 30px auto 12px;
+      }
+
+      .profile {
+        display: block;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--primary);
+        box-shadow: 0 0 10px var(--primary), 0 0 25px rgba(0, 255, 65, 0.8), 0 0 45px rgba(0, 255, 65, 0.4);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      .profile:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 15px var(--primary), 0 0 35px var(--primary), 0 0 60px rgba(0, 255, 65, 0.7);
+      }
+
+      .online-dot {
+        position: absolute;
+        right: 14px;
+        bottom: 10px;
+        width: 22px;
+        height: 22px;
+        background: var(--primary);
+        border: 3px solid #000;
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary);
+        animation: pulse 1.6s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary); }
+        50% { box-shadow: 0 0 10px var(--primary), 0 0 25px var(--primary); }
+      }
+
+      .profile-status {
+        margin: 10px 0 18px;
+        color: var(--primary-soft);
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-shadow: 0 0 8px var(--primary);
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2.5rem, 6vw, 4.8rem);
         color: var(--primary);
         text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.6);
       }
@@ -210,13 +215,13 @@
       }
 
       .typing {
-        max-width: 800px;
-        margin: 16px auto 0;
-        min-height: 48px;
+        max-width: 860px;
+        margin: 0 auto;
+        min-height: 52px;
         font-size: 1.08rem;
         line-height: 1.7;
         color: var(--primary-soft);
-        text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
       }
 
       .cursor {
@@ -231,473 +236,643 @@
         51%, 100% { opacity: 0; }
       }
 
-      .date-display {
-        color: var(--muted);
-        font-size: 12px;
-        letter-spacing: 1px;
-        margin-top: 8px;
-        text-transform: uppercase;
-      }
-
-      .live-status {
+      .clock-box {
         display: inline-block;
-        margin-top: 12px;
-        padding: 8px 16px;
+        margin-top: 18px;
+        padding: 10px 16px;
         border: 1px solid var(--line);
-        border-radius: 6px;
-        font-size: 12px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.55);
+        color: var(--primary-soft);
+        font-size: 0.9rem;
         letter-spacing: 1px;
-        background: rgba(0, 255, 65, 0.08);
-        box-shadow: inset 0 0 8px rgba(0, 255, 65, 0.12);
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.14);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
       }
 
-      .live-indicator {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: var(--primary);
-        border-radius: 50%;
-        margin-right: 8px;
-        animation: pulse-indicator 1.2s infinite;
-      }
-
-      @keyframes pulse-indicator {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.6; transform: scale(0.8); }
-      }
-
-      .timer {
-        font-family: "Courier New", monospace;
-        font-weight: bold;
-        color: var(--cyan);
-        margin-left: 6px;
-      }
-
-      .social-links {
+      .hero-cta {
         display: flex;
-        justify-content: center;
-        gap: 12px;
         flex-wrap: wrap;
-        margin-bottom: 24px;
-      }
-
-      .social-link {
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(0, 0, 0, 0.4);
-        transition: 0.25s ease;
-        text-decoration: none;
-        color: var(--primary);
+        gap: 14px;
+        margin-top: 22px;
       }
 
-      .social-link:hover {
-        background: var(--primary);
-        color: #000;
-        transform: translateY(-3px);
-        box-shadow: 0 0 12px var(--shadow);
+      .hero-chip-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 18px;
       }
 
-      .content-sections {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 18px;
-        padding: 20px 18px;
-        max-width: 1200px;
+      .hero-chip {
+        padding: 8px 12px;
+        border: 1px solid rgba(0, 255, 65, 0.45);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.04);
+        color: var(--primary-soft);
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+      }
+
+      .container {
+        max-width: 1060px;
         margin: 0 auto;
+        padding: 10px 18px 40px;
       }
 
       .card {
+        background: linear-gradient(180deg, rgba(10,18,15,0.9), rgba(5,11,8,0.82));
         border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 20px;
-        background: var(--panel);
-        box-shadow: 0 0 16px rgba(0, 255, 65, 0.12), inset 0 0 1px rgba(0, 255, 65, 0.08);
-        transition: 0.25s ease;
+        border-radius: 18px;
+        padding: 28px 24px;
+        margin: 18px 0;
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.14);
         backdrop-filter: blur(4px);
+        transition: box-shadow 0.25s ease, transform 0.25s ease;
       }
 
       .card:hover {
-        background: var(--panel-strong);
-        box-shadow: 0 0 24px rgba(0, 255, 65, 0.18), inset 0 0 1px rgba(0, 255, 65, 0.12);
-        transform: translateY(-4px);
+        transform: translateY(-2px);
+        box-shadow: 0 0 18px rgba(0, 255, 65, 0.22), 0 0 25px rgba(0, 255, 65, 0.18);
       }
 
       .card h2 {
-        font-size: clamp(16px, 3vw, 20px);
-        margin: 0 0 12px;
-        color: var(--cyan);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
-      }
-
-      .card p, .card li {
-        font-size: 14px;
-        line-height: 1.6;
-        color: var(--text);
-        margin: 0 0 8px;
-      }
-
-      .card ul {
-        margin: 0;
-        padding-left: 20px;
-      }
-
-      .card a {
+        margin: 0 0 16px;
         color: var(--primary);
-        text-decoration: none;
-        border-bottom: 1px dotted var(--primary);
-        transition: 0.2s ease;
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        letter-spacing: 1px;
       }
 
-      .card a:hover {
-        color: var(--cyan);
-        border-bottom-color: var(--cyan);
-        text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+      .card-subtitle {
+        margin: -4px 0 16px;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
-      .skill-tags {
+      .card p,
+      .card li {
+        color: var(--text);
+        line-height: 1.9;
+      }
+
+      .status-grid,
+      .focus-grid,
+      .skills-grid,
+      .project-grid,
+      .achievement-grid,
+      .certificate-grid,
+      .contact-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .focus-grid,
+      .skills-grid,
+      .achievement-grid,
+      .certificate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .project-grid,
+      .contact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .mini-card {
+        background: rgba(0, 0, 0, 0.48);
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 12px;
+        padding: 16px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mini-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      }
+
+      .mini-card strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--primary-soft);
+      }
+
+      ul.clean {
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .skill-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-top: 12px;
       }
 
-      .skill-tag {
+      .skill-list li {
         display: inline-block;
-        padding: 6px 12px;
-        border: 1px solid var(--cyan);
-        border-radius: 4px;
-        font-size: 12px;
-        color: var(--cyan);
-        background: rgba(0, 245, 255, 0.08);
-        transition: 0.2s ease;
-        box-shadow: 0 0 8px rgba(0, 245, 255, 0.1);
+        padding: 6px 10px;
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.05);
+        color: var(--primary-soft);
+        font-size: 0.88rem;
       }
 
-      .skill-tag:hover {
-        background: rgba(0, 245, 255, 0.16);
-        box-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
-        text-shadow: 0 0 8px var(--cyan);
+      .achievement-tag,
+      .certificate-tag {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 5px 9px;
+        border: 1px solid rgba(0, 255, 65, 0.5);
+        border-radius: 999px;
+        background: rgba(0, 255, 65, 0.06);
+        color: var(--primary-soft);
+        font-size: 0.76rem;
+        letter-spacing: 0.5px;
       }
 
-      .project-item {
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+      .certificate-box {
+        min-height: 110px;
       }
 
-      .project-item:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 18px;
       }
 
-      .project-title {
+      .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        text-decoration: none;
         color: var(--primary);
-        font-weight: bold;
-        margin-bottom: 6px;
-        text-shadow: 0 0 8px rgba(0, 255, 65, 0.25);
+        background: rgba(0, 0, 0, 0.7);
+        transition: 0.25s ease;
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.08);
       }
 
-      .project-desc {
-        color: var(--text);
-        font-size: 13px;
+      .btn:hover {
+        background: var(--primary);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+      }
+
+      .btn.secondary {
+        border-color: rgba(0, 245, 255, 0.6);
+        background: rgba(0, 245, 255, 0.04);
+        color: #d4fbff;
+      }
+
+      .btn.secondary:hover {
+        background: var(--cyan);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 245, 255, 0.35);
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .link-list {
+        list-style: none;
+        padding: 0;
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .link-list a {
+        text-decoration: none;
+        color: var(--primary-soft);
+      }
+
+      .link-list a:hover {
+        color: var(--primary);
+      }
+
+      .contact-cta {
+        margin-top: 16px;
       }
 
       footer {
         text-align: center;
-        padding: 32px 20px;
-        font-size: 12px;
-        color: var(--muted);
-        border-top: 1px solid rgba(0, 255, 65, 0.1);
+        padding: 32px 20px 42px;
+        color: #7c9b87;
       }
 
-      .dot {
-        display: inline-block;
-        width: 4px;
-        height: 4px;
-        background: var(--primary);
-        border-radius: 50%;
-        margin: 0 6px;
-      }
-
-      @media (max-width: 600px) {
-        .content-sections {
-          grid-template-columns: 1fr;
-          padding: 16px 12px;
-        }
-
+      @media (max-width: 640px) {
         .navbar {
-          padding: 16px 12px 8px;
           gap: 10px;
+          padding-top: 20px;
         }
 
-        .nav-btn {
-          padding: 10px 14px;
-          font-size: 13px;
+        .nav-btn,
+        .btn {
+          width: 100%;
+          text-align: center;
         }
 
-        .hero {
-          padding: 20px 16px 24px;
+        .hero-cta,
+        .cta-row {
+          flex-direction: column;
         }
 
-        .profile-corner {
-          position: static;
-          margin-bottom: 20px;
-          display: flex;
-          justify-content: center;
-        }
-
-        .hero-shell {
-          margin-top: 0;
+        .card {
+          padding: 20px 18px;
         }
       }
     </style>
   </head>
+
   <body>
     <canvas id="matrix"></canvas>
 
-    <!-- Profile di Pojok Kiri Atas -->
-    <div class="profile-corner">
-      <div class="profile-wrapper">
-        <img src="https://github.com/andarmax.png" alt="Profile" class="profile" />
-        <div class="online-dot"></div>
-      </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-shell">
-        <h1><span class="glitch" data-text="ANDAR">ANDAR</span></h1>
-        
-        <!-- Typing Animation -->
-        <div class="typing" id="typing-text">
-          <span id="typed-content"></span><span class="cursor"></span>
-        </div>
-
-        <!-- Date Display -->
-        <div class="date-display" id="date-display"></div>
-
-        <!-- Live Status Timer -->
-        <div class="live-status">
-          <span class="live-indicator"></span>
-          <span>ONLINE</span>
-          <span class="timer" id="timer">00:00:00</span>
-        </div>
-
-        <!-- Social Links -->
-        <div class="social-links">
-          <a href="https://github.com/andarmax" class="social-link" title="GitHub">
-            <span>GH</span>
-          </a>
-          <a href="https://twitter.com/andarmax" class="social-link" title="Twitter">
-            <span>𝕏</span>
-          </a>
-          <a href="https://linkedin.com/in/andarmax" class="social-link" title="LinkedIn">
-            <span>IN</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-      <a href="#about" class="nav-btn">About</a>
-      <a href="#skills" class="nav-btn">Skills</a>
-      <a href="#projects" class="nav-btn">Projects</a>
-      <a href="#learning" class="nav-btn">Learning</a>
-      <a href="#contact" class="nav-btn">Contact</a>
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="nav-btn" href="#about">ABOUT</a>
+      <a class="nav-btn" href="#focus">FOCUS</a>
+      <a class="nav-btn" href="#skills">SKILLS</a>
+      <a class="nav-btn" href="#achievement">ACHIEVEMENT</a>
+      <a class="nav-btn" href="#certificates">CERTS</a>
+      <a class="nav-btn" href="#projects">PROJECTS</a>
+      <a class="nav-btn" href="#roadmap">ROADMAP</a>
+      <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
     </nav>
 
-    <!-- Main Content -->
-    <div class="content-sections">
-      <!-- About -->
-      <section class="card" id="about">
-        <h2>About Me</h2>
+    <header class="hero">
+      <div class="hero-shell">
+        <div class="profile-wrapper">
+          <img
+            class="profile"
+            src="IMG_3472.jpeg"
+            alt="ANDAR profile"
+          />
+          <span class="online-dot" aria-label="online status"></span>
+        </div>
+
+        <div class="profile-status">[ SYSTEM ONLINE ]</div>
+
+        <h1>
+          <span class="glitch" data-text="ANDAR">ANDAR</span>
+        </h1>
+
+        <div class="typing" aria-live="polite">
+          <span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span>
+          <span class="cursor">_</span>
+        </div>
+
+        <div id="live-clock" class="clock-box" aria-live="polite">00:00:00 // WIB</div>
+
+        <div class="hero-cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="writeups.html">Open Notes</a>
+        </div>
+
+        <div class="hero-chip-row">
+          <span class="hero-chip">Linux</span>
+          <span class="hero-chip">Networking</span>
+          <span class="hero-chip">Blue Team</span>
+          <span class="hero-chip">Security Automation</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="about" class="card">
+        <h2>ABOUT</h2>
         <p>
-          Hi! I'm ANDAR, a passionate cybersecurity enthusiast dedicated to learning ethical hacking,
-          penetration testing, and security research. I believe in continuous learning and contributing
-          to the security community.
+          Saya adalah seorang learner dan practitioner yang fokus di bidang cyber security,
+          especially pada area keamanan sistem, Linux, networking, deteksi ancaman, dan proses
+          pembelajaran berbasis lab. Saya membangun environment belajar sendiri untuk mengeksplorasi
+          mulai dari fundamental hingga praktik keamanan dunia nyata.
         </p>
         <p>
-          Currently exploring various domains in cybersecurity including network security,
-          cryptography, and web application security.
+          Halaman ini saya gunakan sebagai portfolio pribadi sekaligus catatan perjalanan belajar,
+          termasuk roadmap, note, dan proyek kecil yang sedang dikembangkan.
         </p>
       </section>
 
-      <!-- Skills -->
-      <section class="card" id="skills">
-        <h2>Skills</h2>
-        <div class="skill-tags">
-          <span class="skill-tag">Linux</span>
-          <span class="skill-tag">Networking</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Bash</span>
-          <span class="skill-tag">Web Security</span>
-          <span class="skill-tag">Penetration Testing</span>
-          <span class="skill-tag">Cryptography</span>
-          <span class="skill-tag">Forensics</span>
+      <section id="focus" class="card">
+        <h2>FOCUS AREAS</h2>
+        <div class="focus-grid">
+          <div class="mini-card">
+            <strong>Linux &amp; System</strong>
+            File system, permissions, service management, troubleshooting, shell scripting.
+          </div>
+          <div class="mini-card">
+            <strong>Networking</strong>
+            IP, subnet, routing, DNS, packet flow, troubleshooting dasar jaringan.
+          </div>
+          <div class="mini-card">
+            <strong>Security</strong>
+            OWASP, log analysis, threat basics, monitoring, defensive mindset.
+          </div>
+          <div class="mini-card">
+            <strong>Automation</strong>
+            Python scripting, task automation, operational workflow, security tooling.
+          </div>
         </div>
       </section>
 
-      <!-- Projects -->
-      <section class="card" id="projects">
-        <h2>Projects</h2>
-        <div class="project-item">
-          <p class="project-title">Security Tools</p>
-          <p class="project-desc">Collection of custom security tools and scripts for analysis and testing.</p>
-        </div>
-        <div class="project-item">
-          <p class="project-title">CTF Writeups</p>
-          <p class="project-desc">Solutions and writeups from various Capture The Flag competitions.</p>
-        </div>
-        <div class="project-item">
-          <p class="project-title">Security Blog</p>
-          <p class="project-desc">Articles about cybersecurity concepts, tips, and findings.</p>
+      <section id="skills" class="card">
+        <h2>SKILLS &amp; TOOLS</h2>
+        <div class="skills-grid">
+          <div class="mini-card">
+            <strong>Operating Systems</strong>
+            <ul class="skill-list">
+              <li>Linux</li>
+              <li>Kali</li>
+              <li>Ubuntu</li>
+              <li>Windows</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Networking</strong>
+            <ul class="skill-list">
+              <li>TCP/IP</li>
+              <li>DNS</li>
+              <li>DHCP</li>
+              <li>Routing</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Programming</strong>
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>Bash</li>
+              <li>Shell</li>
+              <li>Automation</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Security</strong>
+            <ul class="skill-list">
+              <li>OWASP</li>
+              <li>Log Analysis</li>
+              <li>Threat Intel</li>
+              <li>Home Lab</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <!-- Learning Roadmap -->
-      <section class="card" id="learning">
-        <h2>Learning Roadmap</h2>
-        <ul>
-          <li>Advanced Python for Security</li>
-          <li>Web Application Security (OWASP)</li>
-          <li>Network Penetration Testing</li>
-          <li>Malware Analysis</li>
-          <li>Cloud Security</li>
+      <section id="achievement" class="card">
+        <h2>ACHIEVEMENTS &amp; MILESTONES</h2>
+        <div class="achievement-grid">
+          <div class="mini-card">
+            <strong>Personal Portfolio</strong>
+            Membangun dan memelihara portfolio berbasis GitHub Pages sebagai media showcase perjalanan belajar.
+            <span class="achievement-tag">STATUS: COMPLETED</span>
+          </div>
+          <div class="mini-card">
+            <strong>Home Lab Setup</strong>
+            Menyiapkan lingkungan lab mandiri dengan fokus pada Linux, networking, dan eksperimen keamanan.
+            <span class="achievement-tag">STATUS: ACTIVE</span>
+          </div>
+          <div class="mini-card">
+            <strong>Study Notes System</strong>
+            Menyusun catatan belajar yang terorganisir untuk Linux, jaringan, dan praktik keamanan.
+            <span class="achievement-tag">STATUS: GROWING</span>
+          </div>
+          <div class="mini-card">
+            <strong>Security Mindset</strong>
+            Membiasakan pendekatan defensif dengan log review, troubleshooting, dan analisa ancaman dasar.
+            <span class="achievement-tag">STATUS: IN PROGRESS</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificates" class="card">
+        <h2>CERTIFICATES &amp; BADGES</h2>
+        <p class="card-subtitle">Track record of practical learning and continuous improvement.</p>
+        <div class="certificate-grid">
+          <div class="mini-card certificate-box">
+            <strong>Cyber Security Foundations</strong>
+            Core understanding of digital security, system behavior, and defensive principles.
+            <span class="certificate-tag">FOUNDATION</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Linux &amp; Command Line</strong>
+            Hands-on use of CLI, permissions, service management, and troubleshooting workflows.
+            <span class="certificate-tag">PRACTICE</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Networking Essentials</strong>
+            IP addressing, routing, DNS, packet flow, and basic infrastructure understanding.
+            <span class="certificate-tag">LAB ORIENTED</span>
+          </div>
+          <div class="mini-card certificate-box">
+            <strong>Home Lab Security</strong>
+            Building a personal learning environment for experimentation, analysis, and lab practice.
+            <span class="certificate-tag">ONGOING</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="card">
+        <h2>FEATURED PROJECTS</h2>
+        <div class="project-grid">
+          <div class="mini-card">
+            <strong>GitHub Pages Portfolio</strong>
+            Portfolio personal yang menampilkan roadmap, notes, dan perkembangan learning journey.
+          </div>
+          <div class="mini-card">
+            <strong>Home Lab</strong>
+            Setup Linux dan Windows lab untuk eksperimen keamanan, networking, dan testing environment.
+          </div>
+          <div class="mini-card">
+            <strong>Security Learning Notes</strong>
+            Dokumentasi belajar Linux, networking, incident handling, dan cyber fundamentals.
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="card">
+        <h2>ROADMAP</h2>
+        <div class="status-grid">
+          <div class="mini-card">
+            <strong>Completed</strong>
+            GitHub account, GitHub Pages, home lab, Kali Linux, Windows lab, personal portfolio.
+          </div>
+          <div class="mini-card">
+            <strong>In Progress</strong>
+            Linux fundamentals, networking basics, CLI practice, note documentation.
+          </div>
+          <div class="mini-card">
+            <strong>Next Targets</strong>
+            OWASP Top 10, Python automation, log analysis, web security, Git/GitHub workflow.
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="roadmap.html">View Roadmap</a>
+          <a class="btn secondary" href="writeups.html">View Study Notes</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>CONTACT</h2>
+        <div class="contact-grid">
+          <div class="mini-card">
+            <strong>GitHub</strong>
+            <ul class="link-list">
+              <li><a href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">github.com/andarmax</a></li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <strong>Connect</strong>
+            <ul class="link-list">
+              <li><a href="roadmap.html">Roadmap</a></li>
+              <li><a href="writeups.html">Study Notes</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta-row contact-cta">
+          <a class="btn" href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">Open GitHub</a>
+          <a class="btn secondary" href="writeups.html">Read Notes</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>CURRENT STATUS</h2>
+        <ul class="clean">
+          <li>[+] Home Lab : ONLINE</li>
+          <li>[+] GitHub Pages : ONLINE</li>
+          <li>[+] Learning Mode : ACTIVE</li>
+          <li>[+] Progress Tracking : ENABLED</li>
         </ul>
       </section>
-
-      <!-- Notes & Resources -->
-      <section class="card">
-        <h2>Resources</h2>
-        <p>
-          Curated collection of learning materials, tools, and references for cybersecurity.
-        </p>
-        <p>
-          <a href="#">Security Blogs</a>
-          <span class="dot"></span>
-          <a href="#">Tools</a>
-          <span class="dot"></span>
-          <a href="#">Certifications</a>
-        </p>
-      </section>
-
-      <!-- Contact -->
-      <section class="card" id="contact">
-        <h2>Get In Touch</h2>
-        <p>
-          Interested in collaborating or discussing cybersecurity topics?
-        </p>
-        <p>
-          <a href="mailto:contact@andar.com">Email Me</a>
-          <span class="dot"></span>
-          <a href="https://github.com/andarmax">GitHub</a>
-        </p>
-      </section>
-    </div>
+    </main>
 
     <footer>
-      <p>&copy; 2024 ANDAR | Cybersecurity Portfolio</p>
+      <div>ACCESS GRANTED | ANDAR | CYBER SECURITY PORTFOLIO</div>
+      <div class="meta">Last update: October 2026</div>
     </footer>
 
     <script>
-      // Matrix Rain Background
-      const canvas = document.getElementById("matrix");
-      const ctx = canvas.getContext("2d");
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789!@#$%^&*()";
-      const charSize = 16;
-      const columns = Math.floor(canvas.width / charSize);
-      const drops = Array(columns).fill(1);
-
-      function draw() {
-        ctx.fillStyle = "rgba(5, 11, 8, 0.1)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "rgba(0, 255, 65, 0.4)";
-        ctx.font = `bold ${charSize}px Consolas, monospace`;
-
-        for (let i = 0; i < drops.length; i++) {
-          const char = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(char, i * charSize, drops[i] * charSize);
-
-          if (drops[i] * charSize > canvas.height || Math.random() > 0.97) {
-            drops[i] = 0;
-          }
-
-          drops[i]++;
-        }
-
-        requestAnimationFrame(draw);
-      }
-
-      draw();
-
-      // Responsive Canvas
-      window.addEventListener("resize", () => {
+      function setCanvasSize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-      });
+      }
 
-      // Typing Animation
-      const text = "Cybersecurity Enthusiast | Ethical Hacker | Security Researcher";
-      let index = 0;
-      const typedContent = document.getElementById("typed-content");
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+      let fontSize = 16;
+      const columns = () => Math.floor(canvas.width / fontSize);
+      let drops = [];
 
-      function typeText() {
-        if (index < text.length) {
-          typedContent.textContent += text.charAt(index);
-          index++;
-          setTimeout(typeText, 50);
+      function initDrops() {
+        const colCount = columns();
+        drops = Array.from({ length: colCount }, () => Math.random() * -100);
+      }
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(5, 11, 8, 0.12)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = i % 2 === 0 ? '#00ff41' : '#7fffbf';
+          const x = i * fontSize;
+          const y = drops[i] * fontSize;
+          ctx.fillText(text, x, y);
+
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
         }
       }
 
-      typeText();
-
-      // Date Display
-      function updateDate() {
-        const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const dateStr = now.toLocaleDateString('id-ID', options);
-        document.getElementById("date-display").textContent = dateStr;
-      }
-
-      updateDate();
-
-      // Live Timer
-      function updateTimer() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const seconds = String(now.getSeconds()).padStart(2, "0");
-        document.getElementById("timer").textContent = `${hours}:${minutes}:${seconds}`;
-      }
-
-      updateTimer();
-      setInterval(updateTimer, 1000);
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-          }
-        });
+      window.addEventListener('resize', () => {
+        setCanvasSize();
+        initDrops();
       });
+
+      setCanvasSize();
+      initDrops();
+      setInterval(drawMatrix, 50);
+
+      const typedText = document.getElementById('typed-text');
+      const phrases = [
+        '[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]',
+        '[ LINUX • NETWORKING • SECURITY • PYTHON ]',
+        '[ LEARNING • PRACTICE • LAB • ADAPTATION ]'
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function typeLoop() {
+        const current = phrases[phraseIndex];
+
+        if (!deleting) {
+          charIndex++;
+          typedText.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(typeLoop, 1000);
+            return;
+          }
+        } else {
+          charIndex--;
+          typedText.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+        }
+
+        const speed = deleting ? 40 : 80;
+        setTimeout(typeLoop, speed);
+      }
+
+      typeLoop();
+
+      function updateClock() {
+        const now = new Date();
+        const wibTime = now.toLocaleTimeString('id-ID', {
+          hour12: false,
+          timeZone: 'Asia/Jakarta',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        const wibDate = now.toLocaleDateString('id-ID', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          timeZone: 'Asia/Jakarta'
+        });
+
+        document.getElementById('live-clock').textContent = `${wibTime} // WIB | ${wibDate}`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
     </script>
   </body>
 </html>
