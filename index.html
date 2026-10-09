@@ -92,7 +92,7 @@
 
       .profile-corner {
         position: fixed;
-        top: 20px;
+        top: 80px;
         left: 20px;
         z-index: 30;
       }
@@ -140,7 +140,7 @@
       .hero-shell {
         max-width: 1080px;
         margin: 0 auto;
-        margin-top: 40px;
+        margin-top: 0px;
       }
 
       .hero h1 {
@@ -231,11 +231,12 @@
         51%, 100% { opacity: 0; }
       }
 
-      .hero .subtitle {
+      .date-display {
         color: var(--muted);
-        font-size: clamp(14px, 2vw, 16px);
-        margin: 8px 0 4px;
-        font-style: italic;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-top: 8px;
+        text-transform: uppercase;
       }
 
       .live-status {
@@ -481,6 +482,9 @@
           <span id="typed-content"></span><span class="cursor"></span>
         </div>
 
+        <!-- Date Display -->
+        <div class="date-display" id="date-display"></div>
+
         <!-- Live Status Timer -->
         <div class="live-status">
           <span class="live-indicator"></span>
@@ -661,6 +665,16 @@
       }
 
       typeText();
+
+      // Date Display
+      function updateDate() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateStr = now.toLocaleDateString('id-ID', options);
+        document.getElementById("date-display").textContent = dateStr;
+      }
+
+      updateDate();
 
       // Live Timer
       function updateTimer() {
