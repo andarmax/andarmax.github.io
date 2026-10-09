@@ -3,56 +3,54 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Study notes for Linux, networking, and cyber security." />
-<meta name="theme-color" content="#000000" />
 <title>ANDAR | Study Notes</title>
 <style>
 :root{--bg:#050b08;--panel:rgba(8,17,13,0.82);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--text:#dfffe9;--muted:#9ec0a6;--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
 *{box-sizing:border-box;} body{margin:0;font-family:Consolas,"Courier New",monospace;background:var(--glow),linear-gradient(180deg,#020805 0%,var(--bg) 100%);color:var(--primary);overflow-x:hidden;}
-a{color:inherit;} canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
+canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;box-shadow:0 0 12px rgba(0,255,65,0.15);}
-.nav-btn:hover{background:var(--primary);color:#000;transform:translateY(-2px);}
+.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;}
+.nav-btn:hover{background:var(--primary);color:#000;}
 .container{max-width:1040px;margin:0 auto;padding:18px 18px 60px;}
-h1{margin:0;text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);color:var(--primary);text-shadow:0 0 12px rgba(0,255,65,0.7);}
+h1{margin:0;text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);}
 .subtitle{margin:16px auto 30px;color:var(--primary-soft);text-align:center;letter-spacing:1px;}
-.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:24px 22px;margin:20px 0;box-shadow:0 0 18px rgba(0,255,65,0.15);backdrop-filter:blur(4px);transition:0.25s ease;}
-.card:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,65,0.22);}
-.card h2{margin:0 0 14px;color:var(--primary);text-shadow:0 0 8px rgba(0,255,65,0.6);letter-spacing:1px;}
+.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:24px 22px;margin:20px 0;box-shadow:0 0 18px rgba(0,255,65,0.15);}
+.card h2{margin:0 0 14px;text-shadow:0 0 8px rgba(0,255,65,0.6);}
 .card p,.card li{color:var(--text);line-height:1.9;} ul.clean{margin:0;padding-left:18px;}
 .actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:18px;}
-.btn{display:inline-block;padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);transition:0.25s ease;}
-.btn:hover{background:var(--primary);color:#000;box-shadow:0 0 15px rgba(0,255,65,0.4);}
+.btn{display:inline-block;padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.5);transition:0.25s ease;}
+.btn:hover{background:var(--primary);color:#000;}
 .btn.secondary{border-color:rgba(0,245,255,0.6);background:rgba(0,245,255,0.04);color:#d4fbff;}
-.btn.secondary:hover{background:var(--cyan);color:#000;}
 footer{text-align:center;color:var(--muted);padding:16px 20px 28px;}
-@media(max-width:640px){.container{padding-top:10px;}.btn{width:100%;text-align:center;}.navbar{gap:10px;padding-top:20px;}.nav-btn{width:100%;text-align:center;}}
+@media(max-width:640px){
+.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}
+.navbar::-webkit-scrollbar{display:none;}
+.nav-btn{width:auto!important;flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}
+.btn{width:100%;text-align:center;}
+}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar"><a class="nav-btn" href="index.html">HOME</a><a class="nav-btn" href="index.html#focus">FOCUS</a><a class="nav-btn" href="index.html#skills">SKILLS</a><a class="nav-btn" href="roadmap.html">ROADMAP</a><a class="nav-btn" href="writeups.html">NOTES</a></nav>
+<nav class="navbar"><a class="nav-btn" href="index.html">HOME</a><a class="nav-btn" href="index.html#focus">FOCUS</a><a class="nav-btn" href="roadmap.html">ROADMAP</a><a class="nav-btn" href="writeups.html">NOTES</a></nav>
 <div class="container">
-<h1>STUDY NOTES</h1><p class="subtitle">Linux, Networking, and Cyber Security learning log</p>
+<h1>STUDY NOTES</h1><p class="subtitle">Linux, Networking, and Cyber Security learning log // <span id="auto-date"></span></p>
 <section class="card"><h2>LINUX NOTES</h2><ul class="clean"><li>Basic terminal usage</li><li>Directory navigation</li><li>User and group management</li><li>File permissions</li><li>SSH basics</li></ul></section>
 <section class="card"><h2>NETWORKING NOTES</h2><ul class="clean"><li>IP address concepts</li><li>Basic subnetting</li><li>DNS and DHCP</li><li>Routing basics</li><li>Packet flow understanding</li></ul></section>
 <section class="card"><h2>CYBER SECURITY NOTES</h2><ul class="clean"><li>CIA triad</li><li>OWASP Top 10</li><li>Vulnerability assessment basics</li><li>Security awareness</li><li>Log analysis</li></ul></section>
-<section class="card"><h2>STATUS</h2><ul class="clean"><li>System Online</li><li>Kali Linux Lab : ONLINE</li><li>Windows Lab : ONLINE</li><li>GitHub Pages : ONLINE</li><li>Study Mode : ACTIVE</li></ul><p>Last update: <span id="auto-date"></span></p></section>
-<section class="card"><h2>HOME LAB PROGRESS</h2><ul class="clean"><li>[✓] Kali Linux VirtualBox</li><li>[✓] Windows 10 Pro</li><li>[✓] Learning environment</li><li>[✓] GitHub Pages portfolio</li></ul></section>
-<section class="card"><h2>FUTURE LEARNING GOALS</h2><ul class="clean"><li>Linux administration</li><li>Network security</li><li>Web security</li><li>Python automation</li><li>CTF and challenge-based learning</li></ul></section>
+<section class="card"><h2>STATUS</h2><ul class="clean"><li>System Online</li><li>Kali Linux Lab : ONLINE</li><li>Windows Lab : ONLINE</li><li>GitHub Pages : ONLINE</li><li>Study Mode : ACTIVE</li></ul><p>Last update: <span id="clock"></span></p></section>
 <div class="actions"><a class="btn" href="index.html">BACK TO HOME</a><a class="btn secondary" href="roadmap.html">VIEW ROADMAP</a></div>
 </div>
-<footer>ANDAR | STUDY NOTES | <span id="clock"></span></footer>
+<footer>ANDAR | STUDY NOTES</footer>
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setCanvasSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';let drops=[];
-function initDrops(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setCanvasSize();initDrops();let iv=setInterval(draw,80);
+function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%'[Math.floor(Math.random()*38)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();let iv=setInterval(draw,80);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(iv);else iv=setInterval(draw,80);});
-window.addEventListener('resize',()=>{setCanvasSize();initDrops();});
-function tick(){const now=new Date();const t=now.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const d=now.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('auto-date').textContent=d;const c=document.getElementById('clock');if(c)c.textContent=t+' WIB';}
-tick();setInterval(tick,1000);
+addEventListener('resize',()=>{setSize();init();});
+function tick(){const n=new Date();const d=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});const t=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});document.getElementById('auto-date').textContent=d;const c=document.getElementById('clock');if(c)c.textContent=t+' WIB // '+d;}tick();setInterval(tick,1000);
 </script>
 </body>
 </html>
