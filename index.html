@@ -87,52 +87,60 @@
       .hero {
         text-align: center;
         padding: 28px 20px 32px;
+        position: relative;
+      }
+
+      .profile-corner {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 30;
+      }
+
+      .profile-wrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile {
+        display: block;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 15px var(--primary), 0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 8px rgba(0, 255, 65, 0.15);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      .profile:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 20px var(--primary), 0 0 45px rgba(0, 255, 65, 0.8), inset 0 0 12px rgba(0, 255, 65, 0.25);
+      }
+
+      .online-dot {
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
+        width: 14px;
+        height: 14px;
+        background: var(--primary);
+        border: 2px solid #000;
+        border-radius: 50%;
+        box-shadow: 0 0 6px var(--primary), 0 0 10px var(--primary);
+        animation: pulse 1.6s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 4px var(--primary), 0 0 8px var(--primary); }
+        50% { box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary); }
       }
 
       .hero-shell {
         max-width: 1080px;
         margin: 0 auto;
-      }
-
-      .profile-wrapper {
-        position: relative;
-        width: 170px;
-        height: 170px;
-        margin: 18px auto 10px;
-      }
-
-      .profile {
-        display: block;
-        width: 170px;
-        height: 170px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid var(--primary);
-        box-shadow: 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.5), inset 0 0 12px rgba(0, 255, 65, 0.15);
-        transition: transform 0.28s ease, box-shadow 0.28s ease;
-      }
-
-      .profile:hover {
-        transform: scale(1.06);
-        box-shadow: 0 0 30px var(--primary), 0 0 60px rgba(0, 255, 65, 0.8), inset 0 0 16px rgba(0, 255, 65, 0.25);
-      }
-
-      .online-dot {
-        position: absolute;
-        right: 12px;
-        bottom: 10px;
-        width: 20px;
-        height: 20px;
-        background: var(--primary);
-        border: 3px solid #000;
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary);
-        animation: pulse 1.6s infinite;
-      }
-
-      @keyframes pulse {
-        0%, 100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary); }
-        50% { box-shadow: 0 0 10px var(--primary), 0 0 25px var(--primary); }
+        margin-top: 40px;
       }
 
       .hero h1 {
@@ -199,6 +207,28 @@
         93% { transform: translate(-5px, -1px); opacity: 0.8; }
         95% { transform: translate(3px, -2px); opacity: 0.7; }
         97% { transform: translate(0); opacity: 0; }
+      }
+
+      .typing {
+        max-width: 800px;
+        margin: 16px auto 0;
+        min-height: 48px;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        color: var(--primary-soft);
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 8px;
+        color: var(--primary);
+        animation: blink 0.8s infinite;
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
       }
 
       .hero .subtitle {
@@ -416,21 +446,40 @@
         .hero {
           padding: 20px 16px 24px;
         }
+
+        .profile-corner {
+          position: static;
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .hero-shell {
+          margin-top: 0;
+        }
       }
     </style>
   </head>
   <body>
     <canvas id="matrix"></canvas>
 
+    <!-- Profile di Pojok Kiri Atas -->
+    <div class="profile-corner">
+      <div class="profile-wrapper">
+        <img src="https://github.com/andarmax.png" alt="Profile" class="profile" />
+        <div class="online-dot"></div>
+      </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-shell">
-        <div class="profile-wrapper">
-          <img src="https://github.com/andarmax.png" alt="Profile" class="profile" />
-          <div class="online-dot"></div>
-        </div>
         <h1><span class="glitch" data-text="ANDAR">ANDAR</span></h1>
-        <p class="subtitle">Cybersecurity Enthusiast | Ethical Hacker | Security Researcher</p>
+        
+        <!-- Typing Animation -->
+        <div class="typing" id="typing-text">
+          <span id="typed-content"></span><span class="cursor"></span>
+        </div>
 
         <!-- Live Status Timer -->
         <div class="live-status">
@@ -557,7 +606,7 @@
     </footer>
 
     <script>
-      // Matrix Rain Background - Improved version
+      // Matrix Rain Background
       const canvas = document.getElementById("matrix");
       const ctx = canvas.getContext("2d");
 
@@ -597,6 +646,21 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       });
+
+      // Typing Animation
+      const text = "Cybersecurity Enthusiast | Ethical Hacker | Security Researcher";
+      let index = 0;
+      const typedContent = document.getElementById("typed-content");
+
+      function typeText() {
+        if (index < text.length) {
+          typedContent.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeText, 50);
+        }
+      }
+
+      typeText();
 
       // Live Timer
       function updateTimer() {
