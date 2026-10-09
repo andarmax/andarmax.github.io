@@ -4,52 +4,29 @@
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ANDAR | Cyber Security Portfolio" />
 <meta name="theme-color" content="#000000" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta property="og:title" content="ANDAR | Cyber Security" />
+<meta property="og:image" content="./profile.webp" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23050b08'/><text y='.9em' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='70'>☠</text></svg>">
 <title>ANDAR | Cyber Security</title>
 <style>
-:root{--bg:#050b08;--panel:rgba(8,17,13,0.82);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--red:#ff004c;--text:#d9ffe2;--muted:#9dc6a7;--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
-*{box-sizing:border-box;} html{scroll-behavior:smooth;}
-body{margin:0;font-family:Consolas,"Courier New",monospace;background:var(--glow),linear-gradient(180deg,#020805 0%,var(--bg) 100%);color:var(--primary);overflow-x:hidden;}
-canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
-.navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;box-shadow:0 0 12px rgba(0,255,65,0.15);}
-.nav-btn:hover{background:var(--primary);color:#000;transform:translateY(-2px);}
+:root{--bg:#050b08;--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--red:#ff004c;--text:#d9ffe2;}
+*{box-sizing:border-box;}html{scroll-behavior:smooth;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
+canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
+.navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
+.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s;}
+.nav-btn:hover{background:var(--primary);color:#000;}
 .hero{text-align:center;padding:18px 20px 26px;}
-.profile-wrapper{position:relative;width:140px;height:140px;margin:16px auto 10px;}
-.profile{display:block;width:140px;height:140px;object-fit:cover;border-radius:50%;border:3px solid var(--primary);box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8);}
+.profile-wrapper{position:relative;width:150px;height:150px;margin:16px auto 10px;}
+.profile{display:block;width:150px;height:150px;object-fit:contain;border-radius:50%;border:3px solid var(--primary);background:#050b08;padding:14px;box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8);}
 .online-dot{position:absolute;right:8px;bottom:6px;width:18px;height:18px;background:var(--primary);border:3px solid #000;border-radius:50%;animation:pulse 1.6s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 5px var(--primary);}50%{box-shadow:0 0 10px var(--primary),0 0 25px var(--primary);}}
-.profile-status{margin:8px 0 12px;color:var(--primary-soft);font-size:11px;letter-spacing:1px;}
-h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);text-shadow:0 0 10px var(--primary),0 0 20px var(--primary);}
-.glitch{position:relative;display:inline-block;animation:glitch-main 3s infinite;}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;}
-.glitch::before{color:var(--cyan);text-shadow:-2px 0 var(--cyan);animation:glitch-before 3s infinite;}
-.glitch::after{color:var(--red);text-shadow:2px 0 var(--red);animation:glitch-after 3s infinite;}
-@keyframes glitch-main{0%,87%,100%{transform:translate(0);}89%{transform:translate(-3px,1px);}91%{transform:translate(3px,-1px);}}
-@keyframes glitch-before{0%,87%,100%{opacity:0;}89%{transform:translate(-5px,-2px);opacity:0.8;}}
-@keyframes glitch-after{0%,89%,100%{opacity:0;}91%{transform:translate(5px,2px);opacity:0.7;}}
-.typing{max-width:860px;margin:0 auto;min-height:48px;font-size:1.04rem;color:var(--primary-soft);}
-.cursor{display:inline-block;width:8px;animation:blink 0.8s infinite;}@keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
-.clock-box{display:inline-block;margin-top:14px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.55);color:var(--primary-soft);font-size:0.85rem;}
+h1{font-size:clamp(2.2rem,5vw,4.2rem);text-shadow:0 0 10px var(--primary),0 0 20px var(--primary);}
+.typing{max-width:860px;margin:0 auto;min-height:48px;color:var(--primary-soft);}
+.clock-box{display:inline-block;margin-top:14px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.55);font-size:0.85rem;}
 .container{max-width:1060px;margin:0 auto;padding:10px 18px 40px;}
 .card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:28px 24px;margin:18px 0;box-shadow:0 0 18px rgba(0,255,65,0.14);}
-.card h2{margin:0 0 16px;text-shadow:0 0 8px rgba(0,255,65,0.6);}
-.card p,.card li{color:var(--text);line-height:1.9;}
-.mini-card{background:rgba(0,0,0,0.48);border:1px solid rgba(0,255,65,0.5);border-radius:12px;padding:16px;}
-.mini-card strong{display:block;margin-bottom:6px;color:var(--primary-soft);}
-.focus-grid,.skills-grid,.project-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-.skill-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;}
-.skill-list li{padding:6px 10px;border:1px solid rgba(0,255,65,0.5);border-radius:999px;background:rgba(0,255,65,0.05);color:var(--primary-soft);font-size:0.88rem;}
-.btn{display:inline-block;padding:12px 22px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.7);transition:0.25s ease;}
-.btn:hover{background:var(--primary);color:#000;}
-.btn.secondary{border-color:rgba(0,245,255,0.6);background:rgba(0,245,255,0.04);color:#d4fbff;}
-footer{text-align:center;padding:32px 20px 42px;color:#7c9b87;}
-@media(max-width:640px){
-.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;position:sticky;top:0;}
-.navbar::-webkit-scrollbar{display:none;}
-.nav-btn{width:auto!important;flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}
-.btn{width:100%;text-align:center;}
-.card{padding:20px 18px;}
-}
+@media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}}
 </style>
 </head>
 <body>
@@ -58,32 +35,25 @@ footer{text-align:center;padding:32px 20px 42px;color:#7c9b87;}
 <a class="nav-btn" href="#about">ABOUT</a><a class="nav-btn" href="#focus">FOCUS</a><a class="nav-btn" href="#skills">SKILLS</a><a class="nav-btn" href="#projects">PROJECTS</a><a class="nav-btn" href="roadmap.html">ROADMAP</a><a class="nav-btn" href="writeups.html">STUDY NOTES</a>
 </nav>
 <header class="hero">
-<div class="profile-wrapper"><img class="profile" src="./IMG_3472.jpeg" alt="ANDAR profile" loading="lazy" decoding="async" /><span class="online-dot"></span></div>
-<div class="profile-status">[ SYSTEM ONLINE ]</div>
-<h1><span class="glitch" data-text="ANDAR">ANDAR</span></h1>
-<div class="typing"><span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span><span class="cursor">_</span></div>
+<div class="profile-wrapper"><img class="profile" src="./profile.webp" alt="ANDAR logo green" width="150" height="150"/><span class="online-dot"></span></div>
+<div>[ SYSTEM ONLINE ] // アンダー</div>
+<h1>ANDAR</h1>
+<div class="typing"><span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM ]</span></div>
 <div id="live-clock" class="clock-box">00:00:00 // WIB</div>
 </header>
 <main class="container">
-<section id="about" class="card"><h2>ABOUT</h2><p>Saya learner dan practitioner fokus cyber security, Linux, networking, dan home lab.</p></section>
-<section id="focus" class="card"><h2>FOCUS</h2><div class="focus-grid"><div class="mini-card"><strong>Linux</strong>File system, permissions</div><div class="mini-card"><strong>Network</strong>IP, DNS, routing</div><div class="mini-card"><strong>Security</strong>OWASP, log analysis</div><div class="mini-card"><strong>Automation</strong>Python, bash</div></div></section>
-<section id="skills" class="card"><h2>SKILLS</h2><div class="skills-grid"><div class="mini-card"><strong>OS</strong><ul class="skill-list"><li>Linux</li><li>Kali</li><li>Windows</li></ul></div><div class="mini-card"><strong>Net</strong><ul class="skill-list"><li>TCP/IP</li><li>DNS</li></ul></div><div class="mini-card"><strong>Code</strong><ul class="skill-list"><li>Python</li><li>Bash</li></ul></div><div class="mini-card"><strong>Sec</strong><ul class="skill-list"><li>OWASP</li><li>Log</li></ul></div></div></section>
-<section id="projects" class="card"><h2>PROJECTS</h2><div class="project-grid"><div class="mini-card"><strong>Portfolio</strong>GitHub Pages</div><div class="mini-card"><strong>Home Lab</strong>Linux & Windows</div><div class="mini-card"><strong>Notes</strong>Security docs</div></div></section>
+<section id="about" class="card"><h2>ABOUT // 自己紹介</h2><p>Portfolio cyber security dengan branding tribal ANDAR + matrix katakana Jepang アカサタナハマヤラワ.</p></section>
+<section id="focus" class="card"><h2>FOCUS AREAS</h2><p>Linux • Networking • Security • Python • Home Lab</p></section>
 </main>
-<footer><div>ACCESS GRANTED | ANDAR | <span id="auto-date"></span></div></footer>
+<footer>ANDAR アンダー | <span id="auto-date"></span></footer>
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
 function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';let drops=[];
-function init(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();let iv=setInterval(draw,80);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(iv);else iv=setInterval(draw,80);});
-addEventListener('resize',()=>{setSize();init();});
-const t=document.getElementById('typed-text');const ph=['[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]','[ LINUX • NETWORKING • SECURITY • PYTHON ]'];let pi=0,ci=0,del=false;
-function type(){const cur=ph[pi];if(!del){ci++;t.textContent=cur.slice(0,ci);if(ci===cur.length){del=true;setTimeout(type,1000);return;}}else{ci--;t.textContent=ci===0?' ':cur.slice(0,ci);if(ci===0){del=false;pi=(pi+1)%ph.length;}}setTimeout(type,del?40:80);}type();
-function clock(){const n=new Date();const time=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const date=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=time+' // WIB | '+date;document.getElementById('auto-date').textContent=date;}
-clock();setInterval(clock,1000);
+const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
+let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();setInterval(draw,70);addEventListener('resize',()=>{setSize();init();});
+function clock(){const n=new Date();const time=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const date=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=time+' // WIB | '+date;document.getElementById('auto-date').textContent=date;}clock();setInterval(clock,1000);
 </script>
 </body>
 </html>
