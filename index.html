@@ -2,66 +2,69 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="ANDAR | Cyber Security Portfolio, learning roadmap, projects, and study notes." />
+<meta name="description" content="ANDAR | Cyber Security Portfolio" />
 <meta name="theme-color" content="#000000" />
 <title>ANDAR | Cyber Security</title>
 <style>
-:root{--bg:#050b08;--bg-soft:#0a120d;--panel:rgba(8,17,13,0.82);--panel-strong:rgba(12,24,18,0.94);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--red:#ff004c;--text:#d9ffe2;--muted:#9dc6a7;--shadow:rgba(0,255,65,0.35);--shadow-cyan:rgba(0,245,255,0.28);--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
+:root{--bg:#050b08;--panel:rgba(8,17,13,0.82);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--red:#ff004c;--text:#d9ffe2;--muted:#9dc6a7;--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
 *{box-sizing:border-box;} html{scroll-behavior:smooth;}
 body{margin:0;font-family:Consolas,"Courier New",monospace;background:var(--glow),linear-gradient(180deg,#020805 0%,var(--bg) 100%);color:var(--primary);overflow-x:hidden;}
 a{color:inherit;} canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
 .nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;box-shadow:0 0 12px rgba(0,255,65,0.15);}
-.nav-btn:hover{background:var(--primary);color:#000;transform:translateY(-2px);box-shadow:0 0 18px var(--shadow),0 0 35px rgba(0,255,65,0.35);}
-.hero{text-align:center;padding:18px 20px 26px;}.hero-shell{max-width:1080px;margin:0 auto;position:relative;}
+.nav-btn:hover{background:var(--primary);color:#000;transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,65,0.35);}
+.hero{text-align:center;padding:18px 20px 26px;}.hero-shell{max-width:1080px;margin:0 auto;}
 .profile-wrapper{position:relative;width:140px;height:140px;margin:16px auto 10px;}
-.profile{display:block;width:140px;height:140px;object-fit:cover;border-radius:50%;border:3px solid var(--primary);box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8),0 0 45px rgba(0,255,65,0.4);transition:transform 0.28s ease,box-shadow 0.28s ease;}
-.profile:hover{transform:scale(1.04);box-shadow:0 0 15px var(--primary),0 0 35px var(--primary),0 0 60px rgba(0,255,65,0.7);}
-.online-dot{position:absolute;right:8px;bottom:6px;width:18px;height:18px;background:var(--primary);border:3px solid #000;border-radius:50%;box-shadow:0 0 8px var(--primary),0 0 15px var(--primary);animation:pulse 1.6s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 5px var(--primary),0 0 10px var(--primary);}50%{box-shadow:0 0 10px var(--primary),0 0 25px var(--primary);}}
-.profile-status{margin:8px 0 12px;color:var(--primary-soft);font-size:11px;letter-spacing:1px;text-shadow:0 0 8px var(--primary);}
+.profile{display:block;width:140px;height:140px;object-fit:cover;border-radius:50%;border:3px solid var(--primary);box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8);}
+.online-dot{position:absolute;right:8px;bottom:6px;width:18px;height:18px;background:var(--primary);border:3px solid #000;border-radius:50%;box-shadow:0 0 8px var(--primary);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 5px var(--primary);}50%{box-shadow:0 0 10px var(--primary),0 0 25px var(--primary);}}
+.profile-status{margin:8px 0 12px;color:var(--primary-soft);font-size:11px;letter-spacing:1px;}
 h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);color:var(--primary);text-shadow:0 0 10px var(--primary),0 0 20px var(--primary),0 0 40px rgba(0,255,65,0.6);}
-.glitch{position:relative;display:inline-block;color:var(--primary);animation:glitch-main 3s infinite;}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.glitch{position:relative;display:inline-block;animation:glitch-main 3s infinite;}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;}
 .glitch::before{color:var(--cyan);z-index:-1;text-shadow:-2px 0 var(--cyan);animation:glitch-before 3s infinite;}
 .glitch::after{color:var(--red);z-index:-2;text-shadow:2px 0 var(--red);animation:glitch-after 3s infinite;}
 @keyframes glitch-main{0%,87%,100%{transform:translate(0);}89%{transform:translate(-3px,1px);}91%{transform:translate(3px,-1px);}93%{transform:translate(-2px,2px);}95%{transform:translate(2px,-2px);}97%{transform:translate(-1px,1px);}}
-@keyframes glitch-before{0%,87%,100%{transform:translate(0);opacity:0;}89%{transform:translate(-5px,-2px);opacity:0.8;}91%{transform:translate(4px,2px);opacity:0.6;}93%{transform:translate(-3px,1px);opacity:0.8;}95%{transform:translate(0);opacity:0;}}
-@keyframes glitch-after{0%,89%,100%{transform:translate(0);opacity:0;}91%{transform:translate(5px,2px);opacity:0.7;}93%{transform:translate(-5px,-1px);opacity:0.8;}95%{transform:translate(3px,-2px);opacity:0.7;}97%{transform:translate(0);opacity:0;}}
-.typing{max-width:860px;margin:0 auto;min-height:48px;font-size:1.04rem;line-height:1.6;color:var(--primary-soft);text-shadow:0 0 5px rgba(0,255,65,0.7);}
-.cursor{display:inline-block;width:8px;color:var(--primary);animation:blink 0.8s infinite;} @keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
-.clock-box{display:inline-block;margin-top:14px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.55);color:var(--primary-soft);font-size:0.85rem;letter-spacing:0.5px;box-shadow:0 0 12px rgba(0,255,65,0.14);}
+@keyframes glitch-before{0%,87%,100%{opacity:0;}89%{transform:translate(-5px,-2px);opacity:0.8;}91%{transform:translate(4px,2px);opacity:0.6;}}
+@keyframes glitch-after{0%,89%,100%{opacity:0;}91%{transform:translate(5px,2px);opacity:0.7;}93%{transform:translate(-5px,-1px);opacity:0.8;}}
+.typing{max-width:860px;margin:0 auto;min-height:48px;font-size:1.04rem;line-height:1.6;color:var(--primary-soft);}
+.cursor{display:inline-block;width:8px;animation:blink 0.8s infinite;} @keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+.clock-box{display:inline-block;margin-top:14px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.55);color:var(--primary-soft);font-size:0.85rem;box-shadow:0 0 12px rgba(0,255,65,0.14);}
 .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:18px;}
-.hero-chip-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
-.hero-chip{padding:8px 12px;border:1px solid rgba(0,255,65,0.45);border-radius:999px;background:rgba(0,255,65,0.04);color:var(--primary-soft);font-size:0.78rem;letter-spacing:0.5px;}
 .container{max-width:1060px;margin:0 auto;padding:10px 18px 40px;}
-.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:28px 24px;margin:18px 0;box-shadow:0 0 18px rgba(0,255,65,0.14);backdrop-filter:blur(4px);transition:box-shadow 0.25s ease,transform 0.25s ease;}
-.card:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,65,0.22),0 0 25px rgba(0,255,65,0.18);}
-.card h2{margin:0 0 16px;color:var(--primary);text-shadow:0 0 8px rgba(0,255,65,0.6);letter-spacing:1px;}
-.card-subtitle{margin:-4px 0 16px;color:var(--muted);font-size:0.9rem;}.card p,.card li{color:var(--text);line-height:1.9;}
-.status-grid,.focus-grid,.skills-grid,.project-grid,.achievement-grid,.certificate-grid,.contact-grid{display:grid;gap:16px;}
-.status-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}.focus-grid,.skills-grid,.achievement-grid,.certificate-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-.project-grid,.contact-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:28px 24px;margin:18px 0;box-shadow:0 0 18px rgba(0,255,65,0.14);backdrop-filter:blur(4px);}
+.card h2{margin:0 0 16px;color:var(--primary);text-shadow:0 0 8px rgba(0,255,65,0.6);}
+.card p,.card li{color:var(--text);line-height:1.9;}
 .mini-card{background:rgba(0,0,0,0.48);border:1px solid rgba(0,255,65,0.5);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
-.mini-card::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--primary),transparent);}
-.mini-card strong{display:block;margin-bottom:6px;color:var(--primary-soft);} ul.clean{padding-left:18px;margin:0;}
+.mini-card strong{display:block;margin-bottom:6px;color:var(--primary-soft);}
+.status-grid,.focus-grid,.skills-grid,.project-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
 .skill-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;}
-.skill-list li{display:inline-block;padding:6px 10px;border:1px solid rgba(0,255,65,0.5);border-radius:999px;background:rgba(0,255,65,0.05);color:var(--primary-soft);font-size:0.88rem;}
-.achievement-tag,.certificate-tag{display:inline-block;margin-top:12px;padding:5px 9px;border:1px solid rgba(0,255,65,0.5);border-radius:999px;background:rgba(0,255,65,0.06);color:var(--primary-soft);font-size:0.76rem;letter-spacing:0.5px;}
-.certificate-box{min-height:110px;}.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;}
-.btn{display:inline-block;padding:12px 22px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;box-shadow:0 0 12px rgba(0,255,65,0.08);}
-.btn:hover{background:var(--primary);color:#000;box-shadow:0 0 15px rgba(0,255,65,0.4);}
+.skill-list li{padding:6px 10px;border:1px solid rgba(0,255,65,0.5);border-radius:999px;background:rgba(0,255,65,0.05);color:var(--primary-soft);font-size:0.88rem;}
+.btn{display:inline-block;padding:12px 22px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;}
+.btn:hover{background:var(--primary);color:#000;}
 .btn.secondary{border-color:rgba(0,245,255,0.6);background:rgba(0,245,255,0.04);color:#d4fbff;}
-.btn.secondary:hover{background:var(--cyan);color:#000;box-shadow:0 0 15px rgba(0,245,255,0.35);}
-.meta{color:var(--muted);font-size:0.96rem;}.link-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
-.link-list a{text-decoration:none;color:var(--primary-soft);}.link-list a:hover{color:var(--primary);}
-.contact-cta{margin-top:16px;} footer{text-align:center;padding:32px 20px 42px;color:#7c9b87;}
-@media(max-width:640px){.navbar{gap:10px;padding-top:20px;}.nav-btn,.btn{width:100%;text-align:center;}.hero-cta,.cta-row{flex-direction:column;}.card{padding:20px 18px;}}
+footer{text-align:center;padding:32px 20px 42px;color:#7c9b87;}
+/* FIX HP - ANTI DOUBLE */
+@media(max-width:640px){
+ .navbar{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;gap:10px;padding:12px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:sticky;top:0;}
+ .navbar::-webkit-scrollbar{display:none;}
+ .nav-btn{width:auto!important;flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}
+ .hero-cta{flex-direction:column;}
+ .btn{width:100%;text-align:center;}
+ .card{padding:20px 18px;}
+}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar"><a class="nav-btn" href="#about">ABOUT</a><a class="nav-btn" href="#focus">FOCUS</a><a class="nav-btn" href="#skills">SKILLS</a><a class="nav-btn" href="#achievement">ACHIEVEMENT</a><a class="nav-btn" href="#certificates">CERTS</a><a class="nav-btn" href="#projects">PROJECTS</a><a class="nav-btn" href="#roadmap">ROADMAP</a><a class="nav-btn" href="writeups.html">STUDY NOTES</a></nav>
+<nav class="navbar">
+<a class="nav-btn" href="#about">ABOUT</a>
+<a class="nav-btn" href="#focus">FOCUS</a>
+<a class="nav-btn" href="#skills">SKILLS</a>
+<a class="nav-btn" href="#projects">PROJECTS</a>
+<a class="nav-btn" href="roadmap.html">ROADMAP</a>
+<a class="nav-btn" href="writeups.html">STUDY NOTES</a>
+</nav>
 <header class="hero"><div class="hero-shell">
 <div class="profile-wrapper"><img class="profile" src="./IMG_3472.jpeg" alt="ANDAR profile" loading="lazy" decoding="async" /><span class="online-dot"></span></div>
 <div class="profile-status">[ SYSTEM ONLINE ]</div>
@@ -69,35 +72,27 @@ h1{margin:0 0 10px;font-size:clamp(2.2rem,5vw,4.2rem);color:var(--primary);text-
 <div class="typing"><span id="typed-text">[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]</span><span class="cursor">_</span></div>
 <div id="live-clock" class="clock-box">00:00:00 // WIB</div>
 <div class="hero-cta"><a class="btn" href="#projects">View Projects</a><a class="btn secondary" href="writeups.html">Open Notes</a></div>
-<div class="hero-chip-row"><span class="hero-chip">Linux</span><span class="hero-chip">Networking</span><span class="hero-chip">Blue Team</span><span class="hero-chip">Security Automation</span></div>
 </div></header>
 <main class="container">
-<section id="about" class="card"><h2>ABOUT</h2><p>Saya adalah seorang learner dan practitioner yang fokus di bidang cyber security, especially pada area keamanan sistem, Linux, networking, deteksi ancaman, dan proses pembelajaran berbasis lab.</p><p>Halaman ini saya gunakan sebagai portfolio pribadi sekaligus catatan perjalanan belajar, termasuk roadmap, note, dan proyek kecil yang sedang dikembangkan.</p></section>
-<section id="focus" class="card"><h2>FOCUS AREAS</h2><div class="focus-grid"><div class="mini-card"><strong>Linux & System</strong>File system, permissions, service management, troubleshooting, shell scripting.</div><div class="mini-card"><strong>Networking</strong>IP, subnet, routing, DNS, packet flow, troubleshooting dasar jaringan.</div><div class="mini-card"><strong>Security</strong>OWASP, log analysis, threat basics, monitoring, defensive mindset.</div><div class="mini-card"><strong>Automation</strong>Python scripting, task automation, operational workflow, security tooling.</div></div></section>
-<section id="skills" class="card"><h2>SKILLS & TOOLS</h2><div class="skills-grid"><div class="mini-card"><strong>Operating Systems</strong><ul class="skill-list"><li>Linux</li><li>Kali</li><li>Ubuntu</li><li>Windows</li></ul></div><div class="mini-card"><strong>Networking</strong><ul class="skill-list"><li>TCP/IP</li><li>DNS</li><li>DHCP</li><li>Routing</li></ul></div><div class="mini-card"><strong>Programming</strong><ul class="skill-list"><li>Python</li><li>Bash</li><li>Shell</li><li>Automation</li></ul></div><div class="mini-card"><strong>Security</strong><ul class="skill-list"><li>OWASP</li><li>Log Analysis</li><li>Threat Intel</li><li>Home Lab</li></ul></div></div></section>
-<section id="achievement" class="card"><h2>ACHIEVEMENTS & MILESTONES</h2><div class="achievement-grid"><div class="mini-card"><strong>Personal Portfolio</strong>Membangun dan memelihara portfolio berbasis GitHub Pages sebagai media showcase perjalanan belajar.<span class="achievement-tag">STATUS: COMPLETED</span></div><div class="mini-card"><strong>Home Lab Setup</strong>Menyiapkan lingkungan lab mandiri dengan fokus pada Linux, networking, dan eksperimen keamanan.<span class="achievement-tag">STATUS: ACTIVE</span></div><div class="mini-card"><strong>Study Notes System</strong>Menyusun catatan belajar yang terorganisir untuk Linux, jaringan, dan praktik keamanan.<span class="achievement-tag">STATUS: GROWING</span></div><div class="mini-card"><strong>Security Mindset</strong>Membiasakan pendekatan defensif dengan log review, troubleshooting, dan analisa ancaman dasar.<span class="achievement-tag">STATUS: IN PROGRESS</span></div></div></section>
-<section id="certificates" class="card"><h2>CERTIFICATES & BADGES</h2><p class="card-subtitle">Track record of practical learning and continuous improvement.</p><div class="certificate-grid"><div class="mini-card certificate-box"><strong>Cyber Security Foundations</strong>Core understanding of digital security, system behavior, and defensive principles.<span class="certificate-tag">FOUNDATION</span></div><div class="mini-card certificate-box"><strong>Linux & Command Line</strong>Hands-on use of CLI, permissions, service management, and troubleshooting workflows.<span class="certificate-tag">PRACTICE</span></div><div class="mini-card certificate-box"><strong>Networking Essentials</strong>IP addressing, routing, DNS, packet flow, and basic infrastructure understanding.<span class="certificate-tag">LAB ORIENTED</span></div><div class="mini-card certificate-box"><strong>Home Lab Security</strong>Building a personal learning environment for experimentation, analysis, and lab practice.<span class="certificate-tag">ONGOING</span></div></div></section>
-<section id="projects" class="card"><h2>FEATURED PROJECTS</h2><div class="project-grid"><div class="mini-card"><strong>GitHub Pages Portfolio</strong>Portfolio personal yang menampilkan roadmap, notes, dan perkembangan learning journey.</div><div class="mini-card"><strong>Home Lab</strong>Setup Linux dan Windows lab untuk eksperimen keamanan, networking, dan testing environment.</div><div class="mini-card"><strong>Security Learning Notes</strong>Dokumentasi belajar Linux, networking, incident handling, dan cyber fundamentals.</div></div></section>
-<section id="roadmap" class="card"><h2>ROADMAP</h2><div class="status-grid"><div class="mini-card"><strong>Completed</strong>GitHub account, GitHub Pages, home lab, Kali Linux, Windows lab, personal portfolio.</div><div class="mini-card"><strong>In Progress</strong>Linux fundamentals, networking basics, CLI practice, note documentation.</div><div class="mini-card"><strong>Next Targets</strong>OWASP Top 10, Python automation, log analysis, web security, Git/GitHub workflow.</div></div><div class="cta-row"><a class="btn" href="roadmap.html">View Roadmap</a><a class="btn secondary" href="writeups.html">View Study Notes</a></div></section>
-<section class="card"><h2>CONTACT</h2><div class="contact-grid"><div class="mini-card"><strong>GitHub</strong><ul class="link-list"><li><a href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">github.com/andarmax</a></li></ul></div><div class="mini-card"><strong>Connect</strong><ul class="link-list"><li><a href="roadmap.html">Roadmap</a></li><li><a href="writeups.html">Study Notes</a></li></ul></div></div><div class="cta-row contact-cta"><a class="btn" href="https://github.com/andarmax" target="_blank" rel="noopener noreferrer">Open GitHub</a><a class="btn secondary" href="writeups.html">Read Notes</a></div></section>
-<section class="card"><h2>CURRENT STATUS</h2><ul class="clean"><li>[+] Home Lab : ONLINE</li><li>[+] GitHub Pages : ONLINE</li><li>[+] Learning Mode : ACTIVE</li><li>[+] Progress Tracking : ENABLED</li></ul></section>
+<section id="about" class="card"><h2>ABOUT</h2><p>Saya adalah learner dan practitioner yang fokus di bidang cyber security, Linux, networking, dan home lab.</p></section>
+<section id="focus" class="card"><h2>FOCUS AREAS</h2><div class="focus-grid"><div class="mini-card"><strong>Linux & System</strong>File system, permissions, service.</div><div class="mini-card"><strong>Networking</strong>IP, subnet, DNS, routing.</div><div class="mini-card"><strong>Security</strong>OWASP, log analysis.</div><div class="mini-card"><strong>Automation</strong>Python, bash.</div></div></section>
+<section id="skills" class="card"><h2>SKILLS & TOOLS</h2><div class="skills-grid"><div class="mini-card"><strong>OS</strong><ul class="skill-list"><li>Linux</li><li>Kali</li><li>Windows</li></ul></div><div class="mini-card"><strong>Net</strong><ul class="skill-list"><li>TCP/IP</li><li>DNS</li></ul></div><div class="mini-card"><strong>Code</strong><ul class="skill-list"><li>Python</li><li>Bash</li></ul></div><div class="mini-card"><strong>Sec</strong><ul class="skill-list"><li>OWASP</li><li>Log</li></ul></div></div></section>
+<section id="projects" class="card"><h2>FEATURED PROJECTS</h2><div class="project-grid"><div class="mini-card"><strong>Portfolio</strong>GitHub Pages</div><div class="mini-card"><strong>Home Lab</strong>Linux & Windows</div><div class="mini-card"><strong>Notes</strong>Security docs</div></div></section>
 </main>
-<footer><div>ACCESS GRANTED | ANDAR | CYBER SECURITY PORTFOLIO</div><div class="meta">Last update: <span id="auto-date"></span></div></footer>
+<footer><div>ACCESS GRANTED | ANDAR</div><div id="auto-date"></div></footer>
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setCanvasSize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';let fontSize=16;let drops=[];
-function initDrops(){drops=Array.from({length:Math.floor(canvas.width/fontSize)},()=>Math.random()*-100);}
-function drawMatrix(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font=`${fontSize}px monospace`;for(let i=0;i<drops.length;i++){const text=chars[Math.floor(Math.random()*chars.length)];ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText(text,i*fontSize,drops[i]*fontSize);if(drops[i]*fontSize>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-window.addEventListener('resize',()=>{setCanvasSize();initDrops();});
-setCanvasSize();initDrops();
-let matrixInterval=setInterval(drawMatrix,80);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(matrixInterval);else matrixInterval=setInterval(drawMatrix,80);});
-const typedText=document.getElementById('typed-text');const phrases=['[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]','[ LINUX • NETWORKING • SECURITY • PYTHON ]','[ LEARNING • PRACTICE • LAB • ADAPTATION ]'];let phraseIndex=0,charIndex=0,deleting=false;
-function typeLoop(){const current=phrases[phraseIndex];if(!deleting){charIndex++;typedText.textContent=current.slice(0,charIndex);if(charIndex===current.length){deleting=true;setTimeout(typeLoop,1000);return;}}else{charIndex--;typedText.textContent=charIndex===0?' ':current.slice(0,charIndex);if(charIndex===0){deleting=false;phraseIndex=(phraseIndex+1)%phrases.length;}}setTimeout(typeLoop,deleting?40:80);}
-typeLoop();
-function updateClock(){const now=new Date();const wibTime=now.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta',hour:'2-digit',minute:'2-digit',second:'2-digit'});const wibDate=now.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=`${wibTime} // WIB | ${wibDate}`;document.getElementById('auto-date').textContent=`${wibDate}`;}
-updateClock();setInterval(updateClock,1000);
+function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';let drops=[];
+function init(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();let iv=setInterval(draw,80);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(iv);else iv=setInterval(draw,80);});
+addEventListener('resize',()=>{setSize();init();});
+const t=document.getElementById('typed-text');const ph=['[ CYBER SECURITY • OSINT • BLUE TEAM • HOME LAB ]','[ LINUX • NETWORKING • SECURITY • PYTHON ]','[ LEARNING • PRACTICE • LAB • ADAPTATION ]'];let pi=0,ci=0,del=false;
+function type(){const cur=ph[pi];if(!del){ci++;t.textContent=cur.slice(0,ci);if(ci===cur.length){del=true;setTimeout(type,1000);return;}}else{ci--;t.textContent=ci===0?' ':cur.slice(0,ci);if(ci===0){del=false;pi=(pi+1)%ph.length;}}setTimeout(type,del?40:80);}type();
+function clock(){const n=new Date();const time=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const date=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=time+' // WIB | '+date;document.getElementById('auto-date').textContent=date;}
+clock();setInterval(clock,1000);
 </script>
 </body>
 </html>
