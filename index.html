@@ -24,7 +24,6 @@
         --muted: #9dc6a7;
         --shadow: rgba(0, 255, 65, 0.35);
         --shadow-cyan: rgba(0, 245, 255, 0.28);
-        --glow: radial-gradient(circle at top, rgba(0,255,65,0.18), transparent 60%);
       }
 
       * {
@@ -38,9 +37,7 @@
       body {
         margin: 0;
         font-family: Consolas, "Courier New", monospace;
-        background:
-          var(--glow),
-          linear-gradient(180deg, #020805 0%, var(--bg) 100%);
+        background: var(--bg);
         color: var(--primary);
         overflow-x: hidden;
       }
@@ -55,7 +52,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.32;
+        opacity: 0.25;
       }
 
       .navbar {
@@ -110,22 +107,139 @@
         height: 170px;
         object-fit: cover;
         border-radius: 50%;
-        border: 2px solid var(--line);
-        box-shadow: 0 0 24px var(--shadow), inset 0 0 12px rgba(0, 255, 65, 0.15);
+        border: 3px solid var(--primary);
+        box-shadow: 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.5), inset 0 0 12px rgba(0, 255, 65, 0.15);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      .profile:hover {
+        transform: scale(1.06);
+        box-shadow: 0 0 30px var(--primary), 0 0 60px rgba(0, 255, 65, 0.8), inset 0 0 16px rgba(0, 255, 65, 0.25);
+      }
+
+      .online-dot {
+        position: absolute;
+        right: 12px;
+        bottom: 10px;
+        width: 20px;
+        height: 20px;
+        background: var(--primary);
+        border: 3px solid #000;
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary), 0 0 15px var(--primary);
+        animation: pulse 1.6s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary); }
+        50% { box-shadow: 0 0 10px var(--primary), 0 0 25px var(--primary); }
       }
 
       .hero h1 {
-        font-size: clamp(28px, 5vw, 48px);
+        font-size: clamp(32px, 6vw, 56px);
         margin: 16px 0 8px;
         font-weight: normal;
-        letter-spacing: 1px;
+        letter-spacing: 2px;
+        color: var(--primary);
+        text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px rgba(0, 255, 65, 0.6);
+      }
+
+      .glitch {
+        position: relative;
+        display: inline-block;
+        color: var(--primary);
+        animation: glitch-main 3s infinite;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .glitch::before {
+        color: var(--cyan);
+        z-index: -1;
+        text-shadow: -2px 0 var(--cyan);
+        animation: glitch-before 3s infinite;
+      }
+
+      .glitch::after {
+        color: var(--red);
+        z-index: -2;
+        text-shadow: 2px 0 var(--red);
+        animation: glitch-after 3s infinite;
+      }
+
+      @keyframes glitch-main {
+        0%, 87%, 100% { transform: translate(0); }
+        89% { transform: translate(-3px, 1px); }
+        91% { transform: translate(3px, -1px); }
+        93% { transform: translate(-2px, 2px); }
+        95% { transform: translate(2px, -2px); }
+        97% { transform: translate(-1px, 1px); }
+      }
+
+      @keyframes glitch-before {
+        0%, 87%, 100% { transform: translate(0); opacity: 0; }
+        89% { transform: translate(-5px, -2px); opacity: 0.8; }
+        91% { transform: translate(4px, 2px); opacity: 0.6; }
+        93% { transform: translate(-3px, 1px); opacity: 0.8; }
+        95% { transform: translate(0); opacity: 0; }
+      }
+
+      @keyframes glitch-after {
+        0%, 89%, 100% { transform: translate(0); opacity: 0; }
+        91% { transform: translate(5px, 2px); opacity: 0.7; }
+        93% { transform: translate(-5px, -1px); opacity: 0.8; }
+        95% { transform: translate(3px, -2px); opacity: 0.7; }
+        97% { transform: translate(0); opacity: 0; }
       }
 
       .hero .subtitle {
         color: var(--muted);
         font-size: clamp(14px, 2vw, 16px);
-        margin: 0 0 24px;
+        margin: 8px 0 4px;
         font-style: italic;
+      }
+
+      .live-status {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        background: rgba(0, 255, 65, 0.08);
+        box-shadow: inset 0 0 8px rgba(0, 255, 65, 0.12);
+      }
+
+      .live-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse-indicator 1.2s infinite;
+      }
+
+      @keyframes pulse-indicator {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(0.8); }
+      }
+
+      .timer {
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        color: var(--cyan);
+        margin-left: 6px;
       }
 
       .social-links {
@@ -188,6 +302,7 @@
         color: var(--cyan);
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        text-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
       }
 
       .card p, .card li {
@@ -212,6 +327,7 @@
       .card a:hover {
         color: var(--cyan);
         border-bottom-color: var(--cyan);
+        text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
       }
 
       .skill-tags {
@@ -230,11 +346,13 @@
         color: var(--cyan);
         background: rgba(0, 245, 255, 0.08);
         transition: 0.2s ease;
+        box-shadow: 0 0 8px rgba(0, 245, 255, 0.1);
       }
 
       .skill-tag:hover {
         background: rgba(0, 245, 255, 0.16);
-        box-shadow: 0 0 8px var(--shadow-cyan);
+        box-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
+        text-shadow: 0 0 8px var(--cyan);
       }
 
       .project-item {
@@ -253,6 +371,7 @@
         color: var(--primary);
         font-weight: bold;
         margin-bottom: 6px;
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.25);
       }
 
       .project-desc {
@@ -308,9 +427,17 @@
       <div class="hero-shell">
         <div class="profile-wrapper">
           <img src="https://github.com/andarmax.png" alt="Profile" class="profile" />
+          <div class="online-dot"></div>
         </div>
-        <h1>ANDAR</h1>
+        <h1><span class="glitch" data-text="ANDAR">ANDAR</span></h1>
         <p class="subtitle">Cybersecurity Enthusiast | Ethical Hacker | Security Researcher</p>
+
+        <!-- Live Status Timer -->
+        <div class="live-status">
+          <span class="live-indicator"></span>
+          <span>ONLINE</span>
+          <span class="timer" id="timer">00:00:00</span>
+        </div>
 
         <!-- Social Links -->
         <div class="social-links">
@@ -430,30 +557,30 @@
     </footer>
 
     <script>
-      // Matrix Rain Background
+      // Matrix Rain Background - Improved version
       const canvas = document.getElementById("matrix");
       const ctx = canvas.getContext("2d");
 
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789";
-      const charSize = 14;
+      const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789!@#$%^&*()";
+      const charSize = 16;
       const columns = Math.floor(canvas.width / charSize);
-      const drops = Array(columns).fill(0);
+      const drops = Array(columns).fill(1);
 
       function draw() {
-        ctx.fillStyle = "rgba(5, 11, 8, 0.05)";
+        ctx.fillStyle = "rgba(5, 11, 8, 0.1)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "rgba(0, 255, 65, 0.2)";
-        ctx.font = `${charSize}px monospace`;
+        ctx.fillStyle = "rgba(0, 255, 65, 0.4)";
+        ctx.font = `bold ${charSize}px Consolas, monospace`;
 
         for (let i = 0; i < drops.length; i++) {
           const char = chars[Math.floor(Math.random() * chars.length)];
           ctx.fillText(char, i * charSize, drops[i] * charSize);
 
-          if (drops[i] * charSize > canvas.height || Math.random() > 0.975) {
+          if (drops[i] * charSize > canvas.height || Math.random() > 0.97) {
             drops[i] = 0;
           }
 
@@ -470,6 +597,18 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       });
+
+      // Live Timer
+      function updateTimer() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        document.getElementById("timer").textContent = `${hours}:${minutes}:${seconds}`;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
 
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
