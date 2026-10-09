@@ -2,95 +2,55 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="ANDAR Cyber Roadmap and learning agenda." />
-<meta name="theme-color" content="#000000" />
+<meta name="description" content="ANDAR Cyber Roadmap" />
 <title>ANDAR | Cyber Roadmap</title>
 <style>
-:root{--bg:#050b08;--panel:rgba(8,17,13,0.82);--panel-strong:rgba(12,24,18,0.94);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--yellow:#ffe66d;--blue:#6ec9ff;--text:#dfffe9;--muted:#9ec0a6;--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
-*{box-sizing:border-box;} html{scroll-behavior:smooth;}
-body{margin:0;font-family:Consolas,"Courier New",monospace;background:var(--glow),linear-gradient(180deg,#020805 0%,var(--bg) 100%);color:var(--primary);overflow-x:hidden;}
-a{color:inherit;} canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
+:root{--bg:#050b08;--panel:rgba(8,17,13,0.82);--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--cyan:#00f5ff;--yellow:#ffe66d;--blue:#6ec9ff;--text:#dfffe9;--muted:#9ec0a6;--glow:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%);}
+*{box-sizing:border-box;} body{margin:0;font-family:Consolas,"Courier New",monospace;background:var(--glow),linear-gradient(180deg,#020805 0%,var(--bg) 100%);color:var(--primary);overflow-x:hidden;}
+canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-1;opacity:0.32;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:0.25s ease;box-shadow:0 0 12px rgba(0,255,65,0.15);}
-.nav-btn:hover{background:var(--primary);color:#000;transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,65,0.35);}
+.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.7);transition:0.25s ease;}
+.nav-btn:hover{background:var(--primary);color:#000;}
 .container{max-width:1040px;margin:0 auto;padding:18px 18px 60px;}
-h1{margin:0;text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);color:var(--primary);text-shadow:0 0 14px rgba(0,255,65,0.7);}
-.subtitle{margin:16px auto 32px;text-align:center;color:var(--primary-soft);font-size:0.98rem;letter-spacing:1px;}
-.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:26px 22px;margin:22px 0;box-shadow:0 0 18px rgba(0,255,65,0.15);backdrop-filter:blur(4px);transition:0.25s ease;}
-.card:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(0,255,65,0.22);}
-.card h2{margin:0 0 16px;color:var(--primary);text-shadow:0 0 8px rgba(0,255,65,0.6);letter-spacing:1px;}
+h1{margin:0;text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 14px rgba(0,255,65,0.7);}
+.subtitle{margin:16px auto 32px;text-align:center;color:var(--primary-soft);letter-spacing:1px;}
+.card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:22px 0;box-shadow:0 0 18px rgba(0,255,65,0.15);}
+.card h2{margin:0 0 16px;text-shadow:0 0 8px rgba(0,255,65,0.6);}
 .list{margin:0;padding-left:18px;line-height:2;}.done{color:var(--primary);}.progress{color:var(--yellow);}.future{color:var(--blue);}
 .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px;}
-.btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;color:var(--primary);text-decoration:none;background:rgba(0,0,0,0.5);transition:0.25s ease;}
-.btn:hover{background:var(--primary);color:#000;box-shadow:0 0 15px rgba(0,255,65,0.4);}
-.btn.secondary{border-color:rgba(0,245,255,0.6);background:rgba(0,245,255,0.04);color:#d4fbff;}.btn.secondary:hover{background:var(--cyan);color:#000;}
+.btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.5);transition:0.25s ease;}
+.btn:hover{background:var(--primary);color:#000;}
+.btn.secondary{border-color:rgba(0,245,255,0.6);background:rgba(0,245,255,0.04);color:#d4fbff;}
 footer{text-align:center;color:var(--muted);padding:16px 18px 32px;}
-@media(max-width:640px){.container{padding-top:10px;}.actions{flex-direction:column;}.btn{width:100%;text-align:center;}.navbar{gap:10px;padding-top:20px;}.nav-btn{width:100%;text-align:center;}}
+@media(max-width:640px){
+.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}
+.navbar::-webkit-scrollbar{display:none;}
+.nav-btn{width:auto!important;flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}
+.btn{width:100%;text-align:center;}
+}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar">
-<a class="nav-btn" href="index.html">HOME</a>
-<a class="nav-btn" href="index.html#focus">FOCUS</a>
-<a class="nav-btn" href="index.html#skills">SKILLS</a>
-<a class="nav-btn" href="writeups.html">NOTES</a>
-<a class="nav-btn" href="roadmap.html">ROADMAP</a>
-</nav>
-
+<nav class="navbar"><a class="nav-btn" href="index.html">HOME</a><a class="nav-btn" href="index.html#focus">FOCUS</a><a class="nav-btn" href="writeups.html">NOTES</a><a class="nav-btn" href="roadmap.html">ROADMAP</a></nav>
 <div class="container">
-<h1>CYBER ROADMAP</h1>
-<p class="subtitle">[ SYSTEM OBJECTIVES LOADED ] // <span id="auto-date"></span> // <span id="clock"></span></p>
-
-<section class="card"><h2>COMPLETED</h2><ul class="list">
-<li class="done">[✓] GitHub account created</li>
-<li class="done">[✓] GitHub Pages online</li>
-<li class="done">[✓] Personal cyber portfolio created</li>
-<li class="done">[✓] Home lab built</li>
-<li class="done">[✓] Kali Linux installed</li>
-<li class="done">[✓] Windows 10 Pro lab ready</li>
-</ul></section>
-
-<section class="card"><h2>IN PROGRESS</h2><ul class="list">
-<li class="progress">[>] Linux fundamentals</li>
-<li class="progress">[>] Networking fundamentals</li>
-<li class="progress">[>] Command line practice</li>
-<li class="progress">[>] Study notes documentation</li>
-<li class="progress">[>] Home lab improvement</li>
-</ul></section>
-
-<section class="card"><h2>NEXT TARGETS</h2><ul class="list">
-<li class="future">[ ] Understand OWASP Top 10</li>
-<li class="future">[ ] Learn Python automation</li>
-<li class="future">[ ] Basic log analysis</li>
-<li class="future">[ ] Basic web security</li>
-<li class="future">[ ] Git and GitHub workflow</li>
-</ul></section>
-
-<section class="card"><h2>LONG-TERM OBJECTIVES</h2><ul class="list">
-<li>[ ] Participate in beginner CTF</li>
-<li>[ ] Build personal security tools</li>
-<li>[ ] Improve Linux administration</li>
-<li>[ ] Learn network monitoring</li>
-<li>[ ] Create professional documentation</li>
-</ul></section>
-
+<h1>CYBER ROADMAP</h1><p class="subtitle">[ SYSTEM OBJECTIVES LOADED ] // <span id="auto-date"></span> // <span id="clock"></span></p>
+<section class="card"><h2>COMPLETED</h2><ul class="list"><li class="done">[✓] GitHub account created</li><li class="done">[✓] GitHub Pages online</li><li class="done">[✓] Personal cyber portfolio created</li><li class="done">[✓] Home lab built</li><li class="done">[✓] Kali Linux installed</li><li class="done">[✓] Windows 10 Pro lab ready</li></ul></section>
+<section class="card"><h2>IN PROGRESS</h2><ul class="list"><li class="progress">[>] Linux fundamentals</li><li class="progress">[>] Networking fundamentals</li><li class="progress">[>] Command line practice</li><li class="progress">[>] Study notes documentation</li><li class="progress">[>] Home lab improvement</li></ul></section>
+<section class="card"><h2>NEXT TARGETS</h2><ul class="list"><li class="future">[ ] Understand OWASP Top 10</li><li class="future">[ ] Learn Python automation</li><li class="future">[ ] Basic log analysis</li><li class="future">[ ] Basic web security</li><li class="future">[ ] Git and GitHub workflow</li></ul></section>
+<section class="card"><h2>LONG-TERM OBJECTIVES</h2><ul class="list"><li>[ ] Participate in beginner CTF</li><li>[ ] Build personal security tools</li><li>[ ] Improve Linux administration</li><li>[ ] Learn network monitoring</li><li>[ ] Create professional documentation</li></ul></section>
 <div class="actions"><a class="btn" href="index.html">HOME</a><a class="btn secondary" href="writeups.html">STUDY NOTES</a></div>
 </div>
-
 <footer>ACCESS GRANTED | CYBER ROADMAP v2.0</footer>
-
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setCanvasSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';let drops=[];
-function initDrops(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setCanvasSize();initDrops();let iv=setInterval(draw,80);
+function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/16)},()=>Math.random()*-100);}
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%2===0?'#00ff41':'#7fffbf';ctx.fillText('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%'[Math.floor(Math.random()*38)],i*16,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();let iv=setInterval(draw,80);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(iv);else iv=setInterval(draw,80);});
-window.addEventListener('resize',()=>{setCanvasSize();initDrops();});
-function tick(){const now=new Date();const d=now.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});const t=now.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});document.getElementById('auto-date').textContent=d;const c=document.getElementById('clock');if(c)c.textContent=t+' WIB';}
-tick();setInterval(tick,1000);
+addEventListener('resize',()=>{setSize();init();});
+function tick(){const n=new Date();const d=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});const t=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});document.getElementById('auto-date').textContent=d;document.getElementById('clock').textContent=t+' WIB';}tick();setInterval(tick,1000);
 </script>
 </body>
 </html>
