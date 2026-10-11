@@ -1,0 +1,22 @@
+name: Portfolio CI Linter
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Key Files Exist
+        run: |
+          test -f index.html || exit 1
+          test -f writeups.html || exit 1
+          test -f roadmap.html || exit 1
+          test -f .well-known/security.txt || exit 1
+          echo "All critical security and web artifacts verified."
