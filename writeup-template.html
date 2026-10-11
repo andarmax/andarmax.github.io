@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ANDAR | Technical Writeup" />
+<meta name="theme-color" content="#050b08" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta property="og:title" content="ANDAR | Technical Writeup" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
+<title>ANDAR | Technical Writeup</title>
+<style>
+:root{--bg:#050b08;--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--text:#dfffe9;--dim:#7c9b87;}
+*{box-sizing:border-box;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
+canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.35;}
+.navbar{display:flex;justify-content:center;gap:12px;padding:24px 16px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.4);}
+.nav-btn{padding:10px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);}
+.nav-btn:hover{background:var(--primary);color:#000;}
+.container{max-width:860px;margin:0 auto;padding:18px 18px 60px;}
+.article-card{background:linear-gradient(180deg,rgba(10,18,15,0.94),rgba(5,11,8,0.88));border:1px solid var(--line);border-radius:18px;padding:32px 26px;box-shadow:0 0 20px rgba(0,255,65,0.15);}
+.meta-info{display:flex;gap:12px;color:var(--primary-soft);font-size:0.85rem;margin-bottom:20px;border-bottom:1px dashed var(--line);padding-bottom:12px;}
+.code-block{background:rgba(0,0,0,0.8);border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;color:#7fffbf;margin:16px 0;font-size:0.9rem;}
+p, li{color:#c5ebcf;line-height:1.7;}
+.btn{padding:10px 18px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.6);display:inline-block;}
+.btn:hover{background:var(--primary);color:#000;}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<nav class="navbar">
+<a class="nav-btn" href="writeups.html">← DAFTAR CATATAN</a>
+<a class="nav-btn" href="index.html">HOME</a>
+</nav>
+
+<div class="container">
+<article class="article-card">
+<div class="meta-info">
+<span>[DATE: 2026-10-12]</span>
+<span>[CATEGORY: LINUX DEFENSE]</span>
+<span>[AUTHOR: ANDAR]</span>
+</div>
+
+<h1 style="color:var(--primary);margin-top:0;">SSH Hardening & Key Authentication</h1>
+<p>Catatan implementasi pengamanan port SSH pada Linux server untuk mencegah brute-force attacks dan akses unauthorised pengguna root.</p>
+
+<h2 style="color:var(--primary-soft);margin-top:28px;">1. Generate SSH Key Pair</h2>
+<p>Gunakan algoritma Ed25519 yang lebih ringkas dan kuat dibanding RSA konvensional:</p>
+<pre class="code-block">ssh-keygen -t ed25519 -C "admin@andarmax.box"</pre>
+
+<h2 style="color:var(--primary-soft);margin-top:28px;">2. Konfigurasi <code>/etc/ssh/sshd_config</code></h2>
+<p>Buka berkas konfigurasi daemon SSH dan sesuaikan parameter berikut:</p>
+<pre class="code-block">
+# Nonaktifkan autentikasi root langsung
+PermitRootLogin no
+
+# Paksa hanya memakai public key (matikan password prompt)
+PasswordAuthentication no
+PubkeyAuthentication yes
+
+# Batasi maksimal percobaan login
+MaxAuthTries 3
+</pre>
+
+<h2 style="color:var(--primary-soft);margin-top:28px;">3. Restart Service & Verifikasi</h2>
+<p>Terapkan konfigurasi baru tanpa memutus sesi terminal yang sedang aktif:</p>
+<pre class="code-block">sudo systemctl restart sshd</pre>
+
+<div style="margin-top:36px;border-top:1px dashed var(--line);padding-top:20px;">
+<a class="btn" href="writeups.html">← KEMBALI KE STUDY NOTES</a>
+</div>
+</article>
+</div>
+
+<script>
+const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
+function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
+let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':'#7fffbf';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();addEventListener('resize',()=>{setSize();init();});
+let lastTime=0;function animate(time){if(time-lastTime>70){draw();lastTime=time;}requestAnimationFrame(animate);}requestAnimationFrame(animate);
+</script>
+</body>
+</html>
