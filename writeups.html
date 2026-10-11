@@ -2,6 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ANDAR | Cyber Security Study Notes" />
+<meta name="theme-color" content="#000000" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta property="og:title" content="ANDAR | Study Notes" />
 <meta property="og:image" content="./profile.webp" />
@@ -12,34 +14,95 @@
 *{box-sizing:border-box;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
 canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);}
+.nav-btn{padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
 .nav-btn:hover{background:var(--primary);color:#000;}
+.nav-btn.active{background:var(--primary);color:#000;font-weight:bold;box-shadow:0 0 12px rgba(0,255,65,0.6);}
 .container{max-width:1040px;margin:0 auto;padding:18px 18px 60px;}
 h1{text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);margin:0;}
 .card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:24px 22px;margin:20px 0;}
-.btn{padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.5);display:inline-block;}
+.note-item{border:1px dashed var(--line);border-radius:10px;padding:14px;margin:12px 0;background:rgba(0,0,0,0.35);}
+.note-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+.badge{padding:3px 8px;font-size:0.75rem;border-radius:4px;border:1px solid var(--line);color:var(--primary-soft);}
+.btn{padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);display:inline-block;}
 .btn:hover{background:var(--primary);color:#000;}
 @media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}.btn{width:100%;text-align:center;}}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar"><a class="nav-btn" href="index.html">HOME</a><a class="nav-btn" href="roadmap.html">ROADMAP</a><a class="nav-btn" href="writeups.html">NOTES</a></nav>
+<nav class="navbar">
+<a class="nav-btn" href="index.html">HOME</a>
+<a class="nav-btn" href="roadmap.html">ROADMAP</a>
+<a class="nav-btn active" href="writeups.html">STUDY NOTES</a>
+</nav>
 <div class="container">
-<h1>STUDY NOTES // ノート</h1><p style="text-align:center;color:#8fff8f;">Linux • Networking • Cyber // <span id="auto-date"></span></p>
-<section class="card"><h2>LINUX // リナックス</h2><ul><li>Terminal usage</li><li>Permissions</li><li>SSH basics</li></ul></section>
-<section class="card"><h2>NETWORKING // ネットワーク</h2><ul><li>IP, subnet, DNS, DHCP</li><li>Routing basics</li></ul></section>
-<section class="card"><h2>SECURITY // セキュリティ</h2><ul><li>CIA triad, OWASP Top 10</li><li>Log analysis</li></ul></section>
-<div style="text-align:center;margin-top:20px;"><a class="btn" href="index.html">BACK TO HOME // 帰還</a></div>
+<h1>STUDY NOTES // ノート</h1>
+<p style="text-align:center;color:#8fff8f;">Linux • Networking • Cyber // <span id="auto-date"></span> // <span id="clock"></span></p>
+
+<section class="card">
+<h2>LINUX // リナックス</h2>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">Terminal & Core Navigation</strong><span class="badge">[CORE CLI]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Navigasi berkas, manipulasi teks (`grep`, `awk`, `sed`), dan manajemen proses (`ps`, `top`, `kill`).</p>
+</div>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">Permissions & Ownership (chmod/chown)</strong><span class="badge">[SECURITY]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Struktur permission octal vs symbolic, SUID, SGID, dan Sticky Bit untuk privilege management.</p>
+</div>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">SSH Hardening & Key Authentication</strong><span class="badge">[DEFENSE]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Konfigurasi `/etc/ssh/sshd_config`, nonaktifkan root login, serta implementasi key pair Ed25519.</p>
+</div>
+</section>
+
+<section class="card">
+<h2>NETWORKING // ネットワーク</h2>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">IP Addressing, CIDR & Subnetting</strong><span class="badge">[FOUNDATION]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Kalkulasi subnet mask (/24, /27), alokasi IP privat (RFC 1918), dan hierarki broadcast address.</p>
+</div>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">DNS, DHCP & Transport Protocols</strong><span class="badge">[PROTOCOLS]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Alur 3-way handshake TCP vs UDP, DNS query resolving (A, PTR, CNAME), dan penyewaan IP DHCP (DORA).</p>
+</div>
+</section>
+
+<section class="card">
+<h2>SECURITY // セキュリティ</h2>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">CIA Triad & Threat Modeling</strong><span class="badge">[FRAMEWORK]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Pilar Confidentiality, Integrity, Availability serta dasar klasifikasi risiko aset organisasi.</p>
+</div>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">OWASP Top 10 Essentials</strong><span class="badge">[WEB APP]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Analisis kerentanan Broken Access Control, Injection, Cryptographic Failures, dan Security Misconfiguration.</p>
+</div>
+<div class="note-item">
+<div class="note-header"><strong style="color:var(--text);">Log Analysis & SIEM Fundamentals</strong><span class="badge">[BLUE TEAM]</span></div>
+<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Teknik parsing `/var/log/auth.log` dan event logs untuk deteksi aktivitas lateral movement.</p>
+</div>
+</section>
+
+<div style="text-align:center;margin-top:20px;">
+<a class="btn" href="index.html">BACK TO HOME // 帰還</a>
+</div>
 </div>
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
 function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ANDAR@#$%';
+const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
 let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':'#7fffbf';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();setInterval(draw,70);addEventListener('resize',()=>{setSize();init();});
-function tick(){document.getElementById('auto-date').textContent=new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});}tick();
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();addEventListener('resize',()=>{setSize();init();});
+
+let lastTime=0;
+function animate(time){
+if(time-lastTime>70){draw();lastTime=time;}
+requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
+function tick(){const n=new Date();document.getElementById('auto-date').textContent=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});}tick();setInterval(tick,1000);
 </script>
 </body>
 </html>
