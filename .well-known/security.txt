@@ -1,1 +1,5 @@
-
+Contact: mailto:contact@andarmax.me
+Expires: 2027-10-12T00:00:00.000Z
+Preferred-Languages: id, en
+Canonical: https://andarmax.github.io/.well-known/security.txt
+Policy: https://andarmax.github.io/#about
