@@ -2,36 +2,12 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="ANDAR | Cyber Security Study Notes & Search" />
+<meta name="description" content="ANDAR | Cyber Security Technical Study Notes & Writeups" />
 <meta name="theme-color" content="#050b08" />
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta property="og:title" content="ANDAR | Study Notes" />
-<meta property="og:image" content="./profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Study Notes</title>
-<style>
-:root{--bg:#050b08;--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--text:#dfffe9;--muted:#9ec0a6;}
-*{box-sizing:border-box;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
-canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
-.navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:24px 16px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.4);}
-.nav-btn{padding:10px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
-.nav-btn:hover{background:var(--primary);color:#000;}
-.nav-btn.active{background:var(--primary);color:#000;font-weight:bold;box-shadow:0 0 12px rgba(0,255,65,0.6);}
-.container{max-width:1040px;margin:0 auto;padding:18px 18px 60px;}
-h1{text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);margin:0;}
-.search-box{width:100%;margin:20px 0 10px;padding:12px 16px;background:rgba(0,0,0,0.75);border:1px solid var(--line);border-radius:10px;color:var(--primary);font-family:Consolas,monospace;font-size:0.95rem;outline:none;}
-.search-box:focus{box-shadow:0 0 12px rgba(0,255,65,0.4);}
-.card{background:linear-gradient(180deg,rgba(10,18,15,0.92),rgba(5,11,8,0.85));border:1px solid var(--line);border-radius:18px;padding:24px 22px;margin:20px 0;}
-.note-item{border:1px dashed var(--line);border-radius:10px;padding:16px;margin:12px 0;background:rgba(0,0,0,0.4);transition:transform 0.15s ease;}
-.note-item:hover{border-style:solid;transform:translateX(4px);}
-.note-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.badge{padding:3px 8px;font-size:0.75rem;border-radius:4px;border:1px solid var(--line);color:var(--primary-soft);}
-.read-link{display:inline-block;margin-top:10px;color:var(--primary);text-decoration:none;font-size:0.85rem;}
-.read-link:hover{text-decoration:underline;}
-.btn{padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);display:inline-block;}
-.btn:hover{background:var(--primary);color:#000;}
-@media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:8px 12px;font-size:0.82rem;}}
-</style>
+<link rel="stylesheet" href="assets/css/main.css" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 <canvas id="matrix"></canvas>
@@ -42,96 +18,98 @@ h1{text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgb
 </nav>
 
 <div class="container">
-<h1>STUDY NOTES // ノート</h1>
-<p style="text-align:center;color:#8fff8f;">Linux • Networking • Cyber // <span id="auto-date"></span> // <span id="clock"></span></p>
+<!-- VIEW 1: CATALOG LIST -->
+<div id="catalog-view">
+  <h1 style="text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);margin:10px 0 0;">STUDY NOTES // ノート</h1>
+  <p style="text-align:center;color:var(--primary-soft);">Linux • Networking • Defense</p>
+  <input type="text" id="note-search" style="width:100%;margin:16px 0 10px;padding:12px 16px;background:rgba(0,0,0,0.75);border:1px solid var(--line);border-radius:10px;color:var(--primary);font-family:inherit;font-size:0.95rem;outline:none;" placeholder="[ Filter topik: ssh, subnet, permissions, defense, owasp ]" />
 
-<!-- Live Search Input -->
-<input type="text" id="note-search" class="search-box" placeholder="[ Cari catatan... ketik topik: ssh, subnet, log, owasp, cli ]" />
+  <section class="card">
+    <div class="note-card" style="border:1px dashed var(--line);border-radius:10px;padding:14px;margin:12px 0;background:rgba(0,0,0,0.35);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <strong style="color:var(--text);font-size:1.05rem;">SSH Hardening & Key Authentication</strong>
+        <span class="tag">[LINUX]</span>
+      </div>
+      <p style="color:#b2d8be;font-size:0.9rem;margin:8px 0;">Konfigurasi daemon sshd, disabling root password login, dan verifikasi keypair Ed25519.</p>
+      <a class="btn" href="writeups.html?post=ssh-hardening">BACA DOKUMEN MARKDOWN →</a>
+    </div>
 
-<section class="card section-block">
-<h2>LINUX // リナックス</h2>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">Terminal & Core Navigation</strong><span class="badge">[CORE CLI]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Navigasi berkas, manipulasi teks pipe (grep, awk, sed), dan manajemen proses background.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
+    <div class="note-card" style="border:1px dashed var(--line);border-radius:10px;padding:14px;margin:12px 0;background:rgba(0,0,0,0.35);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <strong style="color:var(--text);font-size:1.05rem;">Linux Permissions & Special Bits</strong>
+        <span class="tag">[SECURITY]</span>
+      </div>
+      <p style="color:#b2d8be;font-size:0.9rem;margin:8px 0;">Analisis hak akses file octal, SUID, SGID, dan Sticky bit untuk pencegahan eskalasi hak istimewa.</p>
+      <span style="color:var(--dim);font-size:0.8rem;">[Dokumentasi segera terbit]</span>
+    </div>
+  </section>
 </div>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">Permissions & Ownership Hardening</strong><span class="badge">[PERMISSIONS]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Struktur chmod octal/symbolic, SUID, SGID, dan Sticky Bit untuk privilege management.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">SSH Hardening & Key Authentication</strong><span class="badge">[DEFENSE]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Konfigurasi sshd_config, penonaktifan password login root, dan enkripsi Ed25519.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-</section>
 
-<section class="card section-block">
-<h2>NETWORKING // ネットワーク</h2>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">IP Addressing, CIDR & Subnetting</strong><span class="badge">[FOUNDATION]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Kalkulasi subnet mask (/24, /27), alokasi IP privat RFC 1918, dan gateway routing.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">DNS, DHCP & Transport Protocols</strong><span class="badge">[PROTOCOLS]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">3-way handshake TCP vs UDP, DNS query resolving record, dan alur alokasi DHCP (DORA).</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-</section>
-
-<section class="card section-block">
-<h2>SECURITY // セキュリティ</h2>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">CIA Triad & Threat Modeling</strong><span class="badge">[FRAMEWORK]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Pilar Confidentiality, Integrity, Availability serta dasar klasifikasi risiko aset organisasi.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">OWASP Top 10 Essentials</strong><span class="badge">[WEB APP]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Broken Access Control, Injection, Cryptographic Failures, dan Security Misconfigurations.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-<div class="note-item">
-<div class="note-header"><strong style="color:var(--text);">Log Analysis & Incident Defense</strong><span class="badge">[BLUE TEAM]</span></div>
-<p style="color:#b2d8be;font-size:0.9rem;margin:8px 0 0;">Parsing /var/log/auth.log dan filtering log event Linux buat investigasi brute-force.</p>
-<a class="read-link" href="writeup-template.html">BACA CATATAN LENGKAP →</a>
-</div>
-</section>
-
-<div style="text-align:center;margin-top:20px;">
-<a class="btn" href="index.html">BACK TO HOME // 帰還</a>
+<!-- VIEW 2: MARKDOWN ARTICLE CONTAINER -->
+<div id="reader-view" style="display:none;">
+  <article class="card" style="line-height:1.7;">
+    <div style="margin-bottom:16px;"><a class="btn" href="writeups.html">← KEMBALI KE DAFTAR CATATAN</a></div>
+    <div id="markdown-content" style="color:#c5ebcf;">Memuat artikel...</div>
+    <div style="margin-top:24px;border-top:1px dashed var(--line);padding-top:16px;">
+      <a class="btn" href="writeups.html">← KEMBALI KE DAFTAR CATATAN</a>
+    </div>
+  </article>
 </div>
 </div>
 
+<script src="assets/js/matrix.js"></script>
 <script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-let lastTime=0;function animate(time){if(time-lastTime>70){draw();lastTime=time;}requestAnimationFrame(animate);}requestAnimationFrame(animate);
+// Dynamic Markdown Resolver
+const params = new URLSearchParams(window.location.search);
+const postSlug = params.get('post');
 
-function tick(){const n=new Date();document.getElementById('auto-date').textContent=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});}tick();setInterval(tick,1000);
+if (postSlug) {
+  document.getElementById('catalog-view').style.display = 'none';
+  const reader = document.getElementById('reader-view');
+  reader.style.display = 'block';
 
-// Live search filter
-const searchInput = document.getElementById('note-search');
-const notes = document.querySelectorAll('.note-item');
-const sections = document.querySelectorAll('.section-block');
+  fetch(`posts/${postSlug}.md`)
+    .then(res => {
+      if (!res.ok) throw new Error("File Markdown tidak ditemukan.");
+      return res.text();
+    })
+    .then(text => {
+      document.getElementById('markdown-content').innerHTML = marked.parse(text);
+      // Pasang copy button otomatis pada setiap blok kode hasil parse
+      document.querySelectorAll('#markdown-content pre').forEach(pre => {
+        const wrap = document.createElement('div');
+        wrap.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrap, pre);
+        wrap.appendChild(pre);
 
-searchInput.addEventListener('input', (e) => {
-const q = e.target.value.toLowerCase();
-notes.forEach(note => {
-const match = note.innerText.toLowerCase().includes(q);
-note.style.display = match ? 'block' : 'none';
-});
-sections.forEach(sec => {
-const visibleCards = sec.querySelectorAll('.note-item[style*="display: block"], .note-item:not([style*="display: none"])');
-sec.style.display = visibleCards.length > 0 ? 'block' : 'none';
-});
-});
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.innerText = 'COPY';
+        wrap.appendChild(btn);
+
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(pre.innerText).then(() => {
+            btn.innerText = 'COPIED!';
+            setTimeout(() => { btn.innerText = 'COPY'; }, 2000);
+          });
+        });
+      });
+    })
+    .catch(err => {
+      document.getElementById('markdown-content').innerHTML = `<p style="color:var(--danger)">[Gagal memuat catatan: ${err.message}]</p>`;
+    });
+}
+
+// Live Search Filter
+const sInput = document.getElementById('note-search');
+if (sInput) {
+  sInput.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('.note-card').forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(q) ? 'block' : 'none';
+    });
+  });
+}
 </script>
 </body>
 </html>
