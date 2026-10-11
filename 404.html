@@ -10,7 +10,7 @@
 :root{--bg:#050b08;--line:rgba(0,255,65,0.6);--primary:#00ff41;--red:#ff4d4d;--dim:#7c9b87;}
 *{box-sizing:border-box;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(255,77,77,0.12),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden;}
 canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.35;}
-.card{background:linear-gradient(180deg,rgba(16,10,10,0.92),rgba(5,11,8,0.85));border:1px solid rgba(255,77,77,0.6);border-radius:18px;padding:36px 28px;max-width:540px;width:100%;text-align:center;box-shadow:0 0 24px rgba(255,77,77,0.2);}
+.card{background:linear-gradient(180deg,rgba(16,10,10,0.92),rgba(5,11,8,0.85));border:1px solid rgba(255,77,77,0.6);border-radius:18px;padding:36px 28px;max-width:540px;width:100%;text-align:center;box-shadow:0 0 24px rgba(255,77,77,0.2);position:relative;z-index:10;}
 h1{color:var(--red);font-size:clamp(3rem,8vw,4.5rem);margin:0;text-shadow:0 0 15px rgba(255,77,77,0.8);}
 p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 .btn{display:inline-block;padding:12px 22px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
@@ -23,7 +23,8 @@ p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 <h1>404</h1>
 <div style="color:var(--red);font-weight:bold;">[ ALERT: TARGET NOT FOUND // ACCESS DENIED ]</div>
 <p>Halaman atau direktori yang kamu cari tidak ada di sistem server, sudah dipindahkan, atau telah dienkripsi ulang.</p>
-<a class="btn" href="index.html">← RETURN TO BASE // HOME</a>
+<!-- Tautan absolut '/' memastikan tombol selalu kembali ke halaman utama dari sub-folder mana pun -->
+<a class="btn" href="/">← RETURN TO BASE // HOME</a>
 </div>
 
 <script>
