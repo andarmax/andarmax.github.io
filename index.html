@@ -2,47 +2,17 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="ANDAR | Cyber Security Portfolio & Terminal Lab" />
+<meta name="description" content="ANDAR | Cyber Security Engineering, Blue Team & Homelab Architecture" />
 <meta name="theme-color" content="#050b08" />
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta property="og:title" content="ANDAR | Cyber Security" />
-<meta property="og:description" content="Portfolio siber, analisis defensif, dan dokumentasi homelab ANDAR." />
-<meta property="og:image" content="./profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Cyber Security</title>
+<link rel="stylesheet" href="assets/css/main.css" />
 <style>
-:root{--bg:#050b08;--line:rgba(0,255,65,0.6);--primary:#00ff41;--primary-soft:#8fff8f;--text:#d9ffe2;--dim:#7c9b87;}
-*{box-sizing:border-box;}html{scroll-behavior:smooth;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
-canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
-.navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:24px 16px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.4);}
-.nav-btn{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
-.nav-btn:hover{background:var(--primary);color:#000;}
-.nav-btn.active{background:var(--primary);color:#000;font-weight:bold;box-shadow:0 0 12px rgba(0,255,65,0.6);}
-.hero{text-align:center;padding:14px 20px 22px;}
+.hero{text-align:center;padding:14px 20px 20px;}
 .profile-wrapper{position:relative;width:140px;height:140px;margin:14px auto 10px;}
-.profile{display:block;width:140px;height:140px;object-fit:contain;border-radius:50%;border:3px solid var(--primary);background:#050b08;padding:12px;box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8);}
-.online-dot{position:absolute;right:8px;bottom:6px;width:16px;height:16px;background:var(--primary);border:3px solid #000;border-radius:50%;animation:pulse 1.6s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 5px var(--primary);}50%{box-shadow:0 0 10px var(--primary),0 0 25px var(--primary);}}
-.typing{max-width:860px;margin:0 auto;min-height:30px;color:var(--primary-soft);}
-.clock-box{display:inline-block;margin-top:12px;padding:6px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.6);font-size:0.85rem;}
-.container{max-width:1040px;margin:0 auto;padding:10px 18px 40px;}
-.card{background:linear-gradient(180deg,rgba(10,18,15,0.92),rgba(5,11,8,0.85));border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:18px 0;box-shadow:0 0 18px rgba(0,255,65,0.12);}
-.tag{display:inline-block;padding:4px 10px;margin:4px 4px 4px 0;border-radius:6px;font-size:0.8rem;border:1px solid var(--line);background:rgba(0,255,65,0.08);color:var(--primary-soft);}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:12px;}
-.project-card{background:rgba(0,0,0,0.45);border:1px dashed var(--line);border-radius:12px;padding:16px;}
-.project-card h3{margin:0 0 8px;color:var(--text);font-size:1.1rem;}
-.badge-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;margin:6px 6px 0 0;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--text);background:rgba(0,0,0,0.6);font-size:0.85rem;}
-.badge-link:hover{border-color:var(--primary);color:var(--primary);background:rgba(0,255,65,0.1);}
-/* Terminal UI */
-.terminal-window{background:rgba(2,6,4,0.95);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:0.9rem;}
-.terminal-header{background:rgba(0,255,65,0.15);padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);font-size:0.8rem;}
-.dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
-.terminal-body{padding:14px;min-height:160px;max-height:260px;overflow-y:auto;color:var(--text);}
-.terminal-input-row{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px dashed rgba(0,255,65,0.3);background:rgba(0,0,0,0.8);}
-.terminal-input{flex:1;background:transparent;border:none;outline:none;color:var(--primary);font-family:Consolas,monospace;font-size:0.9rem;}
-.btn{display:inline-block;padding:10px 18px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.6);margin-top:12px;font-size:0.85rem;}
-.btn:hover{background:var(--primary);color:#000;}
-@media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:8px 12px;font-size:0.82rem;}}
+.profile{display:block;width:140px;height:140px;object-fit:contain;border-radius:50%;border:3px solid var(--primary);background:#050b08;padding:12px;box-shadow:0 0 20px rgba(0,255,65,0.7);}
+.online-dot{position:absolute;right:8px;bottom:6px;width:16px;height:16px;background:var(--primary);border:3px solid #000;border-radius:50%;}
+.topology-box{background:rgba(0,0,0,0.65);border:1px dashed var(--line);border-radius:12px;padding:20px;margin-top:16px;text-align:center;}
 </style>
 </head>
 <body>
@@ -50,6 +20,7 @@ canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 <nav class="navbar">
 <a class="nav-btn active" href="#about">ABOUT</a>
 <a class="nav-btn" href="#skills">SKILLS</a>
+<a class="nav-btn" href="#lab">HOMELAB</a>
 <a class="nav-btn" href="#projects">PROJECTS</a>
 <a class="nav-btn" href="#terminal">SHELL</a>
 <a class="nav-btn" href="roadmap.html">ROADMAP</a>
@@ -57,137 +28,148 @@ canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 </nav>
 
 <header class="hero">
-<div class="profile-wrapper"><img class="profile" src="./profile.webp" alt="ANDAR tribal green" width="140" height="140"/><span class="online-dot"></span></div>
+<div class="profile-wrapper"><img class="profile" src="./profile.webp" alt="ANDAR" width="140" height="140"/><span class="online-dot"></span></div>
 <div>[ SYSTEM ONLINE ] // アンダー</div>
 <h1 style="margin:8px 0;font-size:clamp(2.4rem,5vw,3.4rem);text-shadow:0 0 12px rgba(0,255,65,0.7);">ANDAR</h1>
-<div class="typing">[ CYBER SECURITY • OSINT • BLUE TEAM ]</div>
-<div id="live-clock" class="clock-box">00:00:00 // WIB</div>
+<div style="color:var(--primary-soft);">[ CYBER SECURITY • OSINT • BLUE TEAM ]</div>
+<div id="clock" style="display:inline-block;margin-top:10px;padding:6px 14px;border:1px solid var(--line);border-radius:6px;background:rgba(0,0,0,0.6);font-size:0.85rem;">00:00:00 // WIB</div>
 </header>
 
 <main class="container">
 <section id="about" class="card">
 <h2>ABOUT // 自己紹介</h2>
-<p>Portfolio siber tribal ANDAR. Berfokus pada pertahanan perimeter, investigasi intelijen sumber terbuka (OSINT), dan pengujian lingkungan homelab.</p>
-<div style="margin-top:16px;">
-<strong style="color:var(--primary-soft);display:block;margin-bottom:8px;">PLATFORMS & CONTACT:</strong>
-<a class="badge-link" href="https://github.com/andarmax" target="_blank" rel="noreferrer"><span>[GH]</span> GitHub: andarmax</a>
-<a class="badge-link" href="#" target="_blank"><span>[THM]</span> TryHackMe</a>
-<a class="badge-link" href="#" target="_blank"><span>[HTB]</span> HackTheBox</a>
-<a class="badge-link" href="mailto:contact@andarmax.me"><span>[MAIL]</span> Secure Contact</a>
+<p>Portfolio keamanan siber defensif, rekayasa deteksi ancaman (Blue Team), dan riset infrastruktur mandiri.</p>
+<div style="margin-top:14px;">
+<a class="btn" href="https://github.com/andarmax" target="_blank" rel="noreferrer">[GH] GitHub</a>
+<a class="btn" href="andar.asc" target="_blank">[PGP] Public Key</a>
+<a class="btn" href=".well-known/security.txt">[POLICY] Security.txt</a>
 </div>
 </section>
 
 <section id="skills" class="card">
-<h2>TECHNICAL SKILLS // スキル</h2>
+<h2>TECHNICAL SPECS // スキル</h2>
 <div class="grid-2">
 <div>
-<h3 style="color:var(--text);margin-top:0;">Defense & Analysis</h3>
-<span class="tag">Blue Team</span><span class="tag">OSINT Recon</span><span class="tag">Log Analysis</span><span class="tag">OWASP Top 10</span><span class="tag">Wireshark</span>
+<h3 style="color:var(--text);margin-top:0;">Operations & Defense</h3>
+<span class="tag">Blue Team Analysis</span><span class="tag">OSINT Recon</span><span class="tag">Log Triage</span><span class="tag">OWASP Top 10</span><span class="tag">Wireshark</span>
 </div>
 <div>
 <h3 style="color:var(--text);margin-top:0;">Systems & Automation</h3>
-<span class="tag">Linux Hardening</span><span class="tag">Bash Scripting</span><span class="tag">Python Automation</span><span class="tag">TCP/IP & Routing</span><span class="tag">SSH & Firewall</span>
+<span class="tag">Linux Hardening</span><span class="tag">Bash Scripting</span><span class="tag">Python Automation</span><span class="tag">VLAN Subnetting</span><span class="tag">SSH & Firewall</span>
 </div>
 </div>
 </section>
 
+<!-- HOMELAB TOPOLOGY ARCHITECTURE -->
+<section id="lab" class="card">
+<h2>HOMELAB TOPOLOGY // ネットワーク構成</h2>
+<p style="color:#b2d8be;margin:0 0 12px;">Arsitektur jaringan tertutup untuk simulasi isolasi ancaman dan pemantauan lalu lintas:</p>
+<div class="topology-box">
+<svg viewBox="0 0 800 220" style="max-width:100%;height:auto;font-family:Consolas,monospace;">
+  <!-- WAN / ISP -->
+  <rect x="20" y="85" width="120" height="50" rx="8" fill="#000" stroke="#00ff41" stroke-width="1.5"/>
+  <text x="80" y="115" fill="#8fff8f" font-size="12" text-anchor="middle">WAN / GATEWAY</text>
+
+  <!-- Line to Router -->
+  <line x1="140" y1="110" x2="220" y2="110" stroke="#00ff41" stroke-width="2" stroke-dasharray="4"/>
+
+  <!-- FIREWALL ROUTER -->
+  <rect x="220" y="70" width="150" height="80" rx="8" fill="#021408" stroke="#00ff41" stroke-width="2"/>
+  <text x="295" y="105" fill="#00ff41" font-size="13" font-weight="bold" text-anchor="middle">FIREWALL / NAT</text>
+  <text x="295" y="125" fill="#7c9b87" font-size="11" text-anchor="middle">pfSense / iptables</text>
+
+  <!-- Connectors to subnets -->
+  <path d="M 370 110 L 460 50" fill="none" stroke="#00ff41" stroke-width="1.5"/>
+  <path d="M 370 110 L 460 170" fill="none" stroke="#00ff41" stroke-width="1.5"/>
+
+  <!-- VLAN 10 (LAB) -->
+  <rect x="460" y="25" width="280" height="55" rx="6" fill="#000" stroke="#ffe66d" stroke-width="1.5"/>
+  <text x="600" y="48" fill="#ffe66d" font-size="12" text-anchor="middle">VLAN 10: SEC LAB & SIEM</text>
+  <text x="600" y="66" fill="#c5ebcf" font-size="10" text-anchor="middle">10.10.10.0/24 • Wazuh & Ubuntu Server</text>
+
+  <!-- VLAN 20 (ATTACK / SANDBOX) -->
+  <rect x="460" y="145" width="280" height="55" rx="6" fill="#000" stroke="#6ec9ff" stroke-width="1.5"/>
+  <text x="600" y="168" fill="#6ec9ff" font-size="12" text-anchor="middle">VLAN 20: ISOLATED SANDBOX</text>
+  <text x="600" y="186" fill="#c5ebcf" font-size="10" text-anchor="middle">10.10.20.0/24 • Victim VMs & Targets</text>
+</svg>
+</div>
+</section>
+
 <section id="projects" class="card">
-<h2>LAB & PROJECTS // プロジェクト</h2>
+<h2>ENGINEERING & LABS // プロジェクト</h2>
 <div class="grid-2">
-<div class="project-card">
-<h3>Virtual Homelab Security</h3>
-<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Segmentasi subnet virtual, konfigurasi internal firewall rules, dan isolasi lalu lintas jaringan.</p>
-<span class="tag">Networking</span><span class="tag">Virtualization</span>
+<div class="project-card" style="background:rgba(0,0,0,0.45);border:1px dashed var(--line);border-radius:12px;padding:16px;">
+  <h3 style="margin:0 0 6px;">Homelab Network Hardening</h3>
+  <p style="color:#b2d8be;font-size:0.88rem;margin:0 0 10px;">Segmentasi subnet virtual, pemfilteran paket lintas-interface, dan monitoring berbasis syslog.</p>
+  <span class="tag">pfSense</span><span class="tag">Linux</span>
 </div>
-<div class="project-card">
-<h3>OSINT Footprint Recon</h3>
-<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Automasi Python buat ekstraksi metadata publik dan pemetaan attack surface open-source.</p>
-<span class="tag">Python</span><span class="tag">OSINT</span>
-</div>
-<div class="project-card">
-<h3>Auth Log Brute-Force Parser</h3>
-<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Parser log autentikasi Linux bash buat mendeteksi upaya unauthorized access dan IP ban otomatis.</p>
-<span class="tag">Bash</span><span class="tag">Incident Defense</span>
-</div>
-<div class="project-card">
-<h3>Writeups & Study Notes</h3>
-<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Kumpulan catatan teknis seputar Linux commands, arsitektur protokol jaringan, dan web security.</p>
-<a class="btn" href="writeups.html">BUKA STUDY NOTES →</a>
+<div class="project-card" style="background:rgba(0,0,0,0.45);border:1px dashed var(--line);border-radius:12px;padding:16px;">
+  <h3 style="margin:0 0 6px;">OSINT Reconnaissance Toolkit</h3>
+  <p style="color:#b2d8be;font-size:0.88rem;margin:0 0 10px;">Otomasi Python untuk pengumpulan intelijen sumber terbuka dan analisis jejak infrastruktur domain.</p>
+  <span class="tag">Python</span><span class="tag">OSINT</span>
 </div>
 </div>
 </section>
 
 <section id="terminal" class="card">
 <h2>INTERACTIVE SHELL // ターミナル</h2>
-<p style="color:var(--dim);font-size:0.85rem;margin-top:0;">Ketik <code>help</code> buat ngeliat daftar perintah yang tersedia.</p>
 <div class="terminal-window">
 <div class="terminal-header">
-<span class="dot" style="background:#ff5f56;"></span>
-<span class="dot" style="background:#ffbd2e;"></span>
-<span class="dot" style="background:#27c93f;"></span>
-<span style="color:var(--primary);margin-left:6px;">andar@security-box:~</span>
+  <span class="dot" style="background:#ff5f56;"></span>
+  <span class="dot" style="background:#ffbd2e;"></span>
+  <span class="dot" style="background:#27c93f;"></span>
+  <span style="color:var(--primary);margin-left:6px;">andar@security-box:~</span>
 </div>
 <div id="term-output" class="terminal-body">
-<div>System initialized. Session ready.</div>
-<div>Ketik <span style="color:var(--primary);">help</span> buat cek perintah.</div>
+  <div>System initialized. Type <span style="color:var(--primary);">help</span> to view commands.</div>
 </div>
 <div class="terminal-input-row">
-<span style="color:var(--primary);">guest@andarmax:~$</span>
-<input id="term-input" class="terminal-input" type="text" autocomplete="off" spellcheck="false" />
+  <span style="color:var(--primary);">guest@andarmax:~$</span>
+  <input id="term-input" class="terminal-input" type="text" autocomplete="off" spellcheck="false" />
 </div>
 </div>
 </section>
 </main>
 
-<footer style="text-align:center;padding:26px;color:var(--dim);">ANDAR アンダー | <span id="auto-date"></span></footer>
+<footer style="text-align:center;padding:26px;color:var(--dim);">ANDAR アンダー | 2026</footer>
 
+<script src="assets/js/matrix.js"></script>
 <script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-let lastTime=0;function animate(time){if(time-lastTime>70){draw();lastTime=time;}requestAnimationFrame(animate);}requestAnimationFrame(animate);
+function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'})+' // WIB';}tick();setInterval(tick,1000);
 
-function clock(){const n=new Date();const t=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const d=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=t+' // WIB | '+d;document.getElementById('auto-date').textContent=d;}clock();setInterval(clock,1000);
-
-// Interactive Shell Logic
-const termInput = document.getElementById('term-input');
-const termOutput = document.getElementById('term-output');
-const commands = {
-help: "Perintah tersedia: help, whoami, focus, skills, cat flag.txt, clear, date",
-whoami: "guest@andarmax: Kamu lagi mengakses terminal publik portofolio ANDAR.",
-focus: "Focus area: Blue Team, OSINT Investigation, Linux Defense, Homelab.",
-skills: "Skills: Linux CLI, Bash, Python, Wireshark, OWASP, Subnetting.",
-"cat flag.txt": "ANDAR{tribal_green_matrix_access_granted}",
-date: () => new Date().toLocaleString('id-ID', {timeZone: 'Asia/Jakarta'}) + " WIB"
+// Terminal Shell Logic
+const tIn = document.getElementById('term-input');
+const tOut = document.getElementById('term-output');
+const cmds = {
+  help: "Perintah: help, whoami, lab, skills, cat flag.txt, clear",
+  whoami: "guest@andarmax: Mengakses terminal portofolio publik.",
+  lab: "Homelab: pfSense Gateway, VLAN 10 (SIEM/Wazuh), VLAN 20 (Isolated Lab).",
+  skills: "Skills: Linux Defense, Bash, Python, Wireshark, OWASP, Subnetting.",
+  "cat flag.txt": "ANDAR{tribal_green_matrix_defense_ready}"
 };
-
-termInput.addEventListener('keydown', (e) => {
-if(e.key === 'Enter'){
-const val = termInput.value.trim().toLowerCase();
-if(!val) return;
-const line = document.createElement('div');
-line.innerHTML = `<span style="color:var(--primary);">guest@andarmax:~$</span> ${termInput.value}`;
-termOutput.appendChild(line);
-
-if(val === 'clear'){
-termOutput.innerHTML = '';
-} else if(commands[val]){
-const res = document.createElement('div');
-res.style.color = '#8fff8f';
-res.textContent = typeof commands[val] === 'function' ? commands[val]() : commands[val];
-termOutput.appendChild(res);
-} else {
-const err = document.createElement('div');
-err.style.color = '#ff6b6b';
-err.textContent = `bash: command not found: ${val}. Ketik 'help' buat panduan.`;
-termOutput.appendChild(err);
-}
-termInput.value = '';
-termOutput.scrollTop = termOutput.scrollHeight;
-}
+tIn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = tIn.value.trim().toLowerCase();
+    if (!val) return;
+    const l = document.createElement('div');
+    l.innerHTML = `<span style="color:var(--primary);">guest@andarmax:~$</span> ${tIn.value}`;
+    tOut.appendChild(l);
+    if (val === 'clear') {
+      tOut.innerHTML = '';
+    } else if (cmds[val]) {
+      const res = document.createElement('div');
+      res.style.color = '#8fff8f';
+      res.textContent = cmds[val];
+      tOut.appendChild(res);
+    } else {
+      const err = document.createElement('div');
+      err.style.color = '#ff6b6b';
+      err.textContent = `bash: command not found: ${val}`;
+      tOut.appendChild(err);
+    }
+    tIn.value = '';
+    tOut.scrollTop = tOut.scrollHeight;
+  }
 });
 </script>
 </body>
