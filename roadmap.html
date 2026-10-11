@@ -2,6 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ANDAR | Cyber Security Roadmap" />
+<meta name="theme-color" content="#000000" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta property="og:title" content="ANDAR | Roadmap" />
 <meta property="og:image" content="./profile.webp" />
@@ -12,32 +14,74 @@
 *{box-sizing:border-box;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
 canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.7);}
+.nav-btn{padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
 .nav-btn:hover{background:var(--primary);color:#000;}
+.nav-btn.active{background:var(--primary);color:#000;font-weight:bold;box-shadow:0 0 12px rgba(0,255,65,0.6);}
 .container{max-width:1040px;margin:0 auto;padding:18px 18px 60px;}
-h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);}
+h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);}
 .card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:22px 0;}
-.btn{padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:rgba(0,0,0,0.5);display:inline-block;}
+.btn{padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);display:inline-block;}
+.btn:hover{background:var(--primary);color:#000;}
 @media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}.btn{width:100%;text-align:center;}}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar"><a class="nav-btn" href="index.html">HOME</a><a class="nav-btn" href="writeups.html">NOTES</a><a class="nav-btn" href="roadmap.html">ROADMAP</a></nav>
+<nav class="navbar">
+<a class="nav-btn" href="index.html">HOME</a>
+<a class="nav-btn active" href="roadmap.html">ROADMAP</a>
+<a class="nav-btn" href="writeups.html">STUDY NOTES</a>
+</nav>
 <div class="container">
-<h1>CYBER ROADMAP // ロードマップ</h1><p style="text-align:center;color:#8fff8f;">[ SYSTEM OBJECTIVES LOADED ] // <span id="auto-date"></span> // <span id="clock"></span></p>
-<section class="card"><h2>COMPLETED // 完了</h2><ul><li>[✓] GitHub Pages online</li><li>[✓] Tribal ANDAR green logo</li><li>[✓] Matrix katakana アカサタナ</li><li>[✓] Home lab</li></ul></section>
-<section class="card"><h2>IN PROGRESS // 進行中</h2><ul><li style="color:#ffe66d;">[>] Linux fundamentals</li><li style="color:#ffe66d;">[>] Networking</li></ul></section>
-<section class="card"><h2>NEXT // 次の目標</h2><ul><li style="color:#6ec9ff;">[ ] OWASP Top 10</li><li style="color:#6ec9ff;">[ ] Python automation</li></ul></section>
-<div style="text-align:center;"><a class="btn" href="index.html">HOME // ホーム</a></div>
+<h1>CYBER ROADMAP // ロードマップ</h1>
+<p style="text-align:center;color:#8fff8f;">[ SYSTEM OBJECTIVES LOADED ] // <span id="auto-date"></span> // <span id="clock"></span></p>
+<section class="card">
+<h2>COMPLETED // 完了</h2>
+<ul style="line-height:1.8;">
+<li>[✓] GitHub Pages online & custom domain ready</li>
+<li>[✓] Tribal ANDAR green theme setup</li>
+<li>[✓] Matrix rain animation (Katakana & Latin characters)</li>
+<li>[✓] Homelab baseline virtualization environment</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>IN PROGRESS // 進行中</h2>
+<ul style="line-height:1.8;">
+<li style="color:#ffe66d;">[>] Linux administration & CLI deep dive</li>
+<li style="color:#ffe66d;">[>] Network analysis (Wireshark packet capture & TCP/IP)</li>
+<li style="color:#ffe66d;">[>] Defense log aggregation & parsing</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>NEXT OBJECTIVES // 次の目標</h2>
+<ul style="line-height:1.8;">
+<li style="color:#6ec9ff;">[ ] OWASP Top 10 vulnerability labs</li>
+<li style="color:#6ec9ff;">[ ] Python automated threat intelligence gathering</li>
+<li style="color:#6ec9ff;">[ ] Splunk / ELK Stack SIEM integration</li>
+</ul>
+</section>
+
+<div style="text-align:center;margin-top:20px;">
+<a class="btn" href="index.html">BACK TO HOME // 帰還</a>
+</div>
 </div>
 <script>
 const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
 function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ANDAR@#$%';
+const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
 let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':'#7fffbf';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();setInterval(draw,70);addEventListener('resize',()=>{setSize();init();});
+function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
+setSize();init();addEventListener('resize',()=>{setSize();init();});
+
+let lastTime=0;
+function animate(time){
+if(time-lastTime>70){draw();lastTime=time;}
+requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
 function tick(){const n=new Date();document.getElementById('auto-date').textContent=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});}tick();setInterval(tick,1000);
 </script>
 </body>
