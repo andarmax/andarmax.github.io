@@ -14,8 +14,9 @@
 *{box-sizing:border-box;}html{scroll-behavior:smooth;}body{margin:0;font-family:Consolas,monospace;background:radial-gradient(circle at top,rgba(0,255,65,0.18),transparent 60%),linear-gradient(180deg,#020805,var(--bg));color:var(--primary);overflow-x:hidden;}
 canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 .navbar{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;padding:28px 18px 10px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);background:rgba(5,11,8,0.35);}
-.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);}
+.nav-btn{display:inline-block;padding:12px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
 .nav-btn:hover{background:var(--primary);color:#000;}
+.nav-btn.active{background:var(--primary);color:#000;font-weight:bold;box-shadow:0 0 12px rgba(0,255,65,0.6);}
 .hero{text-align:center;padding:18px 20px 26px;}
 .profile-wrapper{position:relative;width:150px;height:150px;margin:16px auto 10px;}
 .profile{display:block;width:150px;height:150px;object-fit:contain;border-radius:50%;border:3px solid var(--primary);background:#050b08;padding:14px;box-shadow:0 0 10px var(--primary),0 0 25px rgba(0,255,65,0.8);}
@@ -25,13 +26,24 @@ canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 .clock-box{display:inline-block;margin-top:14px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,0.55);font-size:0.85rem;}
 .container{max-width:1060px;margin:0 auto;padding:10px 18px 40px;}
 .card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:18px;padding:28px 24px;margin:18px 0;box-shadow:0 0 18px rgba(0,255,65,0.14);}
+.tag{display:inline-block;padding:5px 12px;margin:4px 4px 4px 0;border-radius:6px;font-size:0.82rem;border:1px solid var(--line);background:rgba(0,255,65,0.08);color:var(--primary-soft);}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px;}
+.project-card{background:rgba(0,0,0,0.45);border:1px dashed var(--line);border-radius:12px;padding:16px;}
+.project-card h3{margin:0 0 8px;color:var(--text);font-size:1.15rem;}
+.btn{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);margin-top:10px;font-size:0.85rem;}
+.btn:hover{background:var(--primary);color:#000;}
 @media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}}
 </style>
 </head>
 <body>
 <canvas id="matrix"></canvas>
 <nav class="navbar">
-<a class="nav-btn" href="#about">ABOUT</a><a class="nav-btn" href="#focus">FOCUS</a><a class="nav-btn" href="#skills">SKILLS</a><a class="nav-btn" href="#projects">PROJECTS</a><a class="nav-btn" href="roadmap.html">ROADMAP</a><a class="nav-btn" href="writeups.html">STUDY NOTES</a>
+<a class="nav-btn active" href="#about">ABOUT</a>
+<a class="nav-btn" href="#focus">FOCUS</a>
+<a class="nav-btn" href="#skills">SKILLS</a>
+<a class="nav-btn" href="#projects">PROJECTS</a>
+<a class="nav-btn" href="roadmap.html">ROADMAP</a>
+<a class="nav-btn" href="writeups.html">STUDY NOTES</a>
 </nav>
 <header class="hero">
 <div class="profile-wrapper"><img class="profile" src="./profile.webp" alt="ANDAR tribal green" width="150" height="150"/><span class="online-dot"></span></div>
@@ -41,8 +53,55 @@ canvas#matrix{position:fixed;inset:0;z-index:-1;opacity:0.42;}
 <div id="live-clock" class="clock-box">00:00:00 // WIB</div>
 </header>
 <main class="container">
-<section id="about" class="card"><h2>ABOUT // 自己紹介</h2><p>Portfolio cyber security tribal ANDAR. Matrix rain sekarang sudah include katakana Jepang アカサタナハマヤラワ + アンダー.</p></section>
-<section id="focus" class="card"><h2>FOCUS</h2><p>Linux • Networking • Security • Python • Home Lab • 文化と技術</p></section>
+<section id="about" class="card">
+<h2>ABOUT // 自己紹介</h2>
+<p>Portfolio cyber security tribal ANDAR. Berfokus pada pertahanan siber (Blue Team), investigasi intelijen sumber terbuka (OSINT), dan eksperimen homelab.</p>
+</section>
+
+<section id="focus" class="card">
+<h2>FOCUS // フォーカス</h2>
+<p>Linux • Networking • Security Architecture • Python Automation • Homelab • 文化と技術</p>
+</section>
+
+<section id="skills" class="card">
+<h2>TECHNICAL SKILLS // スキル</h2>
+<div class="grid-2">
+<div>
+<h3 style="color:var(--text);margin-top:0;">Defense & Analysis</h3>
+<span class="tag">Blue Team</span><span class="tag">OSINT Recon</span><span class="tag">Log Analysis</span><span class="tag">OWASP Top 10</span><span class="tag">Wireshark</span>
+</div>
+<div>
+<h3 style="color:var(--text);margin-top:0;">Systems & Scripting</h3>
+<span class="tag">Linux / Unix</span><span class="tag">Bash</span><span class="tag">Python</span><span class="tag">Subnetting & Routing</span><span class="tag">SSH & Firewall</span>
+</div>
+</div>
+</section>
+
+<section id="projects" class="card">
+<h2>LAB & PROJECTS // プロジェクト</h2>
+<div class="grid-2">
+<div class="project-card">
+<h3>Virtual Homelab Security</h3>
+<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Simulasi jaringan tertutup menggunakan virtualisasi untuk uji coba segmentasi subnet, firewall, dan routing aman.</p>
+<span class="tag">Virtualization</span><span class="tag">Networking</span>
+</div>
+<div class="project-card">
+<h3>OSINT Investigation & Scraper</h3>
+<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Automasi Python untuk pengumpulan intelijen sumber terbuka dan analisis jejak digital publik.</p>
+<span class="tag">Python</span><span class="tag">OSINT</span>
+</div>
+<div class="project-card">
+<h3>Log Analysis & Incident Defense</h3>
+<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Skrip analisis log SSH dan auth logs Linux untuk mendeteksi brute-force serta anomali akses.</p>
+<span class="tag">Bash</span><span class="tag">Blue Team</span>
+</div>
+<div class="project-card">
+<h3>Cyber Security Notes & Writeups</h3>
+<p style="color:#b2d8be;font-size:0.9rem;margin:0 0 10px;">Dokumentasi teknis pembedahan konsep protokol jaringan, perintah dasar Linux, dan metodologi keamanan.</p>
+<a class="btn" href="writeups.html">VIEW STUDY NOTES →</a>
+</div>
+</div>
+</section>
 </main>
 <footer style="text-align:center;padding:30px;color:#7c9b87;">ANDAR アンダー | <span id="auto-date"></span></footer>
 <script>
@@ -51,7 +110,15 @@ function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
 const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
 let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
 function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();setInterval(draw,70);addEventListener('resize',()=>{setSize();init();});
+setSize();init();addEventListener('resize',()=>{setSize();init();});
+
+let lastTime=0;
+function animate(time){
+if(time-lastTime>70){draw();lastTime=time;}
+requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
 function clock(){const n=new Date();const t=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});const d=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('live-clock').textContent=t+' // WIB | '+d;document.getElementById('auto-date').textContent=d;}clock();setInterval(clock,1000);
 </script>
 </body>
