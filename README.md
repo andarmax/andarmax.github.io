@@ -1,23 +1,23 @@
 # andarmax.github.io
 
-Personal website dan catatan belajar cyber security. Dibangun murni menggunakan vanilla HTML, CSS, dan JavaScript tanpa framework maupun library pihak ketiga.
+Personal website, dokumentasi homelab, dan catatan belajar cyber security. Dibangun murni menggunakan arsitektur statis tanpa CMS atau build tool yang rumit.
 
 Live site: https://andarmax.github.io/
 
-## Struktur
-- `index.html` — Halaman utama (profil, fokus, keahlian teknis, dan project/lab).
-- `roadmap.html` — Pelacak progres belajar dan target materi.
-- `writeups.html` — Catatan ringkas seputar Linux, jaringan, dan keamanan sistem.
+## Arsitektur & Struktur Direktori
 
-## Catatan Teknis
-- Animasi matrix rain dirender via HTML5 Canvas dengan `requestAnimationFrame` agar hemat resource saat tab di latar belakang.
-- Layout responsive menggunakan CSS native (CSS variables, Flexbox, CSS Grid).
-- Zero dependencies.
-
-## Menjalankan Lokal
-Buka `index.html` langsung di browser, atau jalankan local server:
-
-```bash
-git clone [https://github.com/andarmax/andarmax.github.io.git](https://github.com/andarmax/andarmax.github.io.git)
-cd andarmax.github.io
-python3 -m http.server 8000
+```text
+├── .github/workflows/ci.yml # Validasi berkas otomatis via GitHub Actions
+├── .well-known/security.txt # RFC 9116 security disclosure policy
+├── assets/
+│   ├── css/main.css         # Desain global terpusat & komponen UI
+│   └── js/matrix.js         # Canvas engine + pause toggle + prefers-reduced-motion
+├── posts/
+│   └── ssh-hardening.md     # Berkas catatan teknis berbasis Markdown murni
+├── index.html               # Profil, technical specs, diagram homelab, & shell
+├── roadmap.html             # Pelacak sasaran dan target materi
+├── writeups.html            # Dynamic Markdown renderer (Marked.js) + live search
+├── 404.html                 # Halaman error kustom terminal
+├── andar.asc                # PGP Public Key
+├── robots.txt               # Aturan crawling search engine
+└── sitemap.xml              # Indeks halaman situs
