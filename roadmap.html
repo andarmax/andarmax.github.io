@@ -67,21 +67,8 @@ h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0
 <a class="btn" href="index.html">BACK TO HOME // 帰還</a>
 </div>
 </div>
+<script src="assets/js/matrix.js"></script>
 <script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-
-let lastTime=0;
-function animate(time){
-if(time-lastTime>70){draw();lastTime=time;}
-requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
-
 function tick(){const n=new Date();document.getElementById('auto-date').textContent=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});}tick();setInterval(tick,1000);
 </script>
 </body>
