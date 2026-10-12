@@ -41,6 +41,8 @@ jobs:
             parsed = urllib.parse.urlsplit(raw.strip())
             if parsed.scheme or parsed.netloc:
               if parsed.scheme in {"http", "https"}:
+                # Treat first-party absolute URLs as local paths so broken internal
+                # references are caught even when they are written as full URLs.
                 netloc = parsed.netloc.lower()
                 if netloc == LOCAL_DOMAIN:
                   path = urllib.parse.unquote(parsed.path or "/")
@@ -163,6 +165,7 @@ jobs:
                 err(f"security.txt: missing required field '{required_key}'")
 
             if "expires" in fields:
+              # RFC 9116 expects ISO-8601 and a future expiration date.
               expires_raw = fields["expires"].replace("Z", "+00:00")
               try:
                 expires_dt = dt.datetime.fromisoformat(expires_raw)
@@ -198,6 +201,8 @@ jobs:
           import re
 
           out_dir = pathlib.Path("/tmp/inline-js-check")
+          # Extract inline browser scripts and validate their syntax with Node
+          # without introducing external lint dependencies.
           pattern = re.compile(r"<script\b(?![^>]*\bsrc=)[^>]*>(.*?)</script>", re.IGNORECASE | re.DOTALL)
 
           for html_file in sorted(pathlib.Path(".").glob("*.html")):
@@ -253,6 +258,7 @@ jobs:
                   findings.append((rel, line_no, name))
 
           if findings:
+            # Never print secret contents; only location + detector name.
             print("Potential secrets detected (content redacted):")
             for rel, line_no, name in findings:
               print(f" - {rel}:{line_no} [{name}]")
