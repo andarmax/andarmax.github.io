@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ANDAR | Cyber Security Roadmap" />
+<link rel="canonical" href="https://andarmax.github.io/roadmap.html" />
 <meta name="theme-color" content="#000000" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta property="og:title" content="ANDAR | Roadmap" />
-<meta property="og:image" content="./profile.webp" />
+<meta property="og:description" content="Roadmap pembelajaran cybersecurity ANDAR: objective yang sudah selesai, sedang berjalan, dan target berikutnya." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://andarmax.github.io/roadmap.html" />
+<meta property="og:image" content="https://andarmax.github.io/profile.webp" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="ANDAR | Roadmap" />
+<meta property="twitter:description" content="Roadmap pembelajaran cybersecurity ANDAR: objective yang sudah selesai, sedang berjalan, dan target berikutnya." />
+<meta property="twitter:image" content="https://andarmax.github.io/profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Roadmap</title>
 <style>
@@ -22,6 +30,8 @@ h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0
 .card{background:linear-gradient(180deg,rgba(10,18,15,0.9),rgba(5,11,8,0.82));border:1px solid var(--line);border-radius:16px;padding:26px 22px;margin:22px 0;}
 .btn{padding:12px 20px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.5);display:inline-block;}
 .btn:hover{background:var(--primary);color:#000;}
+.matrix-ctrl{position:fixed;bottom:14px;right:14px;z-index:50;background:rgba(0,0,0,0.85);border:1px solid var(--line);color:var(--primary);padding:6px 12px;border-radius:6px;font-family:inherit;font-size:0.75rem;cursor:pointer;}
+.matrix-ctrl:hover{background:var(--primary);color:#000;}
 @media(max-width:640px){.navbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:10px;padding:12px 10px;scrollbar-width:none;}.navbar::-webkit-scrollbar{display:none;}.nav-btn{flex:0 0 auto;white-space:nowrap;padding:10px 14px;font-size:0.82rem;}.btn{width:100%;text-align:center;}}
 </style>
 </head>
@@ -29,7 +39,7 @@ h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0
 <canvas id="matrix"></canvas>
 <nav class="navbar">
 <a class="nav-btn" href="index.html">HOME</a>
-<a class="nav-btn active" href="roadmap.html">ROADMAP</a>
+<a class="nav-btn active" href="roadmap.html" aria-current="page">ROADMAP</a>
 <a class="nav-btn" href="writeups.html">STUDY NOTES</a>
 </nav>
 <div class="container">
@@ -67,21 +77,8 @@ h1{text-align:center;margin:0;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0
 <a class="btn" href="index.html">BACK TO HOME // 帰還</a>
 </div>
 </div>
+<script src="assets/js/matrix.js"></script>
 <script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアンダー ANDAR @#$%&*';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.12)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=i%3===0?'#00ff41':i%3===1?'#7fffbf':'#00f5ff';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-
-let lastTime=0;
-function animate(time){
-if(time-lastTime>70){draw();lastTime=time;}
-requestAnimationFrame(animate);
-}
-requestAnimationFrame(animate);
-
 function tick(){const n=new Date();document.getElementById('auto-date').textContent=n.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Jakarta'});document.getElementById('clock').textContent=n.toLocaleTimeString('id-ID',{hour12:false,timeZone:'Asia/Jakarta'});}tick();setInterval(tick,1000);
 </script>
 </body>

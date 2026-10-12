@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ANDAR | Cyber Security Technical Study Notes & Writeups" />
+<link rel="canonical" href="https://andarmax.github.io/writeups.html" />
 <meta name="theme-color" content="#050b08" />
+<meta property="og:title" content="ANDAR | Study Notes" />
+<meta property="og:description" content="Kumpulan catatan teknis cybersecurity, Linux, networking, dan defense milik ANDAR." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://andarmax.github.io/writeups.html" />
+<meta property="og:image" content="https://andarmax.github.io/profile.webp" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="ANDAR | Study Notes" />
+<meta property="twitter:description" content="Kumpulan catatan teknis cybersecurity, Linux, networking, dan defense milik ANDAR." />
+<meta property="twitter:image" content="https://andarmax.github.io/profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Study Notes</title>
 <link rel="stylesheet" href="assets/css/main.css" />
@@ -14,7 +24,7 @@
 <nav class="navbar">
 <a class="nav-btn" href="index.html">HOME</a>
 <a class="nav-btn" href="roadmap.html">ROADMAP</a>
-<a class="nav-btn active" href="writeups.html">STUDY NOTES</a>
+<a class="nav-btn active" href="writeups.html" aria-current="page">STUDY NOTES</a>
 </nav>
 
 <div class="container">
@@ -22,6 +32,7 @@
 <div id="catalog-view">
   <h1 style="text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);margin:10px 0 0;">STUDY NOTES // ノート</h1>
   <p style="text-align:center;color:var(--primary-soft);">Linux • Networking • Defense</p>
+  <label for="note-search" class="sr-only">Cari catatan belajar</label>
   <input type="text" id="note-search" style="width:100%;margin:16px 0 10px;padding:12px 16px;background:rgba(0,0,0,0.75);border:1px solid var(--line);border-radius:10px;color:var(--primary);font-family:inherit;font-size:0.95rem;outline:none;" placeholder="[ Filter topik: ssh, subnet, permissions, defense, owasp ]" />
 
   <section class="card">
@@ -84,7 +95,10 @@ if (postSlug) {
 
         const btn = document.createElement('button');
         btn.className = 'copy-btn';
+        btn.type = 'button';
         btn.innerText = 'COPY';
+        btn.setAttribute('aria-label', 'Salin blok kode');
+        btn.title = 'Salin blok kode';
         wrap.appendChild(btn);
 
         btn.addEventListener('click', () => {
