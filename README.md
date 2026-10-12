@@ -18,6 +18,11 @@ Live site: https://andarmax.github.io/
 ├── roadmap.html             # Pelacak sasaran dan target materi
 ├── writeups.html            # Dynamic Markdown renderer (Marked.js) + live search
 ├── 404.html                 # Halaman error kustom terminal
-├── andar.asc                # PGP Public Key
+├── andar.asc                # Placeholder notice (PGP key belum dipublikasikan)
 ├── robots.txt               # Aturan crawling search engine
 └── sitemap.xml              # Indeks halaman situs
+```
+
+## Catatan Keamanan
+
+- `andar.asc` saat ini **bukan** public key PGP importable. File tersebut sengaja berisi notifikasi sementara sampai key publik asli dipublikasikan.
