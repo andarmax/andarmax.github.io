@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ANDAR | Cyber Security Engineering, Blue Team & Homelab Architecture" />
+<link rel="canonical" href="https://andarmax.github.io/" />
 <meta name="theme-color" content="#050b08" />
+<meta property="og:title" content="ANDAR | Cyber Security" />
+<meta property="og:description" content="Portfolio keamanan siber defensif, Blue Team, OSINT, dan arsitektur homelab ANDAR." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://andarmax.github.io/" />
+<meta property="og:image" content="https://andarmax.github.io/profile.webp" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="ANDAR | Cyber Security" />
+<meta property="twitter:description" content="Portfolio keamanan siber defensif, Blue Team, OSINT, dan arsitektur homelab ANDAR." />
+<meta property="twitter:image" content="https://andarmax.github.io/profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Cyber Security</title>
 <link rel="stylesheet" href="assets/css/main.css" />
@@ -18,7 +28,7 @@
 <body>
 <canvas id="matrix"></canvas>
 <nav class="navbar">
-<a class="nav-btn active" href="#about">ABOUT</a>
+<a class="nav-btn active" href="#about" aria-current="page">ABOUT</a>
 <a class="nav-btn" href="#skills">SKILLS</a>
 <a class="nav-btn" href="#lab">HOMELAB</a>
 <a class="nav-btn" href="#projects">PROJECTS</a>
@@ -65,7 +75,9 @@
 <h2>HOMELAB TOPOLOGY // ネットワーク構成</h2>
 <p style="color:#b2d8be;margin:0 0 12px;">Arsitektur jaringan tertutup untuk simulasi isolasi ancaman dan pemantauan lalu lintas:</p>
 <div class="topology-box">
-<svg viewBox="0 0 800 220" style="max-width:100%;height:auto;font-family:Consolas,monospace;">
+<svg viewBox="0 0 800 220" role="img" aria-labelledby="topology-title topology-desc" style="max-width:100%;height:auto;font-family:Consolas,monospace;">
+  <title id="topology-title">Diagram Topologi Homelab</title>
+  <desc id="topology-desc">Jalur WAN ke firewall NAT yang membagi dua segmen: VLAN 10 untuk SIEM dan server Ubuntu, serta VLAN 20 untuk sandbox terisolasi.</desc>
   <!-- WAN / ISP -->
   <rect x="20" y="85" width="120" height="50" rx="8" fill="#000" stroke="#00ff41" stroke-width="1.5"/>
   <text x="80" y="115" fill="#8fff8f" font-size="12" text-anchor="middle">WAN / GATEWAY</text>
@@ -125,6 +137,7 @@
 </div>
 <div class="terminal-input-row">
   <span style="color:var(--primary);">guest@andarmax:~$</span>
+  <label for="term-input" class="sr-only">Masukkan perintah terminal</label>
   <input id="term-input" class="terminal-input" type="text" autocomplete="off" spellcheck="false" />
 </div>
 </div>

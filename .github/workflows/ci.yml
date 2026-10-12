@@ -18,5 +18,83 @@ jobs:
           test -f index.html || exit 1
           test -f writeups.html || exit 1
           test -f roadmap.html || exit 1
+          test -f 404.html || exit 1
+          test -f assets/js/matrix.js || exit 1
           test -f .well-known/security.txt || exit 1
           echo "All critical security and web artifacts verified."
+
+      - name: Validate Matrix Shared Script Usage
+        run: |
+          grep -q 'src="assets/js/matrix.js"' roadmap.html
+          grep -q 'src="assets/js/matrix.js"' 404.html
+          ! grep -q "const canvas=document.getElementById('matrix')" roadmap.html
+          ! grep -q "const canvas=document.getElementById('matrix')" 404.html
+          ! grep -q "requestAnimationFrame(animate)" roadmap.html
+          ! grep -q "requestAnimationFrame(animate)" 404.html
+          echo "Matrix animation logic is centralized in assets/js/matrix.js"
+
+      - name: JavaScript Syntax Check (shared + inline scripts)
+        run: |
+          node --check assets/js/matrix.js
+          python3 - <<'PY'
+          import pathlib
+          import re
+          import subprocess
+          import tempfile
+
+          html_files = ["index.html", "roadmap.html", "writeups.html", "404.html"]
+          script_pattern = re.compile(r"<script(?![^>]*\\bsrc=)[^>]*>(.*?)</script>", re.IGNORECASE | re.DOTALL)
+
+          for html_file in html_files:
+            content = pathlib.Path(html_file).read_text(encoding="utf-8")
+            for idx, script in enumerate(script_pattern.findall(content), 1):
+              if not script.strip():
+                continue
+              with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as tmp:
+                tmp.write(script)
+                tmp_path = tmp.name
+              try:
+                subprocess.run(["node", "--check", tmp_path], check=True)
+              finally:
+                pathlib.Path(tmp_path).unlink(missing_ok=True)
+          PY
+
+      - name: Validate SEO + Accessibility Invariants
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          pages = ["index.html", "roadmap.html", "writeups.html", "404.html"]
+          for page in pages:
+            body = Path(page).read_text(encoding="utf-8")
+            assert 'rel="canonical"' in body, f"Missing canonical in {page}"
+            assert 'property="og:title"' in body, f"Missing og:title in {page}"
+            assert 'property="og:description"' in body, f"Missing og:description in {page}"
+            assert 'property="og:image"' in body, f"Missing og:image in {page}"
+            assert 'property="twitter:card"' in body, f"Missing twitter:card in {page}"
+
+          assert 'aria-current="page"' in Path("index.html").read_text(encoding="utf-8")
+          assert 'aria-current="page"' in Path("roadmap.html").read_text(encoding="utf-8")
+          assert 'aria-current="page"' in Path("writeups.html").read_text(encoding="utf-8")
+          assert 'id="term-input"' in Path("index.html").read_text(encoding="utf-8")
+          assert 'for="term-input"' in Path("index.html").read_text(encoding="utf-8")
+          assert 'id="note-search"' in Path("writeups.html").read_text(encoding="utf-8")
+          assert 'for="note-search"' in Path("writeups.html").read_text(encoding="utf-8")
+          assert 'aria-labelledby="topology-title topology-desc"' in Path("index.html").read_text(encoding="utf-8")
+          PY
+
+      - name: Validate Referenced Local Assets Exist
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          local_assets = [
+            "assets/js/matrix.js",
+            "assets/css/main.css",
+            "profile.webp",
+            "andar.asc",
+          ]
+
+          for asset in local_assets:
+            assert Path(asset).exists(), f"Missing local asset: {asset}"
+          PY

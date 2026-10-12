@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="404 - Target Not Found" />
+<link rel="canonical" href="https://andarmax.github.io/404.html" />
 <meta name="theme-color" content="#050b08" />
+<meta property="og:title" content="ANDAR | 404 Target Not Found" />
+<meta property="og:description" content="Halaman tidak ditemukan. Kembali ke halaman utama portfolio ANDAR." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://andarmax.github.io/404.html" />
+<meta property="og:image" content="https://andarmax.github.io/profile.webp" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="ANDAR | 404 Target Not Found" />
+<meta property="twitter:description" content="Halaman tidak ditemukan. Kembali ke halaman utama portfolio ANDAR." />
+<meta property="twitter:image" content="https://andarmax.github.io/profile.webp" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>404 // TARGET NOT FOUND</title>
 <style>
@@ -15,10 +25,12 @@ h1{color:var(--red);font-size:clamp(3rem,8vw,4.5rem);margin:0;text-shadow:0 0 15
 p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 .btn{display:inline-block;padding:12px 22px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--primary);background:rgba(0,0,0,0.7);transition:all 0.2s ease;}
 .btn:hover{background:var(--primary);color:#000;}
+.matrix-ctrl{position:fixed;bottom:14px;right:14px;z-index:50;background:rgba(0,0,0,0.85);border:1px solid var(--line);color:var(--primary);padding:6px 12px;border-radius:6px;font-family:inherit;font-size:0.75rem;cursor:pointer;}
+.matrix-ctrl:hover{background:var(--primary);color:#000;}
 </style>
 </head>
 <body>
-<canvas id="matrix"></canvas>
+<canvas id="matrix" data-matrix-chars="0123456789ABCDEF!@#$%&*アカサタナハマヤラワ" data-matrix-colors="#ff4d4d,#00ff41" data-matrix-color-mode="random" data-matrix-color-threshold="0.85" data-matrix-trail-alpha="0.14"></canvas>
 <div class="card">
 <h1>404</h1>
 <div style="color:var(--red);font-weight:bold;">[ ALERT: TARGET NOT FOUND // ACCESS DENIED ]</div>
@@ -27,22 +39,6 @@ p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 <a class="btn" href="/">← RETURN TO BASE // HOME</a>
 </div>
 
-<script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='0123456789ABCDEF!@#$%&*アカサタナハマヤラワ';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.14)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=Math.random()>0.85?'#ff4d4d':'#00ff41';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!prefersReducedMotion){
-  let lastTime=0;
-  function animate(time){if(time-lastTime>70){draw();lastTime=time;}requestAnimationFrame(animate);}
-  requestAnimationFrame(animate);
-} else {
-  draw();
-}
-</script>
+<script src="assets/js/matrix.js"></script>
 </body>
 </html>
