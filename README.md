@@ -13,6 +13,7 @@ Live site: https://andarmax.github.io/
 │   ├── css/main.css         # Desain global terpusat & komponen UI
 │   └── js/matrix.js         # Canvas engine + pause toggle + prefers-reduced-motion
 ├── posts/
+│   ├── linux-permissions.md # Audit permission, SUID, SGID, dan Sticky bit
 │   └── ssh-hardening.md     # Berkas catatan teknis berbasis Markdown murni
 ├── index.html               # Profil, technical specs, diagram homelab, & shell
 ├── roadmap.html             # Pelacak sasaran dan target materi

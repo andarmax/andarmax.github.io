@@ -40,7 +40,7 @@
         <span class="tag">[SECURITY]</span>
       </div>
       <p style="color:#b2d8be;font-size:0.9rem;margin:8px 0;">Analisis hak akses file octal, SUID, SGID, dan Sticky bit untuk pencegahan eskalasi hak istimewa.</p>
-      <span style="color:var(--dim);font-size:0.8rem;">[Dokumentasi segera terbit]</span>
+      <a class="btn" href="writeups.html?post=linux-permissions">BACA DOKUMEN MARKDOWN →</a>
     </div>
   </section>
 </div>
@@ -62,13 +62,16 @@
 // Dynamic Markdown Resolver
 const params = new URLSearchParams(window.location.search);
 const postSlug = params.get('post');
+const availablePosts = new Set(['ssh-hardening', 'linux-permissions']);
 
 if (postSlug) {
   document.getElementById('catalog-view').style.display = 'none';
   const reader = document.getElementById('reader-view');
   reader.style.display = 'block';
 
-  fetch(`posts/${postSlug}.md`)
+  if (!availablePosts.has(postSlug)) {
+    document.getElementById('markdown-content').innerHTML = '<p style="color:var(--danger)">[Catatan tidak tersedia.]</p>';
+  } else fetch(`posts/${postSlug}.md`)
     .then(res => {
       if (!res.ok) throw new Error("File Markdown tidak ditemukan.");
       return res.text();
