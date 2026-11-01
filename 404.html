@@ -18,7 +18,14 @@ p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 </style>
 </head>
 <body>
-<canvas id="matrix"></canvas>
+<canvas
+  id="matrix"
+  data-matrix-chars="0123456789ABCDEF!@#$%&*アカサタナハマヤラワ"
+  data-matrix-trail-fill="rgba(5,11,8,0.14)"
+  data-matrix-color-mode="random-threshold"
+  data-matrix-colors="#ff4d4d,#00ff41"
+  data-matrix-random-color-threshold="0.85"
+></canvas>
 <div class="card">
 <h1>404</h1>
 <div style="color:var(--red);font-weight:bold;">[ ALERT: TARGET NOT FOUND // ACCESS DENIED ]</div>
@@ -27,22 +34,6 @@ p{color:#dfffe9;line-height:1.6;margin:16px 0 24px;}
 <a class="btn" href="/">← RETURN TO BASE // HOME</a>
 </div>
 
-<script>
-const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');
-function setSize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-const matrixChars='0123456789ABCDEF!@#$%&*アカサタナハマヤラワ';
-let drops=[];function init(){drops=Array.from({length:Math.floor(canvas.width/14)},()=>Math.random()*-100);}
-function draw(){ctx.fillStyle='rgba(5,11,8,0.14)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.font='16px monospace';for(let i=0;i<drops.length;i++){ctx.fillStyle=Math.random()>0.85?'#ff4d4d':'#00ff41';ctx.fillText(matrixChars[Math.floor(Math.random()*matrixChars.length)],i*14,drops[i]*16);if(drops[i]*16>canvas.height && Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setSize();init();addEventListener('resize',()=>{setSize();init();});
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!prefersReducedMotion){
-  let lastTime=0;
-  function animate(time){if(time-lastTime>70){draw();lastTime=time;}requestAnimationFrame(animate);}
-  requestAnimationFrame(animate);
-} else {
-  draw();
-}
-</script>
+<script src="assets/js/matrix.js"></script>
 </body>
 </html>
