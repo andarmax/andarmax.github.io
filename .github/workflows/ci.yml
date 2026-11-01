@@ -31,4 +31,7 @@ jobs:
           done
           grep -Fq "linux-permissions" writeups.html
           grep -Fq "ssh-hardening" writeups.html
+          grep -Fq "incident-response-basics" writeups.html
+          test -f contact.html
+          test -f LICENSE
           echo "Markdown posts and catalog links verified."
