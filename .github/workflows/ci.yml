@@ -35,3 +35,6 @@ jobs:
           test -f contact.html
           test -f LICENSE
           echo "Markdown posts and catalog links verified."
+
+      - name: Run Batch 1 Security Regression Checks
+        run: python3 scripts/security-regression.py

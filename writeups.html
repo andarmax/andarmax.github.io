@@ -11,7 +11,8 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Study Notes</title>
 <link rel="stylesheet" href="assets/css/main.css" />
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="assets/vendor/marked/marked.min.js"></script>
+<script src="assets/vendor/dompurify/purify.min.js"></script>
 </head>
 <body>
 <canvas id="matrix"></canvas>
@@ -77,6 +78,21 @@
 const params = new URLSearchParams(window.location.search);
 const postSlug = params.get('post');
 const availablePosts = new Set(['ssh-hardening', 'linux-permissions', 'incident-response-basics']);
+const markdownContent = document.getElementById('markdown-content');
+const sanitizerConfig = {
+  ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'hr', 'pre', 'code', 'blockquote', 'ul', 'ol', 'li', 'strong', 'em', 'del', 'a', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
+  ALLOWED_ATTR: ['href', 'title', 'class'],
+  ALLOW_DATA_ATTR: false,
+  ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):)/i,
+  RETURN_DOM_FRAGMENT: true
+};
+
+function showError(message) {
+  const error = document.createElement('p');
+  error.style.color = 'var(--danger)';
+  error.textContent = message;
+  markdownContent.replaceChildren(error);
+}
 
 if (postSlug) {
   document.getElementById('catalog-view').style.display = 'none';
@@ -84,14 +100,14 @@ if (postSlug) {
   reader.style.display = 'block';
 
   if (!availablePosts.has(postSlug)) {
-    document.getElementById('markdown-content').innerHTML = '<p style="color:var(--danger)">[Catatan tidak tersedia.]</p>';
+    showError('[Catatan tidak tersedia.]');
   } else fetch(`posts/${postSlug}.md`)
     .then(res => {
       if (!res.ok) throw new Error("File Markdown tidak ditemukan.");
       return res.text();
     })
     .then(text => {
-      document.getElementById('markdown-content').innerHTML = marked.parse(text);
+      markdownContent.replaceChildren(DOMPurify.sanitize(marked.parse(text), sanitizerConfig));
       // Pasang copy button otomatis pada setiap blok kode hasil parse
       document.querySelectorAll('#markdown-content pre').forEach(pre => {
         const wrap = document.createElement('div');
@@ -112,8 +128,8 @@ if (postSlug) {
         });
       });
     })
-    .catch(err => {
-      document.getElementById('markdown-content').innerHTML = `<p style="color:var(--danger)">[Gagal memuat catatan: ${err.message}]</p>`;
+    .catch(() => {
+      showError('[Gagal memuat catatan. Silakan coba lagi nanti.]');
     });
 }
 

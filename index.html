@@ -158,10 +158,14 @@ tIn.addEventListener('keydown', (e) => {
     const val = tIn.value.trim().toLowerCase();
     if (!val) return;
     const l = document.createElement('div');
-    l.innerHTML = `<span style="color:var(--primary);">guest@andarmax:~$</span> ${tIn.value}`;
+    const prompt = document.createElement('span');
+    prompt.style.color = 'var(--primary)';
+    prompt.textContent = 'guest@andarmax:~$';
+    const input = document.createTextNode(` ${tIn.value}`);
+    l.append(prompt, input);
     tOut.appendChild(l);
     if (val === 'clear') {
-      tOut.innerHTML = '';
+      tOut.replaceChildren();
     } else if (cmds[val]) {
       const res = document.createElement('div');
       res.style.color = '#8fff8f';
