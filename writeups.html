@@ -4,17 +4,23 @@
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="ANDAR | Cyber Security Technical Study Notes & Writeups" />
 <meta name="theme-color" content="#050b08" />
+<link rel="canonical" href="https://andarmax.github.io/writeups.html" />
+<meta property="og:title" content="ANDAR | Study Notes" />
+<meta property="og:description" content="Catatan teknis Linux, networking, dan defensive security." />
+<meta property="og:url" content="https://andarmax.github.io/writeups.html" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☠</text></svg>">
 <title>ANDAR | Study Notes</title>
 <link rel="stylesheet" href="assets/css/main.css" />
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="assets/vendor/marked/marked.min.js"></script>
+<script src="assets/vendor/dompurify/purify.min.js"></script>
 </head>
 <body>
 <canvas id="matrix"></canvas>
-<nav class="navbar">
+<nav class="navbar" aria-label="Navigasi utama">
 <a class="nav-btn" href="index.html">HOME</a>
 <a class="nav-btn" href="roadmap.html">ROADMAP</a>
 <a class="nav-btn active" href="writeups.html">STUDY NOTES</a>
+<a class="nav-btn" href="contact.html">CONTACT</a>
 </nav>
 
 <div class="container">
@@ -22,6 +28,7 @@
 <div id="catalog-view">
   <h1 style="text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);text-shadow:0 0 12px rgba(0,255,65,0.7);margin:10px 0 0;">STUDY NOTES // ノート</h1>
   <p style="text-align:center;color:var(--primary-soft);">Linux • Networking • Defense</p>
+  <label for="note-search" class="sr-only">Filter catatan</label>
   <input type="text" id="note-search" style="width:100%;margin:16px 0 10px;padding:12px 16px;background:rgba(0,0,0,0.75);border:1px solid var(--line);border-radius:10px;color:var(--primary);font-family:inherit;font-size:0.95rem;outline:none;" placeholder="[ Filter topik: ssh, subnet, permissions, defense, owasp ]" />
 
   <section class="card">
@@ -40,7 +47,15 @@
         <span class="tag">[SECURITY]</span>
       </div>
       <p style="color:#b2d8be;font-size:0.9rem;margin:8px 0;">Analisis hak akses file octal, SUID, SGID, dan Sticky bit untuk pencegahan eskalasi hak istimewa.</p>
-      <span style="color:var(--dim);font-size:0.8rem;">[Dokumentasi segera terbit]</span>
+      <a class="btn" href="writeups.html?post=linux-permissions">BACA DOKUMEN MARKDOWN →</a>
+    </div>
+    <div class="note-card" style="border:1px dashed var(--line);border-radius:10px;padding:14px;margin:12px 0;background:rgba(0,0,0,0.35);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <strong style="color:var(--text);font-size:1.05rem;">Incident Response Basics</strong>
+        <span class="tag">[BLUE TEAM]</span>
+      </div>
+      <p style="color:#b2d8be;font-size:0.9rem;margin:8px 0;">Triage alert, preservasi bukti, containment, dan dokumentasi timeline insiden.</p>
+      <a class="btn" href="writeups.html?post=incident-response-basics">BACA DOKUMEN MARKDOWN →</a>
     </div>
   </section>
 </div>
@@ -49,7 +64,7 @@
 <div id="reader-view" style="display:none;">
   <article class="card" style="line-height:1.7;">
     <div style="margin-bottom:16px;"><a class="btn" href="writeups.html">← KEMBALI KE DAFTAR CATATAN</a></div>
-    <div id="markdown-content" style="color:#c5ebcf;">Memuat artikel...</div>
+    <div id="markdown-content" style="color:#c5ebcf;" aria-live="polite">Memuat artikel...</div>
     <div style="margin-top:24px;border-top:1px dashed var(--line);padding-top:16px;">
       <a class="btn" href="writeups.html">← KEMBALI KE DAFTAR CATATAN</a>
     </div>
@@ -62,19 +77,37 @@
 // Dynamic Markdown Resolver
 const params = new URLSearchParams(window.location.search);
 const postSlug = params.get('post');
+const availablePosts = new Set(['ssh-hardening', 'linux-permissions', 'incident-response-basics']);
+const markdownContent = document.getElementById('markdown-content');
+const sanitizerConfig = {
+  ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'hr', 'pre', 'code', 'blockquote', 'ul', 'ol', 'li', 'strong', 'em', 'del', 'a', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
+  ALLOWED_ATTR: ['href', 'title', 'class'],
+  ALLOW_DATA_ATTR: false,
+  ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):)/i,
+  RETURN_DOM_FRAGMENT: true
+};
+
+function showError(message) {
+  const error = document.createElement('p');
+  error.style.color = 'var(--danger)';
+  error.textContent = message;
+  markdownContent.replaceChildren(error);
+}
 
 if (postSlug) {
   document.getElementById('catalog-view').style.display = 'none';
   const reader = document.getElementById('reader-view');
   reader.style.display = 'block';
 
-  fetch(`posts/${postSlug}.md`)
+  if (!availablePosts.has(postSlug)) {
+    showError('[Catatan tidak tersedia.]');
+  } else fetch(`posts/${postSlug}.md`)
     .then(res => {
       if (!res.ok) throw new Error("File Markdown tidak ditemukan.");
       return res.text();
     })
     .then(text => {
-      document.getElementById('markdown-content').innerHTML = marked.parse(text);
+      markdownContent.replaceChildren(DOMPurify.sanitize(marked.parse(text), sanitizerConfig));
       // Pasang copy button otomatis pada setiap blok kode hasil parse
       document.querySelectorAll('#markdown-content pre').forEach(pre => {
         const wrap = document.createElement('div');
@@ -95,8 +128,8 @@ if (postSlug) {
         });
       });
     })
-    .catch(err => {
-      document.getElementById('markdown-content').innerHTML = `<p style="color:var(--danger)">[Gagal memuat catatan: ${err.message}]</p>`;
+    .catch(() => {
+      showError('[Gagal memuat catatan. Silakan coba lagi nanti.]');
     });
 }
 

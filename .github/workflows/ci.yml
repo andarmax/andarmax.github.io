@@ -20,3 +20,21 @@ jobs:
           test -f roadmap.html || exit 1
           test -f .well-known/security.txt || exit 1
           echo "All critical security and web artifacts verified."
+
+      - name: Validate Markdown Posts
+        run: |
+          posts=$(find posts -maxdepth 1 -type f -name '*.md' -print)
+          test -n "$posts"
+          for post in $posts; do
+            test "$(grep -c '^```' "$post")" -gt 0
+            test $(( $(grep -c '^```' "$post") % 2 )) -eq 0
+          done
+          grep -Fq "linux-permissions" writeups.html
+          grep -Fq "ssh-hardening" writeups.html
+          grep -Fq "incident-response-basics" writeups.html
+          test -f contact.html
+          test -f LICENSE
+          echo "Markdown posts and catalog links verified."
+
+      - name: Run Batch 1 Security Regression Checks
+        run: python3 scripts/security-regression.py

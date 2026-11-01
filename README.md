@@ -13,11 +13,14 @@ Live site: https://andarmax.github.io/
 │   ├── css/main.css         # Desain global terpusat & komponen UI
 │   └── js/matrix.js         # Canvas engine + pause toggle + prefers-reduced-motion
 ├── posts/
+│   ├── incident-response-basics.md # Triage dan containment insiden
+│   ├── linux-permissions.md # Audit permission, SUID, SGID, dan Sticky bit
 │   └── ssh-hardening.md     # Berkas catatan teknis berbasis Markdown murni
 ├── index.html               # Profil, technical specs, diagram homelab, & shell
 ├── roadmap.html             # Pelacak sasaran dan target materi
 ├── writeups.html            # Dynamic Markdown renderer (Marked.js) + live search
+├── contact.html             # Kontak dan security disclosure
 ├── 404.html                 # Halaman error kustom terminal
-├── andar.asc                # PGP Public Key
+├── LICENSE                  # Lisensi kode dan dokumentasi
 ├── robots.txt               # Aturan crawling search engine
 └── sitemap.xml              # Indeks halaman situs
