@@ -20,3 +20,15 @@ jobs:
           test -f roadmap.html || exit 1
           test -f .well-known/security.txt || exit 1
           echo "All critical security and web artifacts verified."
+
+      - name: Validate Markdown Posts
+        run: |
+          posts=$(find posts -maxdepth 1 -type f -name '*.md' -print)
+          test -n "$posts"
+          for post in $posts; do
+            test "$(grep -c '^```' "$post")" -gt 0
+            test $(( $(grep -c '^```' "$post") % 2 )) -eq 0
+          done
+          grep -Fq "linux-permissions" writeups.html
+          grep -Fq "ssh-hardening" writeups.html
+          echo "Markdown posts and catalog links verified."

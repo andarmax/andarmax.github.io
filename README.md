@@ -19,6 +19,5 @@ Live site: https://andarmax.github.io/
 ├── roadmap.html             # Pelacak sasaran dan target materi
 ├── writeups.html            # Dynamic Markdown renderer (Marked.js) + live search
 ├── 404.html                 # Halaman error kustom terminal
-├── andar.asc                # PGP Public Key
 ├── robots.txt               # Aturan crawling search engine
 └── sitemap.xml              # Indeks halaman situs
